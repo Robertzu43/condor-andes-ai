@@ -1,0 +1,59 @@
+{
+  "video": "../media/condor-showcase.mp4",
+  "size": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "durationSeconds": 58.933333,
+  "audio": false,
+  "style": {
+    "paper": "#f7f7f5",
+    "ink": "#0d0d0d",
+    "typeface": "Avenir Next, rendered from locally installed system font; font files not distributed"
+  },
+  "segments": [
+    {
+      "at": 0,
+      "duration": 5,
+      "type": "title",
+      "text": "Can faster decisions make better players?",
+      "backgroundImage": "cards/01-intro.png"
+    },
+    {
+      "at": 5,
+      "duration": 16,
+      "source": "../media/2026-10-13-training.mp4",
+      "from": 60,
+      "speed": 1,
+      "caption": "Four flights; three assessments per action; original physics; simulation pauses during API requests.",
+      "backgroundImage": "cards/02-training-frame.png"
+    },
+    {
+      "at": 21,
+      "duration": 10,
+      "type": "measured result card",
+      "sourceData": "../results/2026-10-13-search-summary.json",
+      "caption": "Initial normal-speed pair: six obstacles in 9.10 seconds vs zero in 2.85 seconds. One pair, not proof.",
+      "backgroundImage": "cards/03-initial-result.png"
+    },
+    {
+      "at": 31,
+      "duration": 14,
+      "source": "../media/2026-10-13-refinement.mp4",
+      "from": 394,
+      "speed": 1,
+      "caption": "Simulation winner lost two of three live pairs; mean survival 3.19 vs 4.31 seconds.",
+      "correction": "The old generic simulation footer is replaced with a normal-speed timing label. Gameplay, statistics and timestamps are unchanged.",
+      "backgroundImage": "cards/04-refinement-frame.png"
+    },
+    {
+      "at": 45,
+      "duration": 14,
+      "type": "lesson and repository link",
+      "caption": "Test on the clock you deploy. Fixed model; strategy adaptation.",
+      "backgroundImage": "cards/05-lesson.png"
+    }
+  ],
+  "evidence": "Two measured campaigns: 16,273 calls; confirmed usage $1.9665378 plus $0.0105447 uncertain. Earlier manual trials excluded. No generated gameplay or fabricated responses."
+}

@@ -28,8 +28,8 @@ text('record-status',codec ? 'Ready · record now or wait for the search · WebM
 
 function drawRecording(state) {
   const ctx = recordingContext;
-  ctx.fillStyle = '#fafbf8'; ctx.fillRect(0,0,1440,960);
-  const line = (value,x,y,size=18,color='#202522') => {ctx.fillStyle=color; ctx.font=`${size}px sans-serif`; ctx.textAlign='left'; ctx.fillText(String(value),x,y);};
+  ctx.fillStyle = '#f7f7f5'; ctx.fillRect(0,0,1440,960);
+  const line = (value,x,y,size=18,color='#0d0d0d') => {ctx.fillStyle=color; ctx.font=`${size}px "Avenir Next", Avenir, sans-serif`; ctx.textAlign='left'; ctx.fillText(String(value),x,y);};
   line('CONDOR / ANDES LAB',36,45,23); line(state.mock ? 'MOCK RUN' : 'REAL MODEL · LOCAL SIMULATION',940,45,16,'#087f6c');
   line('Live strategy search',36,90,34); line(`${state.phase || 'waiting'} · ${state.updatedAt || 'waiting for snapshot'}`,36,121,15,'#68716b');
   for (let slot=0;slot<4;slot++) {
@@ -60,8 +60,9 @@ function drawRecording(state) {
     ctx.fillStyle='#087f6c';ctx.fillRect(x,y+7,470*Math.max(0,number(row.meanReward))/max,4);
   });
   if (!ranking.length) line('Waiting for paired training results',x,536,17,'#68716b');
-  line('Simulation freezes during decisions · Only actual snapshots are recorded.',36,899,17,'#68716b');
+  line(state.phase==='normal-speed-check'?'Normal-speed check · World continues during API replies.':'Simulation freezes during decisions · Only actual snapshots are recorded.',36,899,17,'#68716b');
   line('Best tested — not a global optimum.',36,929,17,'#68716b');
+  line('Built with OpenAI Decisions API · Independent project',36,949,13,'#666666');
   line(state.stopReason ? `Stopped: ${state.stopReason}` : state.running ? 'Search running' : 'Search stopped',925,899,17,'#087f6c');
   recordingStream?.getVideoTracks()[0]?.requestFrame?.();
 }

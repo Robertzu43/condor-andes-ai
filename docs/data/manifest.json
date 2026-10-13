@@ -1,0 +1,44 @@
+[
+  {
+    "file": "search-first-episodes.jsonl.gz",
+    "records": 57,
+    "uncompressedBytes": 15583983,
+    "sourceRun": "condor-search-2026-10-13",
+    "contents": "Complete gameplay decision events"
+  },
+  {
+    "file": "search-first-api-usage.jsonl.gz",
+    "records": 3162,
+    "uncompressedBytes": 1558351,
+    "sourceRun": "condor-search-2026-10-13",
+    "contents": "Sanitized per-request token usage and rate headers"
+  },
+  {
+    "file": "search-continued-episodes.jsonl.gz",
+    "records": 122,
+    "uncompressedBytes": 28281846,
+    "sourceRun": "condor-search-2026-10-13-continued",
+    "contents": "Complete gameplay decision events"
+  },
+  {
+    "file": "search-continued-api-usage.jsonl.gz",
+    "records": 5641,
+    "uncompressedBytes": 2786097,
+    "sourceRun": "condor-search-2026-10-13-continued",
+    "contents": "Sanitized per-request token usage and rate headers"
+  },
+  {
+    "file": "refinement-episodes.jsonl.gz",
+    "records": 66,
+    "uncompressedBytes": 39724644,
+    "sourceRun": "condor-refinement-2026-10-13",
+    "contents": "Complete gameplay decision events"
+  },
+  {
+    "file": "refinement-api-usage.jsonl.gz",
+    "records": 7470,
+    "uncompressedBytes": 3689750,
+    "sourceRun": "condor-refinement-2026-10-13",
+    "contents": "Sanitized per-request token usage and rate headers"
+  }
+]
