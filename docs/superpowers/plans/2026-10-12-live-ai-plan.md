@@ -13,7 +13,7 @@
 - Real model: gpt-6-luna, OpenAI POST /v1/decisions with choice answers flap/wait.
 - Use structured observations only, with visible obstacles, not future random state.
 - One outstanding request; maximum five requests per second, 150 seconds or 750 requests per run.
-- Simulation remains at 60 Hz. Apply each flap once. Drop answers over 250 ms old or for a different run. Stop/pause after three consecutive stale answers, API failure, refusal, or malformed answer.
+- Hold only the initial starting position until the first genuine model decision, visibly labeled as preparation; its unchanged snapshot is exempt from age rejection. Simulation thereafter remains at 60 Hz. Apply each flap once. Drop answers over 500 ms old or for a different run. Stop/pause after three consecutive stale answers, API failure, refusal, or malformed answer.
 - Keep secrets server-side and bind only to loopback. Serve only explicit assets, validate origin/host, bound request sizes and request duration. Explicit mock mode must be clearly identified everywhere including exports.
 - Existing production assets and leaderboard behavior for humans remain intact. AI sessions never submit scores.
 - OpenAI-inspired light UI: game left, decisions right, provider and model labels, progress and decision history, video and JSON exports. Mockup is visual reference, not proof of performance.
