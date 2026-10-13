@@ -2,7 +2,7 @@
 export function projectFlight({observation:o,latencyMs=200,previousAction}) {
   if (!o?.condor || !o.playfield || ![o.condor.y,o.condor.vy,o.condor.h,o.gravity,o.flapImpulse,o.scrollSpeed,o.playfield.ground].every(Number.isFinite)) return null;
   const held=o.paused && o.pauseReason==='controller' && previousAction==null;
-  const estimatedLatencyMs=Math.min(1000,Math.max(0,latencyMs));
+  const estimatedLatencyMs=Math.min(1000,Math.max(0,held && latencyMs===0?250:latencyMs));
   const requestFrames=held?0:Math.ceil(estimatedLatencyMs*60/1000);
   const nextDecisionFrames=Math.ceil((200+estimatedLatencyMs)*60/1000);
   const round=n=>Math.round(n*100)/100;
