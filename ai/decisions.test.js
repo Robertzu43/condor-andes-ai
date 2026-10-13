@@ -38,3 +38,10 @@ test('fixed assessment lenses share survival goal and reject unknown roles befor
  assert.equal(new Set(lenses).size,3);await decide({observation:{}});assert.equal(body.questions[0].instructions,lenses[0].replace(/ Extra upper-gap caution:.*?(?= Assessment lens:)/,''));
  const before=calls;for(const assessment of ['custom',null,{},['immediate'],'do something else'])await assert.rejects(decide({observation:{},assessment}),/Invalid assessment/);assert.equal(calls,before);
 });
+
+test('decision-step simulations freeze arrival and use the requested real-frame horizon',async()=>{let body;const observation={state:'play',paused:true,pauseReason:'controller',playfield:{width:384,height:216,ground:192},condor:{x:72,y:90,w:20,h:14,vy:2},gravity:.35,flapImpulse:-5.2,scrollSpeed:2,mountains:[]};
+ const decide=createDecider({apiKey:'fake',fetchImpl:async(_url,opts)=>{body=JSON.parse(opts.body);return {ok:true,json:async()=>answer}}});
+ await decide({observation,simulation:{stepFrames:12},latencyMs:400,previousAction:{action:'flap',frame:0},assessment:'recovery'});
+ const p=JSON.parse(body.input).flightProjection;assert.equal(p.requestFrames,0);assert.equal(p.nextDecisionFrames,12);assert.equal(p.delayStressFrames,12);assert.equal(p.arrival.y,90);assert.match(body.questions[0].instructions,/Exactly 12/);assert.match(body.questions[0].instructions,/frozen/);
+ for(const simulation of [null,{},[],{stepFrames:0},{stepFrames:31},{stepFrames:1.5},{stepFrames:12,hiddenSeed:101}])assert.throws(()=>validatePayload({observation,simulation}));
+});

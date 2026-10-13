@@ -57,7 +57,36 @@ model and guidance version remain separate. Read the [learning method](docs/lear
 for the reward, UCB1 rule, reproduction steps and limits. Choice probabilities
 are not survival probabilities; a small batch may show no gain or regressions.
 
-## Measured learning showcase
+## Parallel simulation search
+
+The local search runs four isolated copies of the **actual game code**, testing
+nine candidates: three guidance strategies at 9, 12 or 18 frames between actions.
+Each action averages three concurrent OpenAI assessments of the same visible
+state. The simulation freezes during those requests, then advances the original
+physics. This removes network delay from the strategy comparison; it is different
+from normal-speed live control.
+
+```sh
+# Use a new absolute output directory; existing spend ledgers cannot be reset.
+node scripts/search-dashboard.mjs --data=/absolute/path/to/search-results
+node --env-file-if-exists=.env scripts/run-condor-search.mjs --output=/absolute/path/to/search-results
+```
+
+Open http://127.0.0.1:8790 to watch real snapshots, probabilities, ranking and
+spend. The dashboard is read only and makes no model calls. For a free smoke test,
+replace the second command with `node scripts/run-condor-search.mjs --mock
+--output=/absolute/path/to/new-mock-results` on one line.
+
+The paid runner targets $1 of usage and permits at most $1.25, including pending
+and uncertain reservations. It stops on unknown spend or provider errors without
+retrying. All workers share one durable ledger. It ranks only training courses
+completed by every candidate, freezes the winner, then evaluates against balanced
+guidance on different courses. Short normal-speed checks transfer guidance only.
+The result is the **best tested candidate**, not a global optimum or model-weight
+training. Full traces, token usage, the frozen selection and final summary are
+saved in the chosen directory. See [search method](docs/simulation-search.md).
+
+## Earlier measured learning showcase
 
 The latest real batch completed ten flights with 148 requests and 140 applied model answers. Average active flight time rose from 1.04 seconds in the timing-only batch to 2.85 seconds with delay-aware forecasts. Reward feedback selected upper-caution guidance; held-out runs passed one obstacle on one course and none on the other, while paired balanced baselines passed none. Two pairs are too few to claim reliable superiority, and v1 still has the highest held-out reward and longest measured flight.
 
