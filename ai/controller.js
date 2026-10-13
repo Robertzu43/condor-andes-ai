@@ -40,7 +40,7 @@ export function createController({game,decide,onEvent=()=>{},now=()=>performance
       if (outcome==='applied' && result.action==='flap') game.flap();
       onEvent({type:'decision',runId,sequence,timestamp:Date.now(),timeMs:receivedAt,observation,warmup,...result,requestedAt,receivedAt,latencyMs,outcome,reason,appliedFrame:outcome==='applied'?game.snapshot().frame:null});
       if (generation!==token || !state.running) return;
-      state.latencyMs=latencyMs;
+      state.latencyMs=warmup?250:latencyMs;
       state.staleCount=reason==='stale'?state.staleCount+1:0;
       if (reason===state.durationReason) return stop(reason);
       if (reason==='game-ended') return stop('game-over');

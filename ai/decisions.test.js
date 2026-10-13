@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {projectFlight} from './projection.mjs';
 import {normalizeAnswer,validatePayload,createDecider} from './decisions.mjs';
 const answer={answers:[{name:'flight',type:'choice',choice:'flap',confidence:.8,probabilities:[{value:'flap',probability:.8},{value:'wait',probability:.2}]}]};
 test('normalizes only a complete valid flight answer',()=>{assert.equal(normalizeAnswer(answer).action,'flap');for(const a of [{answers:[]},{answers:[{type:'refusal'}]},{answers:[{...answer.answers[0],choice:'other'}]}])assert.throws(()=>normalizeAnswer(a));});
@@ -14,8 +15,10 @@ test('provider evidence drops dense silhouettes but preserves observed physics a
  await createDecider({apiKey:'fake',fetchImpl:async(_url,opts)=>{body=JSON.parse(opts.body);return{ok:true,json:async()=>answer}}})(payload);
  const input=JSON.parse(body.input);
  assert.deepEqual(input.observation.mountains,[{x:130,halfWidth:25,gapTop:64,gapBottom:156},{x:270,halfWidth:30,gapTop:32,gapBottom:124}]);
- for(const field of ['runId','sequence','timestamp','state','frame','paused','pauseReason','playfield','condor','gravity','flapImpulse','scrollSpeed','score','coins','mode','invulnerabilitySeconds','visibleCoins'])assert.deepEqual(input.observation[field],observation[field]);
- assert.equal(input.flightProjection?.estimated,true);assert.equal(input.flightProjection.requestFrames,14);assert.equal(input.flightProjection.nextDecisionFrames,14);
+ for(const field of ['state','frame','paused','pauseReason','playfield','gravity','flapImpulse','scrollSpeed','mode','invulnerabilitySeconds'])assert.deepEqual(input.observation[field],observation[field]);
+ for(const field of ['runId','sequence','timestamp','score','coins','visibleCoins','courseSeed','progress'])assert.equal(input.observation[field],undefined);assert.deepEqual(input.observation.condor,{x:72,y:40,w:20,h:14,vy:3.2});
+ assert.match(body.questions[0].instructions,/500ms/);assert.match(body.questions[0].instructions,/probabilities/);assert.equal(input.flightProjection.candidates.wait.delayStress.framesSimulated>0,true);
+ assert.deepEqual(input.flightProjection,projectFlight(payload));assert.equal(input.flightProjection.chosenAction,undefined);assert.equal(input.flightProjection?.estimated,true);assert.equal(input.flightProjection.requestFrames,14);assert.equal(input.flightProjection.nextDecisionFrames,14);
  assert.deepEqual(input.previousAction,{action:'flap',frame:120});assert.equal(input.latencyMs,217);assert.equal(JSON.stringify(payload),before);
 t.diagnostic(`Representative evidence bytes: ${Buffer.byteLength(before)} -> ${Buffer.byteLength(body.input)}`);
 });

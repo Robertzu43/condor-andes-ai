@@ -33,7 +33,7 @@ Enable **Record this run** before Start. Recording captures the real game canvas
 
 The local game permits its existing Google Fonts stylesheet and font origin to preserve its pixel lettering; the spectator uses available Avenir / Century Gothic / sans-serif fonts. No official OpenAI font is bundled. Chrome recording and video export were verified. The latest live run reported a 184 ms final response; latency varies.
 
-Decision requests remain sequential and at least 200 ms apart at server acceptance. Replies include the remaining server cooldown, waited after receipt; provider latency overlaps that cooldown. Missing or invalid cooldown metadata falls back to a full 200 ms wait. Flight projections estimate the next action opportunity with max(200 ms, recent latency), with transport jitter able to extend it. Guidance v2 keeps prior learning statistics separate.
+Decision requests remain sequential and at least 200 ms apart at server acceptance. Replies include the remaining server cooldown, waited after receipt; provider latency overlaps that cooldown. Missing or invalid cooldown metadata falls back to a full 200 ms wait. Flight projections estimate the next action opportunity with max(200 ms, recent latency), with transport jitter able to extend it. Guidance v3 keeps prior learning statistics separate. Both actions also receive a 500 ms delay-stress forecast from projected arrival; actual delays may exceed that horizon. Corridor clearance is measured only during horizontal hitbox overlap; nearest-gap margins remain visible for planning. Provider evidence omits run metadata, progress and artwork while recorded observations remain complete.
 
 The first decision is a preparation phase: the game world remains frozen while OpenAI chooses the first flap or wait. The actual model answer resumes play and applies once; subsequent requests keep the simulation moving. Preparation counts toward the 150-second bound. Hidden pages or resizing cancel preparation.
 
@@ -64,3 +64,5 @@ The first bounded real experiment completed ten flights with 50 requests. On two
 ![Measured strategy-learning results](docs/results/2026-10-12-learning.svg)
 
 [All results, limitations and reproduction](docs/results/2026-10-12-results.md) · [Compact measured data](docs/results/2026-10-12-experiment.json) · [Learning method](docs/learning-method.md)
+
+Cold preparation latency remains recorded, but the first live forecast starts with 250 ms; subsequent live replies supply measured latency.

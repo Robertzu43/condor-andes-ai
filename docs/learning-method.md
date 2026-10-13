@@ -14,7 +14,7 @@ flowchart LR
   G --> H[Held-out paired evaluation, no training update]
 ```
 
-Three server-owned strategies are versioned as `balanced-v1`, `upper-caution-v1`, and `ground-caution-v1`. Guidance configuration is `flight-guidance-v2`, including the server-coordinated request cadence; historical v1 results remain separate. Only visible observations enter Decisions; course seeds and future obstacles are not provided as future information.
+Three server-owned strategies are versioned as `balanced-v1`, `upper-caution-v1`, and `ground-caution-v1`. Guidance configuration is `flight-guidance-v3`, including both-action 500 ms delay-stress estimates and overlap-only corridor margins; historical v1/v2 results remain separate. The server cadence is unchanged. The stress horizon starts at projected arrival and is not a guarantee against longer delays. Nearest-gap raw margins support planning; only overlap margins indicate immediate corridor risk. Provider evidence retains physics, hitbox, visible gaps, timing and previous action while omitting run metadata, progress and artwork; event observations remain complete. Only visible observations enter Decisions; course seeds and future obstacles are not provided as future information.
 
 Reward is **10 × physical obstacles passed + 2 × physical coins collected + 0.1 × active flight seconds**, with seconds capped at 150. Physical counters survive the visual five-coin reset and ULTRA score multipliers. Preparation remains frozen and contributes no active-flight reward. Game over and a completed episode duration are valid outcomes. Cancel, hidden tab, resize, API errors, budget exhaustion and recording failures are interruptions with **null reward**, never a zero failure reward.
 
@@ -35,3 +35,5 @@ The third chart is descriptive: one point per valid episode plots its reward aga
 5. Keep geometry fixed and the tab visible. Local storage retains history; incompatible or invalid episodes are ignored with a notice. Storage failure retains the current in-memory export. A clean browser profile gives a fresh-history batch; the existing-history behavior above is intentional.
 
 Do not infer token costs when not measured. Larger or parallel batches require separate authorization and independent environments; the bounded demonstration does not establish reward gain per dollar. See [research hypothesis](research-hypothesis.md) for the claims and limits.
+
+Cold preparation latency remains recorded, but the first live forecast starts with 250 ms; subsequent live replies supply measured latency.
