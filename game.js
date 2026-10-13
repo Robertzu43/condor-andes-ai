@@ -25,18 +25,25 @@ function fit() {
   if (state === 'play') { pairs.length = 0; state = 'ready'; } // rotating mid-game: hover until the next tap, score kept, never a death
 }
 
-const rnd = (a, b) => a + Math.random() * (b - a);
+let courseSeed = null, courseRandomState = 0;
+const rnd = (a, b) => {
+  const value = AI_MODE && courseSeed !== null
+    ? (courseRandomState = (Math.imul(1664525, courseRandomState) + 1013904223) >>> 0) / 4294967296
+    : Math.random();
+  return a + value * (b - a);
+};
 const ls = { get: k => localStorage.getItem('condor.' + k), set: (k, v) => localStorage.setItem('condor.' + k, v) };
 
 // ---- state ----
 let state = 'title', mode = 'normal', t = 0, dist = 0, frame = 0;
+let obstaclesPassed = 0, coinsCollected = 0;
 let y, vy, flapT, invul, speed, score, coins, pairs, nth, flash, flashRGB, banner, bannerLost, wait = 0, copied = 0; // wait: seconds of ignored input
 let best = +ls.get('best') || 0, letters, idx, top, mine;
 addEventListener('resize', fit); fit();
 const clouds = [[0, 32, 2, 8], [160, 20, 2, 5], [250, 56, 2, 11], [340, 24, 1, 14]].map(([x, y, s, v]) => ({ x: x % W, y, s, v }));
 
 function startPlay() { // 'ready': hover with the world scrolling until the first tap, which becomes the first flap
-  state = 'ready'; mode = 'normal';
+  state = 'ready'; mode = 'normal'; obstaclesPassed = 0; coinsCollected = 0;
   y = GROUND / 2 - 16; vy = 0; flapT = 0; invul = 0; speed = 2; score = 0; coins = 0; pairs = []; nth = 1; flash = 0; banner = 0;
 }
 
@@ -102,7 +109,8 @@ async function showTable(entry) {
 
 // ---- simulation ----
 function step() {
-  t += 1 / 60; frame++;
+  t += 1 / 60;
+  if (!AI_MODE || state === 'play') frame++;
   const adv = state === 'play' || state === 'ready' ? speed : 1;
   dist += adv;
   clouds.forEach(c => { c.x -= adv * 0.15 + c.v * 0.01; if (c.x < -60) c.x += W + 120; });
@@ -129,8 +137,8 @@ function step() {
 
   const hb = hitbox();
   for (const p of pairs) {
-    if (!p.passed && p.x + p.hw < CX) { p.passed = true; score += mode === 'ultra' ? 2 : 1; speed = Math.min(3.5, 2 + 0.1 * Math.floor(score / 10)); }
-    if (p.coin && overlap(hb, { x: p.x - 6, y: p.gapY + p.gap / 2 - 6, w: 12, h: 12 })) { p.coin = false; if (++coins >= 5) enterUltra(); }
+    if (!p.passed && p.x + p.hw < CX) { p.passed = true; obstaclesPassed++; score += mode === 'ultra' ? 2 : 1; speed = Math.min(3.5, 2 + 0.1 * Math.floor(score / 10)); }
+    if (p.coin && overlap(hb, { x: p.x - 6, y: p.gapY + p.gap / 2 - 6, w: 12, h: 12 })) { p.coin = false; coinsCollected++; if (++coins >= 5) enterUltra(); }
     if (hitsMountain(p, hb)) { hitRock(); if (state !== 'play') return; }
   }
   if (hb.y + hb.h >= GROUND) gameOver();
@@ -338,13 +346,16 @@ if (AI_MODE) {
   addEventListener('visibilitychange', () => { if (document.hidden) { aiPaused = true; aiPauseReason = 'hidden'; } });
   window.condorAI = Object.freeze({
     canvas: cv,
-    start() { startPlay(); frame = 0; t = 0; dist = 0; state = 'play'; wait = 0; spawnPair(Math.max(W + 40, CX + 60 + 120 * speed)); aiStarted = true; aiPaused = false; aiPauseReason = null; last = performance.now(); acc = 0; },
+    start({seed} = {}) {
+      if (seed !== undefined && (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff)) throw new RangeError('seed must be an unsigned 32-bit integer');
+      courseSeed = seed ?? null; courseRandomState = seed ?? 0;
+      startPlay(); frame = 0; t = 0; dist = 0; state = 'play'; wait = 0; spawnPair(Math.max(W + 40, CX + 60 + 120 * speed)); aiStarted = true; aiPaused = false; aiPauseReason = null; last = performance.now(); acc = 0; },
     flap() { if (state !== 'play' || aiPaused) return false; vy = -5.2; flapT = 7; return true; },
     pause() { aiPaused = true; aiPauseReason ||= 'controller'; acc = 0; },
     resume() { if (document.hidden || state !== 'play') return false; aiPaused = false; aiPauseReason = null; last = performance.now(); acc = 0; return true; },
     snapshot() {
       const visible = (pairs || []).filter(p => p.x + Math.max(p.hw, ...p.bot, ...p.top) >= 0 && p.x - Math.max(p.hw, ...p.bot, ...p.top) < W);
-      return {state, frame, paused: aiPaused, pauseReason: aiPauseReason, playfield:{width:W,height:H,ground:GROUND},
+      return {state, frame, courseSeed, obstaclesPassed, coinsCollected, activeFlightSeconds:frame/60, paused: aiPaused, pauseReason: aiPauseReason, playfield:{width:W,height:H,ground:GROUND},
         condor:{x:CX+2,y:(y ?? 0)+10,w:20,h:14,spriteY:y ?? 0,vy:vy ?? 0}, gravity:.35, flapImpulse:-5.2, scrollSpeed:speed ?? 2,
         score:score ?? 0, coins:coins ?? 0, mode, invulnerabilitySeconds:Math.max(0,invul || 0),
         mountains:visible.map(p=>({x:p.x,halfWidth:p.hw,gapTop:p.gapY,gapBottom:p.gapY+p.gap,topRows:[...p.top],bottomRows:[...p.bot]})),
