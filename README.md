@@ -92,6 +92,13 @@ saved in the chosen directory. See [search method](docs/simulation-search.md).
 
 ## Recorded parallel search
 
+The [focused upper-caution refinement](docs/results/2026-10-13-refinement-results.md)
+used another $0.93 for nine candidates, four concurrent flights, eight held-out
+pairs and three normal-speed pairs. Clearance instructions slightly improved
+the simulation average but reduced mean live survival from 4.31 to 3.19 seconds.
+The existing standard instructions remain the default. The full recording and
+chart preserve that regression; no improvement is claimed from training alone.
+
 ![Live four-condor training dashboard](docs/media/2026-10-13-training-preview.gif)
 
 [Full training recording](docs/media/2026-10-13-training.mp4) ·
