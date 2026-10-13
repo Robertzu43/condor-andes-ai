@@ -30,7 +30,7 @@ export function createServer({apiKey=process.env.OPENAI_API_KEY,mock=false,fetch
     if(req.method!=='GET')return send(404,{error:'Not found'});
     const file=pathname==='/'?'ai/index.html':pathname.slice(1);
     if(!assets.has(file))return send(404,{error:'Not found'});
-    try{const data=await readFile(resolve(root,file));res.writeHead(200,{'content-type':types[file.split('.').pop()]||'application/octet-stream','cache-control':'no-store','x-content-type-options':'nosniff','content-security-policy':"default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'"});res.end(data)}catch{send(404,{error:'Not found'})}
+    try{const data=await readFile(resolve(root,file));res.writeHead(200,{'content-type':types[file.split('.').pop()]||'application/octet-stream','cache-control':'no-store','x-content-type-options':'nosniff','content-security-policy':"default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; frame-ancestors 'self'"});res.end(data)}catch{send(404,{error:'Not found'})}
   });
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {

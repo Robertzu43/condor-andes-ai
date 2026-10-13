@@ -8,7 +8,7 @@ Node.js 22 or newer is required. There are no runtime dependencies.
 npm run ai:mock
 ```
 
-Open http://127.0.0.1:8789 when the spectator frontend is available. Mock mode always answers **wait**, makes no OpenAI calls, and must be visibly marked MOCK in recordings and logs. Direct bridge inspection is available at `/index.html#ai`.
+Open http://127.0.0.1:8789 to use the spectator. Mock mode always answers **wait**, makes no OpenAI calls, and is visibly marked MOCK in the page, recordings and logs. Direct bridge inspection is available at `/index.html#ai`.
 
 For real decisions, copy `.env.example` to `.env`, set `OPENAI_API_KEY` locally, and run `npm run ai`. Restart the server after configuring the key. Never commit the key or paste it into chat. `/api/status` reports whether a key is configured without returning it. Real mode uses `gpt-6-luna` through OpenAI POST `/v1/decisions`. Missing credentials pause play; no automatic scripted fallback exists.
 
@@ -24,3 +24,11 @@ The public build remains an explicit game asset allowlist and excludes the local
 ## Human game
 
 Use Space or tap to flap. Collect five Inti coins to enter ULTRA ANDES. The copied game assets preserve the original physics, rendering and human input. Open `/index.html` for human play; `/index.html#ai` enables local structured controls.
+
+## Spectator controls and exports
+
+Start begins a normal-speed model-controlled run; Stop pauses it; Restart ends the current run and begins another. The panel displays actual choice probabilities and applied/discarded outcomes. During requests it explicitly displays Pending. The observation summary is the latest snapshot sent to the model, while game progress updates continuously. No hidden reasoning is shown.
+
+Enable **Record this run** before Start. Recording captures the real game canvas and the live decision/progress panel together at 30 frames per second, with visible mock, pending, pause and error labels. A supported MediaRecorder codec is selected at runtime (usually WebM in Chrome); unsupported recording blocks the recorded run with an explanation. Stop, death or controller failure finalizes the video, then **Download video** saves it. **Export decisions** saves the complete run events, observations, returned probabilities, frames, timestamps, errors and mode as JSON. Restart replaces the previous run and exports, so download them first. Recording needs a visible browser tab; hiding the page ends control.
+
+The local game permits its existing Google Fonts stylesheet and font origin to preserve its pixel lettering; the spectator uses available Avenir / Century Gothic / sans-serif fonts. No official OpenAI font is bundled. Browser recording availability and real provider latency must be verified on the target browser.
