@@ -12,7 +12,7 @@ Open http://127.0.0.1:8789 to use the spectator. Mock mode always answers **wait
 
 For real decisions, copy `.env.example` to `.env`, set `OPENAI_API_KEY` locally, and run `npm run ai`. Restart the server after configuring the key. Never commit the key or paste it into chat. `/api/status` reports whether a key is configured without returning it. Real mode uses `gpt-6-luna` through OpenAI POST `/v1/decisions`. Missing credentials pause play; no automatic scripted fallback exists.
 
-Control runs are limited to 150 seconds / 750 requests and at most five decisions per second, with one request at a time. Answers older than 500 ms are discarded; three consecutive stale answers pause the game. Death, stop, hidden pages, and resizing freeze AI control. AI play never submits to the human leaderboard. Real API play has been verified in short trials. The latest checkpoint applied nine decisions, passed one obstacle and collected one coin before game over at about four seconds; this is not a validated long-duration demo.
+Control runs are limited to 150 seconds / 750 requests and at most five decisions per second, with one request at a time. Answers older than 500 ms are discarded; three consecutive stale answers pause the game. Death, stop, hidden pages, and resizing freeze AI control. AI play never submits to the human leaderboard. Real API play is verified in bounded experiments. Current v3 forecasts improved average early survival, but the best measured flight remains under five seconds; a continuous long-duration demo is not yet validated. All measured versions and regressions are linked below.
 
 ```sh
 npm test
@@ -59,10 +59,10 @@ are not survival probabilities; a small batch may show no gain or regressions.
 
 ## Measured learning showcase
 
-The first bounded real experiment completed ten flights with 50 requests. On two held-out courses, the selected guidance passed one and two obstacles while balanced guidance passed zero. This is an encouraging small-sample result, not proof of general superiority or model retraining.
+The latest real batch completed ten flights with 148 requests and 140 applied model answers. Average active flight time rose from 1.04 seconds in the timing-only batch to 2.85 seconds with delay-aware forecasts. Reward feedback selected upper-caution guidance; held-out runs passed one obstacle on one course and none on the other, while paired balanced baselines passed none. Two pairs are too few to claim reliable superiority, and v1 still has the highest held-out reward and longest measured flight.
 
-![Measured strategy-learning results](docs/results/2026-10-12-learning.svg)
+![Latest measured strategy-learning results](docs/results/2026-10-13-risk.svg)
 
-[All results, limitations and reproduction](docs/results/2026-10-12-results.md) · [Compact measured data](docs/results/2026-10-12-experiment.json) · [Learning method](docs/learning-method.md)
+[Latest results, all-version comparison and limitations](docs/results/2026-10-13-risk-results.md) · [Compact measured trace](docs/results/2026-10-13-risk-experiment.json) · [Learning method](docs/learning-method.md)
 
-Cold preparation latency remains recorded, but the first live forecast starts with 250 ms; subsequent live replies supply measured latency.
+Earlier results are preserved: [v1 baseline experiment](docs/results/2026-10-12-results.md) and [v2 timing regression](docs/results/2026-10-13-cadence-results.md). These experiments adapt strategy guidance around a fixed hosted model; probability calibration and model-weight training are separate work.
