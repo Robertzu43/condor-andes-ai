@@ -20,7 +20,7 @@ Make at most one model request at a time, initially capped at five requests per 
 
 Apply flap exactly once for a valid flap answer; wait applies no impulse. Tag all results with their snapshot and run identifiers. Discard results after death, stop, restart, or a changed run identifier. Reject responses older than 250 ms of wall-clock snapshot age, log them as stale, and request a fresh observation. The age threshold is a proposed starting value, to be evaluated with measured latency; it is not a claim that the API can meet it.
 
-On request failure, refusal, malformed answer, or three consecutive stale responses, stop AI control and pause the local AI session with a visible explanation. Do not switch silently to scripted play. Provide Start, Stop, and Restart controls; stop aborts outstanding requests. Limit a run to 60 seconds or 300 requests, whichever comes first.
+On request failure, refusal, malformed answer, or three consecutive stale responses, stop AI control and pause the local AI session with a visible explanation. Do not switch silently to scripted play. Provide Start, Stop, and Restart controls; stop aborts outstanding requests. Limit a run to 150 seconds or 750 requests, whichever comes first.
 
 ## Live display and recording
 
