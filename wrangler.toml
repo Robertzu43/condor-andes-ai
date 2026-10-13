@@ -1,0 +1,7 @@
+name = "condor-andes"
+compatibility_date = "2026-10-01"
+pages_build_output_dir = "./dist"
+
+[[kv_namespaces]]
+binding = "SCORES"
+id = "37bf007b13074d738e15826d3802da64"
