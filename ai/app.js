@@ -13,7 +13,7 @@ const STORAGE_KEY='condor-learning-v1';
 try{const stored=deserializeLearning(localStorage.getItem(STORAGE_KEY));learningRecords=stored.records;storageNotice=stored.notice||''}catch{storageNotice='Local storage unavailable; records stay in memory.'}
 function persistLearning(){try{localStorage.setItem(STORAGE_KEY,serializeLearning(learningRecords));learningSaved=true}catch{learningSaved=false;storageNotice='Could not save locally; export keeps the current records.';set('learning-notice',storageNotice)}}
 function currentStats(){
- try{const stored=localStorage.getItem(STORAGE_KEY);if(learningSaved&&stored!==null)learningRecords=deserializeLearning(stored).records}catch{}
+ try{const stored=localStorage.getItem(STORAGE_KEY);if(learningSaved&&stored!==null){const latest=deserializeLearning(stored);storageNotice=latest.notice||'';set('learning-notice',storageNotice);const data=JSON.parse(stored);if(data?.schemaVersion===1&&Array.isArray(data.records))learningRecords=latest.records}}catch{}
  const snapshot=game.snapshot(),context={model:connection.model,configVersion:CONFIG_VERSION,mock:connection.mock,dimensions:{width:snapshot.playfield.width,height:snapshot.playfield.height}};
  let stats=emptyStats(context);for(const record of learningRecords)stats=updateStats(stats,record);return stats;
 }

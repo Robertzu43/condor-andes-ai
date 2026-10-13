@@ -31,6 +31,9 @@ test('manual Start and Restart submit matching empirical best, freeze it and exp
  assert.equal(exported.strategyId,'upper-caution-v1');assert.equal(exported.configVersion,CONFIG_VERSION);assert.equal(exported.events[0].strategyId,'upper-caution-v1');
  await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'ground-caution-v1');
  assert.match(get('active-strategy').textContent,/ground-caution-v1/);
+ save([record('partial','upper-caution-v1',{obstaclesPassed:20}),{...record('bad','upper-caution-v1'),reward:999}]);await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'upper-caution-v1');assert.match(get('learning-notice').textContent,/Invalid or duplicate/);
+ for(const invalid of ['{broken',JSON.stringify({schemaVersion:99,records:[]})]){stored=invalid;await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'upper-caution-v1','invalid storage preserves current learned strategy');assert.match(get('learning-notice').textContent,/Stored learning data/)}
  save([]);await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'balanced-v1');
+ assert.equal(get('learning-notice').textContent,'');
  assert.deepEqual(JSON.parse(stored).records,[],'manual flights do not write training records');
 });
