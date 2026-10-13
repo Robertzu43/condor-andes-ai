@@ -10,14 +10,15 @@ export function projectFlight({observation:o,latencyMs=200,previousAction}) {
   const arrival={y:o.condor.y,vy:o.condor.vy};
   let arrivalGroundContact=arrival.y+o.condor.h>=o.playfield.ground;
   for(let i=0;i<requestFrames&&!arrivalGroundContact;i++){advance(arrival);arrivalGroundContact=arrival.y+o.condor.h>=o.playfield.ground}
-  const nearest=(o.mountains||[]).filter(m=>m.x+m.halfWidth-o.scrollSpeed*requestFrames>=o.condor.x).sort((a,b)=>a.x-b.x)[0];
+  const mountains=(o.mountains||[]).map(m=>({...m,halfWidth:Math.max(m.halfWidth,...(m.topRows||[]),...(m.bottomRows||[]))}));
+  const nearest=mountains.filter(m=>m.x+m.halfWidth-o.scrollSpeed*requestFrames>=o.condor.x).sort((a,b)=>a.x-b.x)[0];
   const delayStressMs=500,delayStressFrames=30;
   const simulate=(action,frames)=> {
     const s={...arrival};if(action==='flap')s.vy=o.flapImpulse;
     let minY=s.y,maxY=s.y,groundContact=arrivalGroundContact,minimumGapTopMargin=nearest?s.y-nearest.gapTop:null,minimumGapBottomMargin=nearest?nearest.gapBottom-s.y-o.condor.h:null;
     let framesSimulated=0,minimumCorridorTopMargin=null,minimumCorridorBottomMargin=null;
     const measureCorridor=frame=>{
-      for(const m of o.mountains||[]){
+      for(const m of mountains){
         const x=m.x-o.scrollSpeed*(requestFrames+frame);
         if(x+m.halfWidth>=o.condor.x && x-m.halfWidth<=o.condor.x+o.condor.w){
           const top=s.y-m.gapTop,bottom=m.gapBottom-s.y-o.condor.h;
