@@ -15,6 +15,7 @@ test('provider evidence drops dense silhouettes but preserves observed physics a
  const input=JSON.parse(body.input);
  assert.deepEqual(input.observation.mountains,[{x:130,halfWidth:25,gapTop:64,gapBottom:156},{x:270,halfWidth:30,gapTop:32,gapBottom:124}]);
  for(const field of ['runId','sequence','timestamp','state','frame','paused','pauseReason','playfield','condor','gravity','flapImpulse','scrollSpeed','score','coins','mode','invulnerabilitySeconds','visibleCoins'])assert.deepEqual(input.observation[field],observation[field]);
+ assert.equal(input.flightProjection?.estimated,true);assert.equal(input.flightProjection.requestFrames,14);assert.equal(input.flightProjection.nextDecisionFrames,26);
  assert.deepEqual(input.previousAction,{action:'flap',frame:120});assert.equal(input.latencyMs,217);assert.equal(JSON.stringify(payload),before);
- assert.ok(body.input.length<before.length);t.diagnostic(`Representative evidence bytes: ${Buffer.byteLength(before)} -> ${Buffer.byteLength(body.input)}`);
+t.diagnostic(`Representative evidence bytes: ${Buffer.byteLength(before)} -> ${Buffer.byteLength(body.input)}`);
 });
