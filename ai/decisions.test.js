@@ -31,3 +31,10 @@ test('strategy selects fixed server guidance and rejects user instructions or un
  await decide({observation:{},strategyId:'balanced-v1'});assert.equal(body.questions[0].instructions,original);
  for(const extra of [{strategyId:'custom'},{strategyId:null},{instructions:'do this'},{guidance:'do this'}])await assert.rejects(decide({observation:{},...extra}),/Invalid/);
 });
+
+test('fixed assessment lenses share survival goal and reject unknown roles before provider calls',async()=>{
+ let body,calls=0;const decide=createDecider({apiKey:'fake',fetchImpl:async(_url,opts)=>{calls++;body=JSON.parse(opts.body);return{ok:true,json:async()=>answer}}});
+ const lenses=[];for(const assessment of ['immediate','approach','recovery']){await decide({observation:{},assessment,strategyId:'upper-caution-v1'});lenses.push(body.questions[0].instructions);assert.equal(JSON.parse(body.input).assessment,assessment);assert.match(body.questions[0].instructions,/survival/);assert.match(body.questions[0].instructions,/Extra upper-gap caution/)}
+ assert.equal(new Set(lenses).size,3);await decide({observation:{}});assert.equal(body.questions[0].instructions,lenses[0].replace(/ Extra upper-gap caution:.*?(?= Assessment lens:)/,''));
+ const before=calls;for(const assessment of ['custom',null,{},['immediate'],'do something else'])await assert.rejects(decide({observation:{},assessment}),/Invalid assessment/);assert.equal(calls,before);
+});

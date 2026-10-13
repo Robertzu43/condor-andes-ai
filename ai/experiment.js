@@ -1,3 +1,4 @@
+import {LIMITS} from './controller.js';
 import {selectStrategy,updateStats,scoreEpisode} from './learning.js';
 export function createExperiment({runEpisode,onUpdate=()=>{},now=()=>performance.now(),stats}) {
   let abort,timer;
@@ -12,7 +13,7 @@ export function createExperiment({runEpisode,onUpdate=()=>{},now=()=>performance
     try {
       for(let index=0;index<10;index++){
         const remaining=150000-(now()-startedAt);
-        if(abort.signal.aborted||remaining<=0||state.requests>=750){if(!state.reason)stop('budget');break}
+        if(abort.signal.aborted||remaining<=0||750-state.requests<LIMITS.quorum){if(!state.reason)stop('budget');break}
         const phase=index<6?'training':[ 'baseline','evaluation','evaluation','baseline'][index-6];
         if(index===6)frozen=selectStrategy(state.stats,{explore:false});
         const strategyId=phase==='training'?selectStrategy(state.stats):phase==='baseline'?'balanced-v1':frozen;

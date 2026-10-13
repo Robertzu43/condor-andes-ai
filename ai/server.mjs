@@ -7,7 +7,7 @@ const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const assets=new Set(['index.html','game.js','sprites.js','favicon.png','og.png','apple-touch-icon.png','ai/index.html','ai/style.css','ai/app.js','ai/controller.js','ai/recorder.js','ai/experiment.js','ai/learning.js','ai/learning-view.js']);
 const types={html:'text/html',js:'text/javascript',css:'text/css',png:'image/png'};
 export function createServer({apiKey=process.env.OPENAI_API_KEY,mock=false,fetchImpl}={}) {
-  const decide=createDecider({apiKey,mock,fetchImpl});let active=false,lastRequest=0;
+  const decide=createDecider({apiKey,mock,fetchImpl});let active=0;const requestTimes=[];
   return http.createServer(async(req,res)=>{
     const send=(code,data)=>{res.writeHead(code,{'content-type':'application/json','cache-control':'no-store'});res.end(JSON.stringify(data))};
     const host=req.headers.host;
@@ -20,12 +20,15 @@ export function createServer({apiKey=process.env.OPENAI_API_KEY,mock=false,fetch
     if(req.method==='POST'&&pathname==='/api/decision') {
       if(req.headers.origin!==origin)return send(403,{error:'Same-origin browser request required'});
       if(!req.headers['content-type']?.startsWith('application/json'))return send(415,{error:'JSON required'});
-      if(active||Date.now()-lastRequest<200)return send(429,{error:'Decision rate limited'});
+      const now=Date.now();while(requestTimes.length&&requestTimes[0]<=now-1000)requestTimes.shift();
+      if(requestTimes.length>=30)return send(429,{error:'Local decision capacity reached',code:'local-capacity'});
+      requestTimes.push(now);
+      if(active>=6)return send(429,{error:'Local decision capacity reached',code:'local-capacity'});
       const abort=new AbortController();const timeout=setTimeout(()=>{abort.abort();if(!req.complete)req.destroy()},6000);req.on('aborted',()=>abort.abort());res.on('close',()=>{if(!res.writableEnded)abort.abort()});
-      active=true;lastRequest=Date.now();
-      try{let body='';for await(const chunk of req){body+=chunk;if(Buffer.byteLength(body)>16384)throw Error('Body too large')}const payload=validatePayload(JSON.parse(body));const result=await decide(payload,{signal:abort.signal});send(200,{...result,cooldownMs:Math.min(200,Math.max(0,200-(Date.now()-lastRequest)))});}
+      active++;
+      try{let body='';for await(const chunk of req){body+=chunk;if(Buffer.byteLength(body)>16384)throw Error('Body too large')}const payload=validatePayload(JSON.parse(body));const result=await decide(payload,{signal:abort.signal});send(200,{...result,cooldownMs:0});}
       catch(e) {if(!res.destroyed)send(400,{error:apiKey||mock?'Decision failed or invalid request':'OpenAI API key not configured',code:SAFE_ERROR_CODES.includes(e.code)?e.code:'invalid-request'})}
-      finally{active=false;clearTimeout(timeout)}return;
+      finally{active--;clearTimeout(timeout)}return;
     }
     if(req.method!=='GET')return send(404,{error:'Not found'});
     const file=pathname==='/'?'ai/index.html':pathname.slice(1);

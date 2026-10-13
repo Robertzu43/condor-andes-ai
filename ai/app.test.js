@@ -6,7 +6,7 @@ const context={model:'test-model',configVersion:CONFIG_VERSION,mock:false,dimens
 function record(id,strategyId,extra={}){const r={...context,episodeId:id,experimentId:'experiment',phase:'training',strategyId,courseSeed:1,obstaclesPassed:1,coinsCollected:0,activeFlightSeconds:1,requests:1,meanLatencyMs:1,reason:'game-over',events:[],...extra};return {...r,reward:scoreEpisode(r)}}
 test('manual Start and Restart submit matching empirical best, freeze it and export actual settings',async t=>{
  const originals=Object.fromEntries(['document','window','localStorage','fetch','requestAnimationFrame'].map(k=>[k,globalThis[k]]));
- const nodes=new Map(),paint=[],payloads=[],blobs=[];let stored,frame,releaseFirst;
+ const nodes=new Map(),paint=[],payloads=[],blobs=[],held=[];let stored,frame,hold=true;
  const node=()=>({textContent:'',children:[],checked:false,value:0,classList:{toggle(){},remove(){}},append(...v){this.children.push(...v)},prepend(v){this.children.unshift(v)},replaceChildren(...v){this.children=v},setAttribute(){},click(){}});
  const get=id=>{if(!nodes.has(id))nodes.set(id,node());return nodes.get(id)};
  let paused=false;
@@ -17,20 +17,25 @@ test('manual Start and Restart submit matching empirical best, freeze it and exp
  globalThis.localStorage={getItem:()=>stored,setItem:(key,value)=>{stored=value}};
  const save=records=>{stored=JSON.stringify({schemaVersion:1,records})};
  save([record('upper','upper-caution-v1'),record('baseline','ground-caution-v1',{phase:'baseline',obstaclesPassed:100}),record('interrupted','ground-caution-v1',{reason:'stopped',obstaclesPassed:100}),record('eval','ground-caution-v1',{phase:'evaluation',obstaclesPassed:100}),record('old','ground-caution-v1',{configVersion:'old',obstaclesPassed:100}),record('mock','ground-caution-v1',{mock:true,obstaclesPassed:100}),record('size','ground-caution-v1',{dimensions:{width:321,height:480},obstaclesPassed:100}),record('model','ground-caution-v1',{model:'other',obstaclesPassed:100}),{...record('invalid','ground-caution-v1'),reward:999}]);
- globalThis.fetch=async(url,options)=>url==='/api/status'?{ok:true,json:async()=>({...context,configured:true})}:{ok:true,json:async()=>{payloads.push(JSON.parse(options.body));if(payloads.length===1)await new Promise(resolve=>{releaseFirst=resolve});return {action:'wait',confidence:1,probabilities:[{choice:'wait',probability:1},{choice:'flap',probability:0}],cooldownMs:0}}};
+ const answer=flap=>({action:flap>.5?'flap':'wait',confidence:Math.max(flap,1-flap),probabilities:[{choice:'wait',probability:1-flap},{choice:'flap',probability:flap}],cooldownMs:0});
+ globalThis.fetch=async(url,options)=>url==='/api/status'?{ok:true,json:async()=>({...context,configured:true})}:{ok:true,json:async()=>{const payload=JSON.parse(options.body);payloads.push(payload);if(hold)return new Promise(resolve=>held.push({payload,resolve}));return answer(.1)}};
  const createURL=URL.createObjectURL;URL.createObjectURL=blob=>{blobs.push(blob);return 'blob:test'};
  t.after(()=>{get('stop').onclick?.();URL.createObjectURL=createURL;for(const [k,v]of Object.entries(originals))if(v===undefined)delete globalThis[k];else globalThis[k]=v});
  await import(`./app.js?manual-test=${Date.now()}`);await sleep(5);
  await get('start').onclick();await sleep(5);
  assert.equal(payloads[0].strategyId,'upper-caution-v1');
  assert.match(get('active-strategy').textContent,/manual.*upper-caution-v1/);
- assert.equal(paused,true,'first decision holds warmup');frame();assert.ok(paint.some(s=>String(s).includes('manual · upper-caution-v1')));releaseFirst();await sleep(5);assert.equal(paused,false);frame();
+ assert.equal(paused,true,'quorum holds warmup');assert.equal(held.length,3);frame();assert.ok(paint.some(s=>String(s).includes('manual · upper-caution-v1')));
+ held[1].resolve(answer(.8));await sleep(5);assert.equal(paused,true);assert.match(get('assessments').textContent,/2 pending assessments/);
+ held[0].resolve(answer(.2));await sleep(5);assert.equal(paused,false);frame();
+ assert.equal(get('action').textContent,'WAIT','equal mean choice probability waits');assert.match(get('sequence').textContent,/Decision 1 · 2\/3 assessments/);assert.equal(get('flap-value').textContent,'50%');assert.equal(get('wait-value').textContent,'50%');assert.match(get('assessments').textContent,/2\/3 contributors/);assert.ok(paint.includes('Parallel assessments'));assert.ok(paint.some(s=>String(s).includes('2/3 contributors')));
+ hold=false;
  save([record('new','ground-caution-v1',{obstaclesPassed:10})]);await sleep(10);
  assert.ok(payloads.every(p=>p.strategyId==='upper-caution-v1'));
  get('stop').onclick();frame();assert.match(get('active-strategy').textContent,/manual.*upper-caution-v1/);get('json').onclick();const exported=JSON.parse(await blobs.at(-1).text());
- assert.equal(exported.strategyId,'upper-caution-v1');assert.equal(exported.configVersion,CONFIG_VERSION);assert.equal(exported.events[0].strategyId,'upper-caution-v1');
+ assert.equal(exported.aggregation.method,'mean-choice-probabilities');assert.equal(exported.aggregation.quorum,2);assert.equal(exported.strategyId,'upper-caution-v1');assert.equal(exported.configVersion,CONFIG_VERSION);assert.equal(exported.events[0].strategyId,'upper-caution-v1');const applied=exported.events.filter(e=>e.type==='decision');assert.equal(applied.length,1);assert.equal(applied[0].assessments.length,2);assert.deepEqual(applied[0].assessments.map(a=>a.assessment).sort(),['approach','immediate']);assert.equal(applied[0].aggregation,'mean-choice-probabilities');assert.equal(exported.events.filter(e=>e.type==='assessment'&&e.valid).length,2);assert.match(get('outcome').textContent,/stopped/);assert.match(get('assessments').textContent,/0 pending assessments/);
  await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'ground-caution-v1');
- assert.match(get('active-strategy').textContent,/ground-caution-v1/);
+ assert.match(get('active-strategy').textContent,/ground-caution-v1/);const currentLabel=get('sequence').textContent;held[2].resolve(answer(.9));await sleep(5);assert.equal(get('sequence').textContent,currentLabel,'late old-run result cannot repaint');get('json').onclick();const nextExport=JSON.parse(await blobs.at(-1).text());assert.ok(nextExport.events.every(e=>e.runId===nextExport.runId),'late old-run result cannot enter new run export');
  save([record('partial','upper-caution-v1',{obstaclesPassed:20}),{...record('bad','upper-caution-v1'),reward:999}]);await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'upper-caution-v1');assert.match(get('learning-notice').textContent,/Invalid or duplicate/);
  for(const invalid of ['{broken',JSON.stringify({schemaVersion:99,records:[]})]){stored=invalid;await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'upper-caution-v1','invalid storage preserves current learned strategy');assert.match(get('learning-notice').textContent,/Stored learning data/)}
  save([]);await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'balanced-v1');
