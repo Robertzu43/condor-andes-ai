@@ -61,3 +61,6 @@
 
 ## Execution and acceptance
 Use the already selected agent-assisted method: implementation tasks sequentially with independent review at boundaries; parent owns browser and paid calls. Success means a working reproducible learning loop and faithful graph, not a predetermined performance gain. Report measured results and limitations; leave the app open. Larger paid batches require a new explicit request.
+
+## Approved-intent clarification: probability evidence
+Keep each choice distribution with observation, selected action, timing and later episode result. Add a descriptive chosen-probability/outcome view alongside reward charts; label choice probability as distinct from survival probability. Do not claim calibration, infer that an unchosen action would succeed, or count correlated decisions within one flight as independent experiments. The first loop adapts strategy settings from episode rewards; learning probability calibration or model weights requires a separate defined target and evaluation. Parallel independent rollout workers are a future scaling path, outside this first bounded visible experiment.
