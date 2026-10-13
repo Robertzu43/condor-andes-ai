@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {resolve,dirname} from 'node:path';
 import {MODEL,createDecider,validatePayload,SAFE_ERROR_CODES} from './decisions.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
-const assets=new Set(['index.html','game.js','sprites.js','favicon.png','og.png','apple-touch-icon.png','ai/index.html','ai/style.css','ai/app.js','ai/controller.js','ai/recorder.js','ai/experiment.js','ai/learning.js']);
+const assets=new Set(['index.html','game.js','sprites.js','favicon.png','og.png','apple-touch-icon.png','ai/index.html','ai/style.css','ai/app.js','ai/controller.js','ai/recorder.js','ai/experiment.js','ai/learning.js','ai/learning-view.js']);
 const types={html:'text/html',js:'text/javascript',css:'text/css',png:'image/png'};
 export function createServer({apiKey=process.env.OPENAI_API_KEY,mock=false,fetchImpl}={}) {
   const decide=createDecider({apiKey,mock,fetchImpl});let active=false,lastRequest=0;

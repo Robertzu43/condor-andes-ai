@@ -1,5 +1,7 @@
 import {createController,ERROR_MESSAGES} from './controller.js';
 import {createExperiment} from './experiment.js';
+import {renderLearning} from './learning-view.js';
+document.addEventListener('learning-update',event=>renderLearning(event.detail));
 import {CONFIG_VERSION,emptyStats,updateStats,serializeLearning,deserializeLearning,scoreEpisode} from './learning.js';
 import {createRecorder} from './recorder.js';
 const $=id=>document.getElementById(id),set=(id,value)=>$(id).textContent=value;
@@ -45,6 +47,8 @@ requestAnimationFrame(frame);initialize();
 
 function setupExperiment(){
  set('learning-notice',storageNotice);
+ const snapshot=game.snapshot();
+ renderLearning({context:{model:connection.model,configVersion:CONFIG_VERSION,mock:connection.mock,dimensions:{width:snapshot.playfield.width,height:snapshot.playfield.height}},allRecords:learningRecords});
  $('experiment-cancel').onclick=()=>experiment?.stop('cancelled');
  $('experiment-start').onclick=async()=>{
   if(controller.state.running||ending||experiment?.state.running)return;

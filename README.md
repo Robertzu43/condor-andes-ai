@@ -46,3 +46,11 @@ by model, guidance version, logical geometry and mock mode. Export experiment JS
 includes complete observations, both choice probabilities, applied/discarded
 outcomes, episode rewards and learning statistics. Storage failures retain current
 records in memory. Selecting recording captures one continuous batch video.
+
+The learning panel includes actual training rewards with a last-three-valid trailing
+mean, held-out baseline/learned comparisons with counts and interruptions, and a
+descriptive mean chosen-action probability versus episode reward view. Loaded
+history renders without starting API calls. Mock and real results, geometry,
+model and guidance version remain separate. Read the [learning method](docs/learning-method.md)
+for the reward, UCB1 rule, reproduction steps and limits. Choice probabilities
+are not survival probabilities; a small batch may show no gain or regressions.
