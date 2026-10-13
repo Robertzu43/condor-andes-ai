@@ -1,5 +1,6 @@
 import http from 'node:http';
-import {readFile, open} from 'node:fs/promises';
+import {readFile, open, writeFile, rename, unlink} from 'node:fs/promises';
+import {randomUUID} from 'node:crypto';
 import {constants} from 'node:fs';
 import {isAbsolute, join, resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -24,6 +25,22 @@ export function createSearchDashboard({dataDir}) {
     response.setHeader('Referrer-Policy', 'no-referrer');
     const end = (status, body, type = 'text/plain') => {response.writeHead(status, {'Content-Type':`${type}; charset=utf-8`}); response.end(request.method === 'HEAD' ? undefined : body);};
     if (!hosts.has(request.headers.host) || (request.headers.origin && ![...hosts].some(host => request.headers.origin === `http://${host}`)) || request.headers['sec-fetch-site'] === 'cross-site') return end(403, 'Forbidden');
+    if(request.url === '/recording' && request.method === 'POST') {
+      if(request.headers.origin !== `http://${request.headers.host}`)return end(403,'Same origin required');
+      if(!/^video\/webm(?:;\s*codecs=[a-z0-9,.-]+)?$/i.test(request.headers['content-type'] || ''))return end(415,'WebM required');
+      const maximum=128*1024*1024;
+      if(Number(request.headers['content-length'])>maximum)return end(413,'Recording too large');
+      const temporary=join(dataDir,`.training-${randomUUID()}.webm.tmp`);
+      try {
+        const chunks=[];let size=0;
+        for await(const chunk of request){size+=chunk.length;if(size>maximum){end(413,'Recording too large');return;}chunks.push(chunk);}
+        if(size===0)return end(400,'Empty recording');
+        await writeFile(temporary,Buffer.concat(chunks),{flag:'wx',mode:0o600});
+        await rename(temporary,join(dataDir,'training.webm'));
+        return end(200,JSON.stringify({saved:'training.webm'}),'application/json');
+      } catch {return end(500,'Recording save failed');}
+      finally {await unlink(temporary).catch(()=>{});}
+    }
     if (!['GET','HEAD'].includes(request.method)) return end(405, 'Read only');
     if (request.url === '/live') {
       let file;

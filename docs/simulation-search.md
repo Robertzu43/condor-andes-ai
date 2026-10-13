@@ -60,6 +60,12 @@ confirmed and uncertain spend.
 - `selected.json`: frozen training choice and selection rule.
 - `summary.json`: paired held-out outcomes, interruptions, spend and target status.
 - `live.json`: dashboard snapshot, never credentials or model request headers.
+- `training.webm`: optional real dashboard recording; start **Record dashboard**
+  before the search. It records actual snapshots and stops after the final state.
+  The same-origin local save route accepts WebM only, at most 128 MiB, to this
+  fixed filename. Repeat recordings replace it; larger or failed saves retain a
+  browser download link. Recording is a composite of dashboard data and canvases,
+  not a capture of the user's desktop.
 
 `--mock` performs 18 training flights and six held-out pairs without network
 calls or costs. Tests use injected responses and verify budget reservations,

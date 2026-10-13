@@ -38,3 +38,9 @@ test('limited remaining API allowance reserves requests for evaluation instead o
  const summary=await runSearch({output,targetUsd:0,maxUsd:.02,parallel:2,maxTrainingFlights:9,maxEvaluationPairs:6,fetchImpl:async()=>{calls++;return new Response(JSON.stringify({answers:[{name:'flight',type:'choice',choice:'wait',confidence:1,probabilities:[{value:'flap',probability:0},{value:'wait',probability:1}]}],usage:{input_tokens:100,input_tokens_details:{cached_tokens:0,cache_write_tokens:0},output_tokens:0,total_tokens:100}}),{status:200,headers:{'content-type':'application/json','x-ratelimit-remaining-requests':'1500'}})}});
  assert.equal(calls,6);assert.equal(summary.spend.calls,6);assert.equal(summary.selected,null);const live=JSON.parse(await readFile(join(output,'live.json'),'utf8'));assert.equal(live.flightInvocations,2);assert.equal(live.running,false);
 });
+
+test('closing a phase at the call limit prevents empty replacement flights',async t=>{
+ const temp=await mkdtemp(join(tmpdir(),'condor-search-phase-'));t.after(()=>rm(temp,{recursive:true,force:true}));const original=process.env.OPENAI_API_KEY;process.env.OPENAI_API_KEY='fake-test-key';t.after(()=>{if(original===undefined)delete process.env.OPENAI_API_KEY;else process.env.OPENAI_API_KEY=original});
+ const summary=await runSearch({output:join(temp,'run'),targetUsd:0,maxUsd:.02,parallel:4,maxCalls:3,maxTrainingFlights:90,fetchImpl:async()=>new Response(JSON.stringify({answers:[{name:'flight',type:'choice',choice:'wait',confidence:1,probabilities:[{value:'flap',probability:0},{value:'wait',probability:1}]}],usage:{input_tokens:100,input_tokens_details:{cached_tokens:0,cache_write_tokens:0},output_tokens:0,total_tokens:100}}),{status:200})});
+ assert.equal(summary.spend.calls,3);assert.ok(summary.flights<=4,`Created ${summary.flights} replacement flights after call limit`);
+});

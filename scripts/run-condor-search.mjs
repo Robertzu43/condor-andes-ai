@@ -30,13 +30,14 @@ export async function runSearch({output,mock=false,targetUsd=1,maxUsd=1.25,paral
  const provider=createDecider({apiKey:process.env.OPENAI_API_KEY,mock,fetchImpl:guard});
  const trainLimit=Math.min(.75,maxUsd*.6),evaluationLimit=Math.min(1.15,maxUsd*.92);
  const remainingRequests=()=>{const n=Number(guard.state.rateLimits['x-ratelimit-remaining-requests']);return Number.isFinite(n)&&n>=0?n:Infinity};
- const trainingAllowed=()=>guard.state.committedCeilingUsd<trainLimit&&remainingRequests()>1500;
+ const closedPhases=new Set();
+ const trainingAllowed=()=>!closedPhases.has('training')&&guard.state.committedCeilingUsd<trainLimit&&remainingRequests()>1500;
  const stop=reason=>{fatal??=reason;abort.abort()};
  const onSignal=()=>stop('cancelled');process.once('SIGINT',onSignal);process.once('SIGTERM',onSignal);
  const deadline=setTimeout(()=>stop('wall-limit'),maxWallMs);
  const decide=async(payload,options={})=>{
   if(fatal||Date.now()>=deadlineAt)throw Object.assign(Error('Search stopped'),{code:'budget-stop'});
-  if(!mock&&((stage==='training'&&remainingRequests()<=1500)||(stage==='evaluation'&&remainingRequests()<=350)||guard.state.calls>=maxCalls||guard.state.committedCeilingUsd>=(stage==='training'?trainLimit:stage==='evaluation'?evaluationLimit:maxUsd)))throw Object.assign(Error('Phase allowance reached'),{code:'phase-budget'});
+  if(!mock&&(closedPhases.has(stage)||(stage==='training'&&remainingRequests()<=1500)||(stage==='evaluation'&&remainingRequests()<=350)||guard.state.calls>=maxCalls||guard.state.committedCeilingUsd>=(stage==='training'?trainLimit:stage==='evaluation'?evaluationLimit:maxUsd))){closedPhases.add(stage);throw Object.assign(Error('Phase allowance reached'),{code:'phase-budget'});}
   try{return await provider(payload,options)}catch(error){if(guard.state.stopReason){const code=guard.state.stopReason;stop(code);throw Object.assign(Error('Spend guard stopped'),{code})}stop(error.code||'api-error');throw error}
  };
  publishLive=(force=false)=>{if(!force&&performance.now()-liveAt<200)return;liveAt=performance.now();persist('live.json',{experimentId,mock,phase:stage,running,startedAt:new Date(startedAt).toISOString(),updatedAt:new Date().toISOString(),spend:guard.state,approvedMaxUsd:maxUsd,targetUsd,completedFlights:records.length,flightInvocations,validFlights:records.filter(r=>r.reward!==null).length,interruptedFlights:records.filter(r=>r.reward===null).length,candidates:CANDIDATES,trainingRanking:ranked,selected,birds:[...birds.values()],recent:records.slice(-8),stopReason:fatal||guard.state.stopReason})};publishLive(true);
@@ -50,7 +51,7 @@ export async function runSearch({output,mock=false,targetUsd=1,maxUsd=1.25,paral
    const index=task++,round=Math.floor(index/9),candidate=CANDIDATES[(index%9+round)%9];await flight(candidate,101+round,'training',slot);
   }});await Promise.allSettled(workers.map(worker=>worker.catch(()=>stop('run-error'))));ranked=rankTraining(records);selected=ranked[0]?.candidate||null;persist('selected.json',{experimentId,mock,selected,trainingRanking:ranked,frozenAt:new Date().toISOString(),selectionRule:'Highest mean training reward over course seeds completed by all nine candidates. Evaluation cannot alter selection.'});checkpoint();
   if(selected&&!fatal){stage='evaluation';const baseline=CANDIDATES.find(c=>c.strategyId==='balanced-v1'&&c.stepFrames===12);let pair=0;
-   await Promise.allSettled(Array.from({length:Math.min(parallel,2)},async(_,slot)=>{try{while(!fatal&&pair<maxEvaluationPairs){
+   await Promise.allSettled(Array.from({length:Math.min(parallel,2)},async(_,slot)=>{try{while(!fatal&&!closedPhases.has('evaluation')&&pair<maxEvaluationPairs){
     const index=pair++;if(index>=6&&(mock||guard.state.confirmedUsd>=targetUsd))break;if(!mock&&(guard.state.committedCeilingUsd>=evaluationLimit||remainingRequests()<=350))break;
     const baselineTask={candidate:baseline,phase:'baseline'},evaluationTask={candidate:selected,phase:'evaluation'},order=index%2?[evaluationTask,baselineTask]:[baselineTask,evaluationTask];for(const {candidate,phase} of order){if(fatal)break;await flight(candidate,10001+index,phase,slot)}
    }}catch{stop('run-error')}}));
@@ -58,8 +59,8 @@ export async function runSearch({output,mock=false,targetUsd=1,maxUsd=1.25,paral
   // This sanity check transfers guidance only: simulation cadence/all-three voting do not equal live quorum timing.
   if(selected&&!mock&&!fatal&&guard.state.committedCeilingUsd<maxUsd-.025){stage='normal-speed-check';publishLive(true);
    for(const strategyId of [...new Set(['balanced-v1',selected.strategyId])]){
-    if(fatal)break;flightInvocations++;const sim=createSimulation({seed:200001}),events=[];let finished;const done=new Promise(r=>finished=r),started=performance.now();
-    const controller=createController({game:sim.game,decide:payload=>decide(payload),onEvent:e=>{events.push(e);birds.set(0,{slot:0,candidateId:`${strategyId}@live-v5`,strategyId,seed:200001,phase:stage,status:e.type==='stop'?e.reason:'Flying',lastAction:e.action,snapshot:e.gameState||e.appliedState||e.observation||birds.get(0)?.snapshot});try{publishLive()}catch{stop('dashboard-write-error')}if(e.type==='stop')finished(e)}});
+    if(fatal)break;flightInvocations++;const sim=createSimulation({seed:200001}),events=[];let finished,terminalSeen=false;const done=new Promise(r=>finished=r),started=performance.now();
+    const controller=createController({game:sim.game,decide:payload=>decide(payload),onEvent:e=>{events.push(e);if(!terminalSeen)birds.set(0,{slot:0,candidateId:`${strategyId}@live-v5`,strategyId,seed:200001,phase:stage,status:e.type==='stop'?e.reason:'Flying',lastAction:e.action,snapshot:e.gameState||e.appliedState||e.observation||birds.get(0)?.snapshot});try{publishLive()}catch{stop('dashboard-write-error')}if(e.type==='stop'){terminalSeen=true;finished(e)}}});
     let last=performance.now(),acc=0;const timer=setInterval(()=>{const now=performance.now();if(sim.snapshot().paused){acc=0;last=now;return}acc+=Math.min(100,now-last);last=now;const frames=Math.floor(acc/(1000/60));acc-=frames*1000/60;if(frames){sim.advance(frames);sim.game.resume()}},16);
     const cancelled=()=>controller.stop('cancelled');abort.signal.addEventListener('abort',cancelled,{once:true});
     try{controller.start({seed:200001,strategyId,durationMs:15000,maxRequests:300});const end=await done;await controller.waitForIdle();const s=sim.snapshot();const record={model:MODEL,mock:false,episodeId:end.runId,experimentId,phase:'normal-speed-check',strategyId,candidateId:`${strategyId}@live-v5`,courseSeed:200001,configVersion:'flight-guidance-v5/normal-speed-check',dimensions:{width:384,height:216},obstaclesPassed:s.obstaclesPassed,coinsCollected:s.coinsCollected,activeFlightSeconds:s.activeFlightSeconds,requests:end.sequence,reason:end.reason,cause:s.deathCause,events,wallSeconds:(performance.now()-started)/1000};save({...record,reward:scoreEpisode(record)})}finally{clearInterval(timer);abort.signal.removeEventListener('abort',cancelled);controller.stop()}

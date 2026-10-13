@@ -73,7 +73,11 @@ node --env-file-if-exists=.env scripts/run-condor-search.mjs --output=/absolute/
 ```
 
 Open http://127.0.0.1:8790 to watch real snapshots, probabilities, ranking and
-spend. The dashboard is read only and makes no model calls. For a free smoke test,
+spend. The dashboard makes no model calls. **Record dashboard** captures all four
+actual flight snapshots, rankings and the budget on one 1440 × 960 canvas. It
+stops when the search ends and saves `training.webm` to the run directory;
+**Download video** is a fallback. A new recording replaces that local video.
+For a free smoke test,
 replace the second command with `node scripts/run-condor-search.mjs --mock
 --output=/absolute/path/to/new-mock-results` on one line.
 
@@ -85,6 +89,21 @@ guidance on different courses. Short normal-speed checks transfer guidance only.
 The result is the **best tested candidate**, not a global optimum or model-weight
 training. Full traces, token usage, the frozen selection and final summary are
 saved in the chosen directory. See [search method](docs/simulation-search.md).
+
+## Recorded parallel search
+
+![Live four-condor training dashboard](docs/media/2026-10-13-training-preview.gif)
+
+[Full training recording](docs/media/2026-10-13-training.mp4) ·
+[Results, chart, cost and limitations](docs/results/2026-10-13-search-results.md)
+
+The $1-target search made 8,803 calls across two batches, with $1.0382 confirmed
+usage and a $1.0487 conservative ceiling including uncertain calls. It selected
+upper-caution at nine simulation frames. Seven held-out pairs averaged reward
+23.91 versus 5.46 for balanced@12, including a regression on one course. A single
+normal-speed guidance check passed six obstacles in 9.1 seconds versus none in
+2.85 seconds for baseline. These are promising finite tests, not a global optimum
+or model-weight training. The six-minute recording covers the second batch.
 
 ## Earlier measured learning showcase
 
