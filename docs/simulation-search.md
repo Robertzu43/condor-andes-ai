@@ -71,3 +71,41 @@ confirmed and uncertain spend.
 calls or costs. Tests use injected responses and verify budget reservations,
 missing usage, failure cleanup, invalid results, paired ranking and dashboard
 access boundaries. The original public game and leaderboard are independent.
+
+## Focused upper-caution refinement
+
+`--refine` tests the previous winning guidance, rather than repeating the broad
+strategy search. Its nine candidates combine fixed `standard`, `clearance` and
+`recovery` instruction variants with 6, 9 or 12 frames between actions. Standard
+preserves the existing instructions; clearance emphasizes safe incoming-gap
+alignment; recovery emphasizes end velocity, ground risk and recoverability.
+Only these fixed variants are accepted, only with upper-caution guidance.
+They never execute game controls or replace a model answer.
+
+Four flights run concurrently, each with three concurrent assessments. Every
+candidate has the same 600-frame (10-second) simulation horizon: even the
+six-frame candidate can complete it within 300 assessments, preventing the
+request bound from censoring a successful flight before the others' horizon.
+New training seeds start at 1001. The frozen winner faces the old
+`upper-caution-v1/standard@9` candidate on held-out seeds starting at 20001.
+Only fully paired training courses affect the selection.
+
+The optional normal-speed phase compares standard upper-caution and the selected
+instruction variant on up to three paired new seeds, 300001–300003, alternating
+order. It keeps the live controller's existing cadence and quorum. These checks
+transfer instructions only, not simulated action timing. Each record identifies
+its role and source candidate even if both use the same standard instructions.
+An interrupted or incomplete pair cannot establish improvement.
+
+For the separately authorized refinement, `--refine` uses a **$1 maximum** shared
+guard. Training gets roughly $0.60; evaluation targets total confirmed usage of
+$0.84, leaving room for live checks. It may spend less than $1 because of pending
+reservations, the bounded check count or provider interruptions. No padding
+requests are made solely to spend money. Start recording before running:
+
+```sh
+node --env-file-if-exists=.env scripts/run-condor-search.mjs --refine --output=/absolute/path/to/new-refinement-results
+```
+
+Use `--refine --mock` for a free smoke test. Normal live play still defaults to
+the original guidance; a simulation winner does not automatically change it.

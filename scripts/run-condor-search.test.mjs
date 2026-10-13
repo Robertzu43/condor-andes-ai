@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {CANDIDATES,rankTraining,runSearch} from './run-condor-search.mjs';
+import {CANDIDATES,REFINEMENT_CANDIDATES,rankTraining,runSearch} from './run-condor-search.mjs';
 const record=(candidate,seed,reward=1,extra={})=>({candidateId:candidate.id,courseSeed:seed,phase:'training',episodeId:`${candidate.id}/${seed}`,reason:'game-over',reward,obstaclesPassed:0,coinsCollected:0,activeFlightSeconds:reward*10,...extra});
 test('ranks only complete paired training courses and never evaluation or interrupted rewards',()=>{
  const rows=CANDIDATES.flatMap((c,i)=>[record(c,101,i/10),record(c,102,i/10)]);
@@ -8,6 +8,10 @@ test('ranks only complete paired training courses and never evaluation or interr
  const ranked=rankTraining(rows);assert.equal(ranked.length,9);assert.equal(ranked[0].candidate.id,CANDIDATES.at(-1).id);assert.equal(ranked[0].n,2);assert.deepEqual(ranked[0].seeds,[101,102]);assert.equal(ranked.at(-1).meanReward,0);
 });
 test('a duplicate episode cannot increase training weight',()=>{const rows=CANDIDATES.map(c=>record(c,101,1));assert.deepEqual(rankTraining([...rows,rows[0]]),rankTraining(rows));});
+test('refinement ranks nine upper-caution variants only on shared courses',()=>{
+ const rows=REFINEMENT_CANDIDATES.map((c,i)=>record(c,1001,i/10));rows.push(record(CANDIDATES[0],1001,100));rows.push(record(REFINEMENT_CANDIDATES[0],20001,100,{phase:'evaluation'}));
+ const ranked=rankTraining(rows,{refine:true});assert.equal(ranked.length,9);assert.equal(ranked[0].candidate.id,REFINEMENT_CANDIDATES.at(-1).id);assert.ok(ranked.every(r=>r.n===1&&r.candidate.strategyId==='upper-caution-v1'));assert.deepEqual(rankTraining(rows),[]);
+});
 
 import {mkdtemp,readFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
@@ -20,6 +24,15 @@ test('mock CLI produces paired evaluation and durable zero-spend artifacts even 
  const summary=JSON.parse(await readFile(join(output,'summary.json'),'utf8'));assert.equal(summary.mock,true);assert.equal(summary.spend.confirmedUsd,0);assert.equal(summary.spend.calls,0);assert.equal(summary.completeTrainingCourses,2);assert.equal(summary.heldOutPairs.length,6);assert.equal(summary.targetReached,false);
  const traces=(await readFile(join(output,'episodes.jsonl'),'utf8')).trim().split('\n').map(JSON.parse);assert.equal(traces.filter(r=>r.phase==='evaluation').length,6);assert.equal(traces.filter(r=>r.phase==='baseline').length,6);assert.ok(traces.every(r=>r.events.some(e=>e.type==='decision')));
  await assert.rejects(promisify(execFile)(process.execPath,['scripts/run-condor-search.mjs','--mock',`--output=${output}`],{env:{PATH:process.env.PATH}}));
+});
+test('refinement CLI uses the existing winner baseline and equal ten-second horizons without paid calls',async t=>{
+ const temp=await mkdtemp(join(tmpdir(),'condor-refinement-test-'));t.after(()=>rm(temp,{recursive:true,force:true}));const output=join(temp,'run');
+ await promisify(execFile)(process.execPath,['scripts/run-condor-search.mjs','--refine','--mock',`--output=${output}`],{env:{PATH:process.env.PATH},timeout:30000});
+ const summary=JSON.parse(await readFile(join(output,'summary.json'),'utf8'));assert.equal(summary.mode,'upper-caution-refinement-v1');assert.equal(summary.spend.calls,0);assert.equal(summary.spend.maxUsd,1);assert.equal(summary.baseline.id,'upper-caution-v1/standard@9');assert.equal(summary.heldOutPairs.length,6);assert.equal(summary.completeTrainingCourses,2);
+ const traces=(await readFile(join(output,'episodes.jsonl'),'utf8')).trim().split('\n').map(JSON.parse);
+ assert.ok(traces.every(r=>r.strategyId==='upper-caution-v1'&&r.simulation.maxFrames===600&&r.configVersion.includes(`/refinement-v1/${r.guidanceVariant}`)));
+ assert.deepEqual([...new Set(traces.filter(r=>r.phase==='training').map(r=>r.candidateId))].sort(),REFINEMENT_CANDIDATES.map(c=>c.id).sort());
+ assert.ok(traces.filter(r=>r.phase==='training').every(r=>r.courseSeed>=1001&&r.courseSeed<20001));assert.ok(traces.filter(r=>r.phase==='baseline').every(r=>r.candidateId===summary.baseline.id&&r.courseSeed>=20001));
 });
 
 test('trace-write failure stops all workers and awaits already dispatched calls',async t=>{

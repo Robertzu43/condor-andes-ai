@@ -4,7 +4,7 @@ const byId = id => document.getElementById(id);
 const number = value => Number.isFinite(value) ? value : 0;
 const money = value => `$${number(value).toFixed(2)}`;
 const text = (id, value) => {byId(id).textContent = value;};
-const label = candidate => candidate ? `${candidate.strategyId ?? candidate.id ?? 'Strategy'} · ${String(candidate.candidateId ?? candidate.id).endsWith('@live-v5') ? 'normal speed' : `${candidate.stepFrames ?? '?'} frames`}` : 'Waiting for results';
+const label = candidate => candidate ? `${candidate.strategyId ?? candidate.id ?? 'Strategy'}${candidate.guidanceVariant ? ` · ${candidate.guidanceVariant}` : ''} · ${String(candidate.candidateId ?? candidate.id).endsWith('@live-v5') ? 'normal speed' : `${candidate.stepFrames ?? '?'} frames`}` : 'Waiting for results';
 const make = (tag, className, content) => {const element = document.createElement(tag); element.className = className; if (content !== undefined) element.textContent = content; return element;};
 const slots = Array.from({length:4}, (_, slot) => {
   const tile = make('article','bird');

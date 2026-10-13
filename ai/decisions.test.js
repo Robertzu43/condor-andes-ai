@@ -45,3 +45,17 @@ test('decision-step simulations freeze arrival and use the requested real-frame 
  const p=JSON.parse(body.input).flightProjection;assert.equal(p.requestFrames,0);assert.equal(p.nextDecisionFrames,12);assert.equal(p.delayStressFrames,12);assert.equal(p.arrival.y,90);assert.match(body.questions[0].instructions,/Exactly 12/);assert.match(body.questions[0].instructions,/frozen/);
  for(const simulation of [null,{},[],{stepFrames:0},{stepFrames:31},{stepFrames:1.5},{stepFrames:12,hiddenSeed:101}])assert.throws(()=>validatePayload({observation,simulation}));
 });
+
+test('upper-caution guidance variants preserve standard prompt and append only fixed refinement',async()=>{
+ let body;const decide=createDecider({apiKey:'fake',fetchImpl:async(_url,opts)=>{body=JSON.parse(opts.body);return {ok:true,json:async()=>answer}}});
+ await decide({observation:{},strategyId:'upper-caution-v1'});const original=body.questions[0].instructions;assert.equal(JSON.parse(body.input).guidanceVariant,'standard');
+ await decide({observation:{},strategyId:'upper-caution-v1',guidanceVariant:'standard'});assert.equal(body.questions[0].instructions,original);
+ const fixed={clearance:' Clearance refinement: when both choices avoid predicted lethal contact, compare minimum top and bottom gap clearance and alignment with the incoming gap. Favor wait if already climbing and another flap reduces upper clearance, provided waiting remains viable. Negative corridor margins are not proof of collision; exact visible rock contact takes priority.',recovery:' Recovery refinement: do not wait merely to avoid upper rock if waiting risks ground contact. Consider projected end velocity and height, time since lastFlapFrame, and the ability to recover before the next decision. Prioritize exact visible rock contact evidence alongside lethal ground risk; projections remain estimates.'};
+ for(const guidanceVariant of ['clearance','recovery']){await decide({observation:{},strategyId:'upper-caution-v1',guidanceVariant});assert.equal(JSON.parse(body.input).guidanceVariant,guidanceVariant);assert.equal(body.questions[0].instructions,original+fixed[guidanceVariant])}
+});
+test('invalid or non-upper guidance variants fail validation before provider fetch',async()=>{
+ let calls=0;const decide=createDecider({apiKey:'fake',fetchImpl:async()=>{calls++;return {ok:true,json:async()=>answer}}});
+ for(const guidanceVariant of [null,{},['clearance'],'arbitrary',''])await assert.rejects(decide({observation:{},strategyId:'upper-caution-v1',guidanceVariant}),/Invalid guidance variant/);
+ for(const strategyId of ['balanced-v1','ground-caution-v1',undefined])for(const guidanceVariant of ['standard','clearance','recovery']){const payload={observation:{},guidanceVariant};if(strategyId!==undefined)payload.strategyId=strategyId;await assert.rejects(decide(payload),/Invalid guidance variant/)}
+ assert.equal(calls,0);
+});
