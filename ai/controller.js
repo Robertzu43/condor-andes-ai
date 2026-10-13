@@ -8,7 +8,7 @@ export function createController({game,decide,onEvent=()=>{},now=()=>performance
   const emit = (type, fields={})=>onEvent({type,runId:state.runId,sequence:state.sequence,timestamp:Date.now(),timeMs:now(),...fields});
   function stop(reason='stopped') {
     if (!state.running) return;
-    state.running=false;state.reason=reason;generation++;clearTimeout(timer);clearInterval(watchdog);abort?.abort();game.pause();emit('stop',{reason});
+    state.running=false;state.reason=reason;generation++;clearTimeout(timer);clearInterval(watchdog);abort?.abort();game.pause();emit('stop',{reason,gameState:game.snapshot()});
   }
   const isExternalPause = s => s.paused && (!state.warmup || ['hidden','resize'].includes(s.pauseReason));
   async function tick(token,runId) {
@@ -38,7 +38,7 @@ export function createController({game,decide,onEvent=()=>{},now=()=>performance
         else state.warmup=false;
       }
       if (outcome==='applied' && result.action==='flap') game.flap();
-      onEvent({type:'decision',runId,sequence,timestamp:Date.now(),timeMs:receivedAt,observation,warmup,...result,requestedAt,receivedAt,latencyMs,outcome,reason,appliedFrame:outcome==='applied'?game.snapshot().frame:null});
+      onEvent({type:'decision',runId,sequence,timestamp:Date.now(),timeMs:receivedAt,observation,warmup,...result,requestedAt,receivedAt,latencyMs,outcome,reason,appliedFrame:outcome==='applied'?game.snapshot().frame:null,appliedState:outcome==='applied'?game.snapshot():null});
       if (generation!==token || !state.running) return;
       state.latencyMs=warmup?250:latencyMs;
       state.staleCount=reason==='stale'?state.staleCount+1:0;

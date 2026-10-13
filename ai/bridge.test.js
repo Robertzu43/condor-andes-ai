@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
+import {projectFlight} from './projection.mjs';
+import {createController} from './controller.js';
 import {readFile} from 'node:fs/promises';
 const source=(await readFile(new URL('../game.js',import.meta.url),'utf8')).replace(/^import .*\n/,'');
 function load(host='127.0.0.1',hash='#ai') {
@@ -58,4 +60,45 @@ test('active flight seconds exclude frozen preparation and terminal animation',(
  vm.runInContext('gameOver();step();step()',sandbox);assert.equal(bridge.snapshot().activeFlightSeconds,3/60);
  assert.equal(bridge.snapshot().activeFlightSeconds,bridge.snapshot().frame/60);
  bridge.start();assert.equal(bridge.snapshot().activeFlightSeconds,0);
+});
+
+// The oracle runs the game's actual step/hitRock code, not the projection's formulas.
+test('silhouette forecasts match actual first rock contact across tap, wait and response delay',t=>{
+ let checked=0,contacts=0,envelopeOnly=0;
+ for(const seed of [101,102,103])for(const spriteY of [5,45,100,155])for(const action of ['flap','wait'])for(const latencyMs of [0,200]){
+  const {bridge,sandbox}=load();bridge.start({seed});
+  vm.runInContext(`y=${spriteY};vy=1;pairs[0].x=110;globalThis.firstRock=null;const originalHitRock=hitRock;hitRock=()=>{firstRock??=frame;originalHitRock()}`,sandbox);
+  const observation=JSON.parse(JSON.stringify(bridge.snapshot()));
+  const prediction=projectFlight({observation,latencyMs,previousAction:{action:'wait',frame:0}});
+  for(let i=0;i<prediction.requestFrames && bridge.snapshot().state==='play';i++)vm.runInContext('step()',sandbox);
+  const arrivalRock=vm.runInContext('firstRock',sandbox);
+  assert.equal(prediction.arrivalRockContactFrame,arrivalRock,`arrival seed=${seed} y=${spriteY}`);
+  if(bridge.snapshot().state!=='play')continue;
+  vm.runInContext('firstRock=null',sandbox);if(action==='flap')bridge.flap();
+  const appliedFrame=bridge.snapshot().frame;
+  for(let i=0;i<30 && bridge.snapshot().state==='play';i++)vm.runInContext('step()',sandbox);
+  const actualFrame=vm.runInContext('firstRock',sandbox);
+  const actualContact=actualFrame===null?null:actualFrame-appliedFrame;
+  assert.equal(prediction.candidates[action].delayStress.firstRockContactFrame,actualContact,`candidate seed=${seed} y=${spriteY} action=${action} delay=${latencyMs}`);
+  if(actualContact!==null)contacts++;else if(prediction.candidates[action].delayStress.minimumCorridorTopMargin<0||prediction.candidates[action].delayStress.minimumCorridorBottomMargin<0)envelopeOnly++;
+  else {assert.ok(Math.abs(prediction.candidates[action].delayStress.end.y-bridge.snapshot().condor.y)<.006);assert.ok(Math.abs(prediction.candidates[action].delayStress.end.vy-bridge.snapshot().condor.vy)<.006)}
+  checked++;
+ }
+ assert.ok(checked>=20);assert.ok(contacts>=5);
+ t.diagnostic(`${checked} candidate paths checked, ${contacts} actual rock contacts, ${envelopeOnly} rectangular-risk warnings without actual rock contact.`);
+});
+test('AI snapshots track actual taps and distinguish rock from ground death, resetting each flight',()=>{
+ const {bridge,sandbox}=load();bridge.start({seed:101});assert.equal(bridge.snapshot().lastFlapFrame,null);assert.equal(bridge.snapshot().deathCause,null);
+ bridge.flap();assert.equal(bridge.snapshot().lastFlapFrame,0);vm.runInContext('step();step()',sandbox);bridge.flap();assert.equal(bridge.snapshot().lastFlapFrame,2);
+ vm.runInContext('pairs=[];y=GROUND-24;vy=8;step()',sandbox);assert.equal(bridge.snapshot().deathCause,'ground');
+ bridge.start({seed:101});assert.equal(bridge.snapshot().lastFlapFrame,null);assert.equal(bridge.snapshot().deathCause,null);
+ vm.runInContext('hitRock()',sandbox);assert.equal(bridge.snapshot().deathCause,'rock');
+});
+
+test('controller exports actual tap effect and terminal collision snapshot',async()=>{
+ const {bridge,sandbox}=load();let applied;const events=[];
+ const done=new Promise(resolve=>{applied=resolve});
+ const c=createController({game:bridge,decide:async()=>({action:'flap',confidence:1,probabilities:[{choice:'flap',probability:1},{choice:'wait',probability:0}]}),onEvent:e=>{events.push(e);if(e.type==='decision')applied(e)}});
+ try{c.start();const e=await done;assert.equal(e.appliedState.condor.vy,-5.2);assert.equal(e.appliedState.lastFlapFrame,e.appliedFrame);assert.equal(e.observation.condor.vy,0);
+ vm.runInContext('pairs=[];y=GROUND-24;vy=8;step()',sandbox);c.stop('game-over');assert.equal(events.at(-1).gameState.deathCause,'ground');}finally{c.stop()}
 });

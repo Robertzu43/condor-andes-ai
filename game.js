@@ -36,14 +36,14 @@ const ls = { get: k => localStorage.getItem('condor.' + k), set: (k, v) => local
 
 // ---- state ----
 let state = 'title', mode = 'normal', t = 0, dist = 0, frame = 0;
-let obstaclesPassed = 0, coinsCollected = 0;
+let obstaclesPassed = 0, coinsCollected = 0, lastFlapFrame = null, deathCause = null;
 let y, vy, flapT, invul, speed, score, coins, pairs, nth, flash, flashRGB, banner, bannerLost, wait = 0, copied = 0; // wait: seconds of ignored input
 let best = +ls.get('best') || 0, letters, idx, top, mine;
 addEventListener('resize', fit); fit();
 const clouds = [[0, 32, 2, 8], [160, 20, 2, 5], [250, 56, 2, 11], [340, 24, 1, 14]].map(([x, y, s, v]) => ({ x: x % W, y, s, v }));
 
 function startPlay() { // 'ready': hover with the world scrolling until the first tap, which becomes the first flap
-  state = 'ready'; mode = 'normal'; obstaclesPassed = 0; coinsCollected = 0;
+  state = 'ready'; mode = 'normal'; obstaclesPassed = 0; coinsCollected = 0; lastFlapFrame = null; deathCause = null;
   y = GROUND / 2 - 16; vy = 0; flapT = 0; invul = 0; speed = 2; score = 0; coins = 0; pairs = []; nth = 1; flash = 0; banner = 0;
 }
 
@@ -85,9 +85,10 @@ function enterUltra() {
 function hitRock() {
   if (invul > 0) return;
   navigator.vibrate?.(30);
-  if (mode === 'ultra') { mode = 'normal'; coins = 0; invul = 1; banner = 0.8; bannerLost = true; flash = 0.25; flashRGB = '255,42,109'; } else gameOver();
+  if (mode === 'ultra') { mode = 'normal'; coins = 0; invul = 1; banner = 0.8; bannerLost = true; flash = 0.25; flashRGB = '255,42,109'; } else gameOver('rock');
 }
-function gameOver() { // fatal hit: flash, the condor drops to the ground with no input, then endScreen()
+function gameOver(cause = 'unknown') {
+  deathCause = cause; // fatal hit: flash, the condor drops to the ground with no input, then endScreen()
   state = 'dead'; mode = 'normal'; banner = 0; flash = 0.15; flashRGB = '255,255,255'; wait = 1.3; // panel 0.1 s after landing (step), 1.3 s at most
   if (!AI_MODE && score > best) { best = score; ls.set('best', best); }
 }
@@ -141,7 +142,7 @@ function step() {
     if (p.coin && overlap(hb, { x: p.x - 6, y: p.gapY + p.gap / 2 - 6, w: 12, h: 12 })) { p.coin = false; coinsCollected++; if (++coins >= 5) enterUltra(); }
     if (hitsMountain(p, hb)) { hitRock(); if (state !== 'play') return; }
   }
-  if (hb.y + hb.h >= GROUND) gameOver();
+  if (hb.y + hb.h >= GROUND) gameOver('ground');
 }
 
 // ---- drawing (all coords truncated to whole pixels at draw time) ----
@@ -350,12 +351,12 @@ if (AI_MODE) {
       if (seed !== undefined && (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff)) throw new RangeError('seed must be an unsigned 32-bit integer');
       courseSeed = seed ?? null; courseRandomState = seed ?? 0;
       startPlay(); frame = 0; t = 0; dist = 0; state = 'play'; wait = 0; spawnPair(Math.max(W + 40, CX + 60 + 120 * speed)); aiStarted = true; aiPaused = false; aiPauseReason = null; last = performance.now(); acc = 0; },
-    flap() { if (state !== 'play' || aiPaused) return false; vy = -5.2; flapT = 7; return true; },
+    flap() { if (state !== 'play' || aiPaused) return false; lastFlapFrame = frame; vy = -5.2; flapT = 7; return true; },
     pause() { aiPaused = true; aiPauseReason ||= 'controller'; acc = 0; },
     resume() { if (document.hidden || state !== 'play') return false; aiPaused = false; aiPauseReason = null; last = performance.now(); acc = 0; return true; },
     snapshot() {
       const visible = (pairs || []).filter(p => p.x + Math.max(p.hw, ...p.bot, ...p.top) >= 0 && p.x - Math.max(p.hw, ...p.bot, ...p.top) < W);
-      return {state, frame, courseSeed, obstaclesPassed, coinsCollected, activeFlightSeconds:frame/60, paused: aiPaused, pauseReason: aiPauseReason, playfield:{width:W,height:H,ground:GROUND},
+      return {state, frame, lastFlapFrame, deathCause, courseSeed, obstaclesPassed, coinsCollected, activeFlightSeconds:frame/60, paused: aiPaused, pauseReason: aiPauseReason, playfield:{width:W,height:H,ground:GROUND},
         condor:{x:CX+2,y:(y ?? 0)+10,w:20,h:14,spriteY:y ?? 0,vy:vy ?? 0}, gravity:.35, flapImpulse:-5.2, scrollSpeed:speed ?? 2,
         score:score ?? 0, coins:coins ?? 0, mode, invulnerabilitySeconds:Math.max(0,invul || 0),
         mountains:visible.map(p=>({x:p.x,halfWidth:p.hw,gapTop:p.gapY,gapBottom:p.gapY+p.gap,topRows:[...p.top],bottomRows:[...p.bot]})),
