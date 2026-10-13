@@ -19,3 +19,11 @@ Repeated flapping at the measured cadence tends to climb. Clearer instructions a
 ## Access and billing
 
 The saved replacement key passed independent and local-server checks and the latest consecutive live requests. Prior rate-limit responses conflicted with the paid dashboard; the exact cause was not established. Credentials remain local and ignored by Git. Do not assume all future limits are resolved based on one run.
+
+## Trajectory experiment
+
+Added estimated candidate trajectories for flap and wait, including answer latency, next decision delay, ceiling reset, terminal speed, ground contact and conservative gap margins. A reviewed startup correction uses an estimated 250 ms next-request latency while holding the initial world.
+
+45 tests and the build pass. First trajectory trial ended around one second after flap then wait. After the startup correction, a trial applied three flaps and one wait, then died around two seconds while awaiting another answer; score and coins stayed zero. These trials did not demonstrate better survival than the prior four-second checkpoint. Network timing and randomized courses are confounders.
+
+Next proposed work is an explicit reward-driven strategy-learning experiment with seeded comparison courses, episode logs and an honest learning curve. It does not update hosted model weights.
