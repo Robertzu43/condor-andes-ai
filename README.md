@@ -54,3 +54,11 @@ history renders without starting API calls. Mock and real results, geometry,
 model and guidance version remain separate. Read the [learning method](docs/learning-method.md)
 for the reward, UCB1 rule, reproduction steps and limits. Choice probabilities
 are not survival probabilities; a small batch may show no gain or regressions.
+
+## Measured learning showcase
+
+The first bounded real experiment completed ten flights with 50 requests. On two held-out courses, the selected guidance passed one and two obstacles while balanced guidance passed zero. This is an encouraging small-sample result, not proof of general superiority or model retraining.
+
+![Measured strategy-learning results](docs/results/2026-10-12-learning.svg)
+
+[All results, limitations and reproduction](docs/results/2026-10-12-results.md) · [Compact measured data](docs/results/2026-10-12-experiment.json) · [Learning method](docs/learning-method.md)
