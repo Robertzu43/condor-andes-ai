@@ -31,12 +31,21 @@ export function buildLearningSeries(input,context){
  return {records,training,pairs,probability,excluded:(Array.isArray(input)?input.length:0)-records.length,validTraining:stats.episodeIds.length,best:arm.visits?best:null,bestMean:arm.visits?arm.totalReward/arm.visits:null,baseline:summary('baseline'),evaluation:summary('evaluation')};
 }
 const format=value=>value===null?'—':value.toFixed(2);
+const episodeDetail=r=>`${r.episodeId} · ${r.phase} · ${r.strategyId} · seed ${r.courseSeed} · ${r.reward===null?`interrupted: ${r.reason}`:`reward ${format(r.reward)}`}`;
+export function learningDataRows(data){
+ return data.records.map((record,index)=>{
+  const training=data.training.find(r=>r.episodeId===record.episodeId),probability=data.probability.find(r=>r.episodeId===record.episodeId);
+  const pair=data.pairs.findIndex(p=>p.experimentId===record.experimentId&&p.seed===record.courseSeed);
+  return `${episodeDetail({...record,episodeId:`Episode ${index+1}`})}${training?` · trailing training mean ${format(training.mean)}`:''}${pair>=0?` · Pair ${pair+1}`:''}${probability?` · mean chosen probability ${(probability.probability*100).toFixed(2)}% from ${probability.decisions} applied decisions`:' · chosen probability unavailable'}`;
+ });
+}
+
 function svgNode(name,attributes={},text){const node=document.createElementNS('http://www.w3.org/2000/svg',name);for(const [key,value]of Object.entries(attributes))node.setAttribute(key,value);if(text!==undefined)node.textContent=text;return node}
 function chart(container,title,xLabel,points,{maxX,meanLine=false,percent=false}={}){
  container.replaceChildren();
  if(!points.length){const p=document.createElement('p');p.textContent='No episodes for this view yet.';container.append(p);return}
  const maxY=Math.max(1,...points.filter(p=>p.y!==null).map(p=>p.y)),x=value=>48+value/Math.max(1,maxX)*530,y=value=>190-value/maxY*155;
- const svg=svgNode('svg',{viewBox:'0 0 610 250',role:'img','aria-label':title});svg.append(svgNode('title',{},title),svgNode('desc',{},'Each marker is an episode. Crosses below the axis are interruptions with no reward. Hover markers for episode details.'));
+ const svg=svgNode('svg',{viewBox:'0 0 610 250',role:'img','aria-label':title});svg.append(svgNode('title',{},title),svgNode('desc',{},'Each marker is an episode. Crosses below the axis are interruptions with no reward. Episode details are available in the Chart values text section below.'));
  for(const fraction of [0,.5,1]){const reward=maxY*fraction;svg.append(svgNode('line',{x1:48,x2:578,y1:y(reward),y2:y(reward),stroke:'#e0e2e5'}),svgNode('text',{x:40,y:y(reward)+4,'text-anchor':'end'},format(reward)))}
  svg.append(svgNode('text',{x:48,y:18},'Reward'),svgNode('text',{x:313,y:245,'text-anchor':'middle'},xLabel));
  if(meanLine){const valid=points.filter(p=>p.mean!==null);svg.append(svgNode('polyline',{points:valid.map(p=>`${x(p.x)},${y(p.mean)}`).join(' '),fill:'none',stroke:'#737981','stroke-width':2,'stroke-dasharray':'5 4'}))}
@@ -48,11 +57,14 @@ export function renderLearning(state){
  const root=document.getElementById('learning-charts');if(!root||!state.context)return;
  const data=buildLearningSeries(state.allRecords||state.records||[],state.context),context=state.context;
  document.getElementById('learning-summary').textContent=`${context.mock?'MOCK · scripted fixtures':'Real decisions'} · ${context.model} · ${context.configVersion} · ${context.dimensions.width} × ${context.dimensions.height}. Selected: ${state.strategyId||data.best||'none yet'} · Phase: ${state.phase||'history'}. Valid training episodes: ${data.validTraining}. Best training mean: ${format(data.bestMean)}${data.best?` (${data.best})`:''}. Baseline: ${format(data.baseline.mean)} (n=${data.baseline.count}); frozen evaluation: ${format(data.evaluation.mean)} (n=${data.evaluation.count}). ${data.excluded} other-context, duplicate or invalid records excluded.`;
- const detail=r=>`${r.episodeId} · ${r.phase} · ${r.strategyId} · seed ${r.courseSeed} · ${r.reward===null?`interrupted: ${r.reason}`:`reward ${format(r.reward)}`}`;
+ const detail=episodeDetail;
+ const values=document.getElementById('learning-data');values.replaceChildren();
+ for(const text of learningDataRows(data)){const li=document.createElement('li');li.textContent=text;values.append(li)}
+ if(!data.records.length){const li=document.createElement('li');li.textContent='No episodes for this context yet.';values.append(li)}
  chart(document.getElementById('training-chart'),'Actual training reward and trailing last-three valid mean','Training episode',data.training.map(r=>({x:r.index,y:r.reward,mean:r.mean,label:detail(r),phase:r.phase})),{maxX:Math.max(1,data.training.length),meanLine:true});
  const paired=data.pairs.flatMap((pair,index)=>['baseline','evaluation'].flatMap((phase,offset)=>pair[phase].map(r=>({x:index+1+(offset? .12:-.12),y:r.reward,phase,label:detail(r)}))));
  chart(document.getElementById('evaluation-chart'),'Held-out paired baseline and frozen evaluation rewards','Pair (same experiment and seed)',paired,{maxX:data.pairs.length+1});
  chart(document.getElementById('probability-chart'),'Descriptive chosen-action probability versus episode reward','Mean probability of applied chosen actions',data.probability.map(r=>({x:r.probability,y:r.reward,phase:r.phase,label:`${detail(r)} · mean choice ${Math.round(r.probability*100)}% from ${r.decisions} applied decisions`})),{maxX:1,percent:true});
  const list=document.getElementById('evaluation-pairs');list.replaceChildren();
- for(const [index,pair]of data.pairs.entries()){const li=document.createElement('li');li.textContent=`Pair ${index+1} · ${pair.experimentId} · seed ${pair.seed}: baseline n=${pair.baseline.filter(r=>r.reward!==null).length}; evaluation n=${pair.evaluation.filter(r=>r.reward!==null).length}; learned − baseline ${format(pair.delta)}. ${[...pair.baseline,...pair.evaluation].filter(r=>r.reward===null).map(r=>`${r.phase} interrupted (${r.reason})`).join('; ')}`;list.append(li)}
+ for(const [index,pair]of data.pairs.entries()){const li=document.createElement('li');li.textContent=`Pair ${index+1} · seed ${pair.seed}: baseline n=${pair.baseline.filter(r=>r.reward!==null).length}; evaluation n=${pair.evaluation.filter(r=>r.reward!==null).length}; learned − baseline ${format(pair.delta)}. ${[...pair.baseline,...pair.evaluation].filter(r=>r.reward===null).map(r=>`${r.phase} interrupted (${r.reason})`).join('; ')}`;list.append(li)}
 }

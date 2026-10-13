@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {buildLearningSeries} from './learning-view.js';
+import {buildLearningSeries,learningDataRows} from './learning-view.js';
 const context={model:'model',configVersion:'flight-guidance-v1',mock:false,dimensions:{width:800,height:600}};
 const record=(id,reward=1,extra={})=>({...context,episodeId:id,experimentId:'batch',phase:'training',strategyId:'balanced-v1',courseSeed:101,obstaclesPassed:0,coinsCollected:0,activeFlightSeconds:reward*10,requests:1,meanLatencyMs:100,reason:'duration',reward,events:[],...extra});
 const event=(probability=.7,extra={})=>({type:'decision',outcome:'applied',action:'flap',probabilities:[{choice:'flap',probability},{choice:'wait',probability:1-probability}],...extra});
@@ -33,4 +33,13 @@ test('zero rewards and incomplete pairs remain visible without manufacturing imp
  assert.equal(result.bestMean,0);assert.equal(result.training[0].mean,0);
  assert.equal(result.pairs[0].delta,null);assert.deepEqual(result.evaluation,{count:0,mean:null});
  assert.deepEqual(buildLearningSeries([record('bad',1,{events:'bad'})],context).records,[]);
+});
+
+test('accessible historical rows expose rewards, interruption, means, probabilities and held-out pair',()=>{
+ const data=buildLearningSeries([record('zero',0,{events:[event(.7)]}),record('stop',0,{reason:'cancelled',reward:null}),record('base',2,{phase:'baseline',courseSeed:1001}),record('eval',1,{phase:'evaluation',courseSeed:1001})],context);
+ const rows=learningDataRows(data);
+ assert.equal(rows.length,4);assert.match(rows[0],/reward 0.00/);assert.match(rows[0],/trailing training mean 0.00/);assert.match(rows[0],/chosen probability 70.00% from 1 applied decisions/);
+ assert.match(rows[1],/interrupted: cancelled/);assert.doesNotMatch(rows[1],/reward 0/);
+ assert.match(rows[2],/baseline/);assert.match(rows[2],/Pair 1/);assert.match(rows[3],/evaluation/);assert.match(rows[3],/reward 1.00/);
+ assert.deepEqual(learningDataRows(buildLearningSeries([],context)),[]);
 });
