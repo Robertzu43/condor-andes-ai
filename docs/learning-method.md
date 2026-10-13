@@ -37,3 +37,5 @@ The third chart is descriptive: one point per valid episode plots its reward aga
 Do not infer token costs when not measured. Larger or parallel batches require separate authorization and independent environments; the bounded demonstration does not establish reward gain per dollar. See [research hypothesis](research-hypothesis.md) for the claims and limits.
 
 Cold preparation latency remains recorded, but the first live forecast starts with 250 ms; subsequent live replies supply measured latency.
+
+Manual Start and Restart use the empirical best strategy from valid training episodes matching the current model, guidance version, logical playfield dimensions and mock mode. Without matching training, they use `balanced-v1`. The strategy stays fixed for the flight; Restart reads the latest local records. Live decisions and recordings show the active strategy and phase, and manual JSON exports include the strategy and guidance version. Manual flights do not add training episodes. This selects prompt guidance; it does not train model weights.

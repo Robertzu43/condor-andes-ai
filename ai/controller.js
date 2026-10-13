@@ -58,7 +58,7 @@ export function createController({game,decide,onEvent=()=>{},now=()=>performance
     if(!Number.isFinite(durationMs)||durationMs<=0||durationMs>LIMITS.durationMs||!Number.isSafeInteger(maxRequests)||maxRequests<1||maxRequests>LIMITS.maxRequests||(seed!==undefined&&(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff))||(strategyId!==undefined&&!STRATEGIES.includes(strategyId)))throw Error('Invalid start bounds or strategy');
     stop('restart');game.start(seed===undefined?undefined:{seed});const token=++generation;
     state={durationMs,maxRequests,strategyId,durationReason:Object.hasOwn(options,'durationMs')?'duration':'limit',running:true,runId:globalThis.crypto.randomUUID(),sequence:0,reason:null,startedAt:now(),previousAction:null,latencyMs:0,staleCount:0,warmup:true};
-    game.pause();emit('start',{warmup:true});watchdog=setInterval(()=>{if(now()-state.startedAt>=state.durationMs)stop(state.durationReason);else {const s=game.snapshot();if(isExternalPause(s)||s.state!=='play')stop(s.paused?'game-paused':'game-over')}},25);
+    game.pause();emit('start',{warmup:true,strategyId});watchdog=setInterval(()=>{if(now()-state.startedAt>=state.durationMs)stop(state.durationReason);else {const s=game.snapshot();if(isExternalPause(s)||s.state!=='play')stop(s.paused?'game-paused':'game-over')}},25);
     tick(token,state.runId);return state.runId;
   }
   return {start,stop,waitForIdle:()=>busy?new Promise(resolve=>idleWaiters.push(resolve)):Promise.resolve(),get state(){return {...state}}};

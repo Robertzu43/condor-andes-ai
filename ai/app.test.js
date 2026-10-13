@@ -1,0 +1,36 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {CONFIG_VERSION,scoreEpisode} from './learning.js';
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const context={model:'test-model',configVersion:CONFIG_VERSION,mock:false,dimensions:{width:320,height:480}};
+function record(id,strategyId,extra={}){const r={...context,episodeId:id,experimentId:'experiment',phase:'training',strategyId,courseSeed:1,obstaclesPassed:1,coinsCollected:0,activeFlightSeconds:1,requests:1,meanLatencyMs:1,reason:'game-over',events:[],...extra};return {...r,reward:scoreEpisode(r)}}
+test('manual Start and Restart submit matching empirical best, freeze it and export actual settings',async t=>{
+ const originals=Object.fromEntries(['document','window','localStorage','fetch','requestAnimationFrame'].map(k=>[k,globalThis[k]]));
+ const nodes=new Map(),paint=[],payloads=[],blobs=[];let stored,frame,releaseFirst;
+ const node=()=>({textContent:'',children:[],checked:false,value:0,classList:{toggle(){},remove(){}},append(...v){this.children.push(...v)},prepend(v){this.children.unshift(v)},replaceChildren(...v){this.children=v},setAttribute(){},click(){}});
+ const get=id=>{if(!nodes.has(id))nodes.set(id,node());return nodes.get(id)};
+ let paused=false;
+ const game={canvas:{width:320,height:480},snapshot:()=>({state:'play',paused,frame:1,playfield:context.dimensions,condor:{x:20,y:100,vy:0},mountains:[],score:0,coins:0,mode:'Normal'}),start(){paused=false},pause(){paused=true},resume(){paused=false;return true},flap(){}};
+ get('game').contentWindow={condorAI:game};get('capture').getContext=()=>new Proxy({fillText:text=>paint.push(text)},{get:(obj,k)=>obj[k]||(()=>{})});
+ globalThis.document={getElementById:get,addEventListener(){},createElement:node,createElementNS:node,dispatchEvent(){}};
+ globalThis.window={addEventListener(){}};globalThis.requestAnimationFrame=fn=>{frame=fn};
+ globalThis.localStorage={getItem:()=>stored,setItem:(key,value)=>{stored=value}};
+ const save=records=>{stored=JSON.stringify({schemaVersion:1,records})};
+ save([record('upper','upper-caution-v1'),record('baseline','ground-caution-v1',{phase:'baseline',obstaclesPassed:100}),record('interrupted','ground-caution-v1',{reason:'stopped',obstaclesPassed:100}),record('eval','ground-caution-v1',{phase:'evaluation',obstaclesPassed:100}),record('old','ground-caution-v1',{configVersion:'old',obstaclesPassed:100}),record('mock','ground-caution-v1',{mock:true,obstaclesPassed:100}),record('size','ground-caution-v1',{dimensions:{width:321,height:480},obstaclesPassed:100}),record('model','ground-caution-v1',{model:'other',obstaclesPassed:100}),{...record('invalid','ground-caution-v1'),reward:999}]);
+ globalThis.fetch=async(url,options)=>url==='/api/status'?{ok:true,json:async()=>({...context,configured:true})}:{ok:true,json:async()=>{payloads.push(JSON.parse(options.body));if(payloads.length===1)await new Promise(resolve=>{releaseFirst=resolve});return {action:'wait',confidence:1,probabilities:[{choice:'wait',probability:1},{choice:'flap',probability:0}],cooldownMs:0}}};
+ const createURL=URL.createObjectURL;URL.createObjectURL=blob=>{blobs.push(blob);return 'blob:test'};
+ t.after(()=>{get('stop').onclick?.();URL.createObjectURL=createURL;for(const [k,v]of Object.entries(originals))if(v===undefined)delete globalThis[k];else globalThis[k]=v});
+ await import(`./app.js?manual-test=${Date.now()}`);await sleep(5);
+ await get('start').onclick();await sleep(5);
+ assert.equal(payloads[0].strategyId,'upper-caution-v1');
+ assert.match(get('active-strategy').textContent,/manual.*upper-caution-v1/);
+ assert.equal(paused,true,'first decision holds warmup');frame();assert.ok(paint.some(s=>String(s).includes('manual · upper-caution-v1')));releaseFirst();await sleep(5);assert.equal(paused,false);frame();
+ save([record('new','ground-caution-v1',{obstaclesPassed:10})]);await sleep(10);
+ assert.ok(payloads.every(p=>p.strategyId==='upper-caution-v1'));
+ get('stop').onclick();frame();assert.match(get('active-strategy').textContent,/manual.*upper-caution-v1/);get('json').onclick();const exported=JSON.parse(await blobs.at(-1).text());
+ assert.equal(exported.strategyId,'upper-caution-v1');assert.equal(exported.configVersion,CONFIG_VERSION);assert.equal(exported.events[0].strategyId,'upper-caution-v1');
+ await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'ground-caution-v1');
+ assert.match(get('active-strategy').textContent,/ground-caution-v1/);
+ save([]);await get('restart').onclick();await sleep(230);assert.equal(payloads.at(-1).strategyId,'balanced-v1');
+ assert.deepEqual(JSON.parse(stored).records,[],'manual flights do not write training records');
+});
