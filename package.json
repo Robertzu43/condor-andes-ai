@@ -1,11 +1,14 @@
 {
-  "name": "condor-andes",
+  "name": "condor-andes-ai",
   "private": true,
   "type": "module",
   "scripts": {
     "test": "node --test",
     "build": "node scripts/build.mjs",
-    "dev": "npm run build && npx wrangler@latest pages dev",
-    "deploy": "npm run build && npx wrangler@latest pages deploy"
+    "ai": "node --env-file-if-exists=.env ai/server.mjs",
+    "ai:mock": "node ai/server.mjs --mock"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

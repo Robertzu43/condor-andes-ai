@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {normalizeAnswer,validatePayload,createDecider} from './decisions.mjs';
+const answer={answers:[{name:'flight',type:'choice',choice:'flap',confidence:.8,probabilities:[{value:'flap',probability:.8},{value:'wait',probability:.2}]}]};
+test('normalizes only a complete valid flight answer',()=>{assert.equal(normalizeAnswer(answer).action,'flap');for(const a of [{answers:[]},{answers:[{type:'refusal'}]},{answers:[{...answer.answers[0],choice:'other'}]}])assert.throws(()=>normalizeAnswer(a));});
+test('rejects unbounded and non-finite observations',()=>{assert.throws(()=>validatePayload({observation:{y:Infinity}}));assert.throws(()=>validatePayload({observation:{data:'x'.repeat(20000)}}));});
+test('mock is explicit and never calls provider; missing key fails',async()=>{let calls=0;const fetchImpl=()=>{calls++;throw Error('secret');};assert.equal((await createDecider({mock:true,fetchImpl})({observation:{state:'play'}})).mock,true);assert.equal(calls,0);await assert.rejects(createDecider({fetchImpl})({observation:{state:'play'}}),/not configured/);});
+test('provider request uses documented choice values and errors omit provider text',async()=>{let body;const decide=createDecider({apiKey:'test-key',fetchImpl:async(_url,opts)=>{body=JSON.parse(opts.body);return {ok:true,json:async()=>answer}}});assert.equal((await decide({observation:{state:'play'}})).mock,false);assert.equal(body.model,'gpt-6-luna');assert.deepEqual(body.questions[0].choices.map(c=>c.value),['flap','wait']);await assert.rejects(createDecider({apiKey:'test-key',fetchImpl:async()=>{throw Error('test-key private response')}})({observation:{state:'play'}}),e=>!e.message.includes('test-key'))});

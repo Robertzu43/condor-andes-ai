@@ -1,5 +1,7 @@
 import { GLIDE, FLAP, COIN, PAL, OUTLINE, THEME, drawSprite } from './sprites.js';
 
+const AI_MODE = ['127.0.0.1', 'localhost', '::1', '[::1]'].includes(location.hostname) && location.hash === '#ai';
+let aiPaused = AI_MODE, aiStarted = false, aiPauseReason = null;
 const STEP = 1000 / 60;
 const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 const SLOT = { y: 'rgba(0,0,0,.45)', o: 'rgba(0,0,0,.45)' }; // empty HUD coin slot
@@ -9,6 +11,7 @@ const ctx = cv.getContext('2d');
 // Logical playfield follows the screen: portrait 216 wide, landscape 384 wide, height from the aspect ratio.
 let W = 384, H = 216, GROUND = 192, CX = 70, scale = 1, SAT = 0, SAL = 0, SAB = 0;
 function fit() {
+  if (AI_MODE && aiStarted) { aiPaused = true; aiPauseReason = 'resize'; return; }
   const iw = innerWidth, ih = innerHeight, portrait = ih > iw;
   W = portrait ? 216 : 384; CX = portrait ? 56 : 70;
   H = portrait ? Math.min(480, Math.max(216, Math.round(216 * ih / iw))) : Math.min(216, Math.max(176, Math.round(384 * ih / iw)));
@@ -79,14 +82,15 @@ function hitRock() {
 }
 function gameOver() { // fatal hit: flash, the condor drops to the ground with no input, then endScreen()
   state = 'dead'; mode = 'normal'; banner = 0; flash = 0.15; flashRGB = '255,255,255'; wait = 1.3; // panel 0.1 s after landing (step), 1.3 s at most
-  if (score > best) { best = score; ls.set('best', best); }
+  if (!AI_MODE && score > best) { best = score; ls.set('best', best); }
 }
 function endScreen() {
   wait = 0.5;
   if (score === 0) return showTable(null);
   state = 'gameover'; letters = [...(ls.get('name') || 'AAA').padEnd(3, 'A')].slice(0, 3); idx = 0;
 }
-async function showTable(entry) { // top: undefined = loading, null = offline, array = data
+async function showTable(entry) {
+  if (AI_MODE) { state = 'gameover'; return; } // top: undefined = loading, null = offline, array = data
   state = 'table'; top = undefined; mine = entry;
   try {
     const opts = { signal: AbortSignal.timeout(5000) };
@@ -282,7 +286,8 @@ function share() { // phones: native share sheet; desktop: copy the text + link 
   if (matchMedia('(pointer:coarse)').matches && navigator.share) return navigator.share({ title: 'Cóndor de los Andes', text, url }).catch(e => e.name !== 'AbortError' && copy());
   return copy();
 }
-function tap(gx, gy) { // gx/gy: logical px; -1,-1 from the keyboard (hits no button)
+function tap(gx, gy) {
+  if (AI_MODE) return; // gx/gy: logical px; -1,-1 from the keyboard (hits no button)
   if (wait > 0) return;
   if (state === 'title') startPlay();
   else if (state === 'table') { if (hit(gx, gy, W / 2 - 50, shareY, 100, BTN())) share(); else if (top !== undefined) startPlay(); }
@@ -299,6 +304,7 @@ function tap(gx, gy) { // gx/gy: logical px; -1,-1 from the keyboard (hits no bu
 }
 addEventListener('pointerdown', e => { e.preventDefault(); const r = cv.getBoundingClientRect(); tap((e.clientX - r.x) / r.width * W, (e.clientY - r.y) / r.height * H); });
 addEventListener('keydown', e => {
+  if (AI_MODE) return;
   if (e.repeat || !['Space', 'ArrowUp', 'ArrowDown', 'Enter', 'Escape'].includes(e.code)) return;
   e.preventDefault();
   if (wait > 0) return;
@@ -311,6 +317,7 @@ addEventListener('keydown', e => {
 // ---- loop: fixed 60 Hz steps, capped at ~6 per frame ----
 let last = performance.now(), acc = 0;
 function loop(now) {
+  if (AI_MODE && aiPaused) { last = now; acc = 0; draw(); requestAnimationFrame(loop); return; }
   acc += Math.min(now - last, 100); last = now;
   while (acc >= STEP) { step(); acc -= STEP; }
   draw(); requestAnimationFrame(loop);
@@ -324,4 +331,24 @@ if (DEBUG_HOSTS.has(location.hostname) && location.hash === '#debug') {
   const peek = { state: () => state, mode: () => mode, score: () => score, y: () => y, vy: () => vy, invul: () => invul, flash: () => flash, banner: () => banner, coins: () => coins,
     pairs: () => pairs, top: () => top, letters: () => letters, idx: () => idx, best: () => best, frame: () => frame, W: () => W, H: () => H };
   for (const k in peek) Object.defineProperty(window.condor, k, { get: peek[k] });
+}
+
+// Structured observation/control bridge exists only in explicitly selected local AI mode.
+if (AI_MODE) {
+  addEventListener('visibilitychange', () => { if (document.hidden) { aiPaused = true; aiPauseReason = 'hidden'; } });
+  window.condorAI = Object.freeze({
+    canvas: cv,
+    start() { startPlay(); frame = 0; t = 0; dist = 0; state = 'play'; wait = 0; spawnPair(Math.max(W + 40, CX + 60 + 120 * speed)); aiStarted = true; aiPaused = false; aiPauseReason = null; last = performance.now(); acc = 0; },
+    flap() { if (state !== 'play' || aiPaused) return false; vy = -5.2; flapT = 7; return true; },
+    pause() { aiPaused = true; aiPauseReason ||= 'controller'; acc = 0; },
+    resume() { if (document.hidden || state !== 'play') return false; aiPaused = false; aiPauseReason = null; last = performance.now(); acc = 0; return true; },
+    snapshot() {
+      const visible = (pairs || []).filter(p => p.x + Math.max(p.hw, ...p.bot, ...p.top) >= 0 && p.x - Math.max(p.hw, ...p.bot, ...p.top) < W);
+      return {state, frame, paused: aiPaused, pauseReason: aiPauseReason, playfield:{width:W,height:H,ground:GROUND},
+        condor:{x:CX+2,y:(y ?? 0)+10,w:20,h:14,spriteY:y ?? 0,vy:vy ?? 0}, gravity:.35, flapImpulse:-5.2, scrollSpeed:speed ?? 2,
+        score:score ?? 0, coins:coins ?? 0, mode, invulnerabilitySeconds:Math.max(0,invul || 0),
+        mountains:visible.map(p=>({x:p.x,halfWidth:p.hw,gapTop:p.gapY,gapBottom:p.gapY+p.gap,topRows:[...p.top],bottomRows:[...p.bot]})),
+        visibleCoins:visible.filter(p=>p.coin && p.x+6>=0 && p.x-6<W).map(p=>({x:p.x,y:p.gapY+p.gap/2,radius:6}))};
+    }
+  });
 }
