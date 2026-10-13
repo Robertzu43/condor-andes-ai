@@ -1,0 +1,256 @@
+{
+  "experimentId": "b2a8af40-e821-43b1-b7cd-68a800871b8a",
+  "mock": false,
+  "mode": "upper-caution-refinement-v1",
+  "baseline": {
+    "id": "upper-caution-v1/standard@9",
+    "strategyId": "upper-caution-v1",
+    "guidanceVariant": "standard",
+    "stepFrames": 9
+  },
+  "flights": 66,
+  "validFlights": 62,
+  "interruptedFlights": 4,
+  "selected": {
+    "id": "upper-caution-v1/clearance@9",
+    "strategyId": "upper-caution-v1",
+    "guidanceVariant": "clearance",
+    "stepFrames": 9
+  },
+  "completeTrainingCourses": 4,
+  "heldOutPairs": [
+    {
+      "seed": 20002,
+      "baselineReward": 36.583333333333336,
+      "selectedReward": 36.59166666666667,
+      "delta": 0.00833333333333286
+    },
+    {
+      "seed": 20001,
+      "baselineReward": 32.60166666666667,
+      "selectedReward": 95,
+      "delta": 62.39833333333333
+    },
+    {
+      "seed": 20003,
+      "baselineReward": 12.401666666666667,
+      "selectedReward": 85,
+      "delta": 72.59833333333333
+    },
+    {
+      "seed": 20004,
+      "baselineReward": 93,
+      "selectedReward": 48.681666666666665,
+      "delta": -44.318333333333335
+    },
+    {
+      "seed": 20005,
+      "baselineReward": 82.94,
+      "selectedReward": 93,
+      "delta": 10.060000000000002
+    },
+    {
+      "seed": 20006,
+      "baselineReward": 46.67166666666667,
+      "selectedReward": 48.678333333333335,
+      "delta": 2.0066666666666677
+    },
+    {
+      "seed": 20007,
+      "baselineReward": 22.49,
+      "selectedReward": 12.368333333333334,
+      "delta": -10.121666666666664
+    },
+    {
+      "seed": 20008,
+      "baselineReward": 85,
+      "selectedReward": 36.6,
+      "delta": -48.4
+    }
+  ],
+  "meanHeldOutDelta": 5.528958333333333,
+  "spend": {
+    "maxUsd": 1,
+    "confirmedUsd": 0.9283633,
+    "uncertainUsd": 0,
+    "reservedUsd": 0,
+    "committedCeilingUsd": 0.9283633,
+    "calls": 7470,
+    "knownUsageCount": 7470,
+    "stopReason": null,
+    "rateLimits": {
+      "x-ratelimit-limit-requests": "5000",
+      "x-ratelimit-limit-tokens": "2000000",
+      "x-ratelimit-remaining-requests": "4959",
+      "x-ratelimit-remaining-tokens": "1947783",
+      "x-ratelimit-reset-requests": "492ms",
+      "x-ratelimit-reset-tokens": "1.566s"
+    }
+  },
+  "targetReached": true,
+  "stopReason": "complete",
+  "normalSpeedChecks": [
+    {
+      "model": "gpt-6-luna",
+      "mock": false,
+      "episodeId": "ec3c81db-cf48-461d-bce8-0fae1039585d",
+      "experimentId": "b2a8af40-e821-43b1-b7cd-68a800871b8a",
+      "phase": "normal-speed-check",
+      "strategyId": "upper-caution-v1",
+      "guidanceVariant": "standard",
+      "checkRole": "baseline",
+      "sourceCandidateId": "upper-caution-v1/standard@9",
+      "candidateId": "upper-caution-v1/standard@live-v5",
+      "courseSeed": 300001,
+      "configVersion": "flight-guidance-v5/refinement-v1/normal-speed-check",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 4,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 6.55,
+      "requests": 114,
+      "reason": "game-over",
+      "cause": "rock",
+      "wallSeconds": 7.0575474579999575,
+      "reward": 42.655,
+      "eventsOmitted": true
+    },
+    {
+      "model": "gpt-6-luna",
+      "mock": false,
+      "episodeId": "4e80ecf4-4c61-4cc6-954a-e2aba8445062",
+      "experimentId": "b2a8af40-e821-43b1-b7cd-68a800871b8a",
+      "phase": "normal-speed-check",
+      "strategyId": "upper-caution-v1",
+      "guidanceVariant": "clearance",
+      "checkRole": "selected",
+      "sourceCandidateId": "upper-caution-v1/clearance@9",
+      "candidateId": "upper-caution-v1/clearance@live-v5",
+      "courseSeed": 300001,
+      "configVersion": "flight-guidance-v5/refinement-v1/normal-speed-check",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 1.9166666666666667,
+      "requests": 31,
+      "reason": "game-over",
+      "cause": "ground",
+      "wallSeconds": 3.031604042000021,
+      "reward": 0.19166666666666668,
+      "eventsOmitted": true
+    },
+    {
+      "model": "gpt-6-luna",
+      "mock": false,
+      "episodeId": "289736c0-140d-4960-9d08-516fcbb7c9a0",
+      "experimentId": "b2a8af40-e821-43b1-b7cd-68a800871b8a",
+      "phase": "normal-speed-check",
+      "strategyId": "upper-caution-v1",
+      "guidanceVariant": "clearance",
+      "checkRole": "selected",
+      "sourceCandidateId": "upper-caution-v1/clearance@9",
+      "candidateId": "upper-caution-v1/clearance@live-v5",
+      "courseSeed": 300002,
+      "configVersion": "flight-guidance-v5/refinement-v1/normal-speed-check",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.75,
+      "requests": 41,
+      "reason": "game-over",
+      "cause": "rock",
+      "wallSeconds": 3.2660779580000088,
+      "reward": 0.275,
+      "eventsOmitted": true
+    },
+    {
+      "model": "gpt-6-luna",
+      "mock": false,
+      "episodeId": "9d6dc0ff-69aa-42a5-9a04-a4e2caf70d12",
+      "experimentId": "b2a8af40-e821-43b1-b7cd-68a800871b8a",
+      "phase": "normal-speed-check",
+      "strategyId": "upper-caution-v1",
+      "guidanceVariant": "standard",
+      "checkRole": "baseline",
+      "sourceCandidateId": "upper-caution-v1/standard@9",
+      "candidateId": "upper-caution-v1/standard@live-v5",
+      "courseSeed": 300002,
+      "configVersion": "flight-guidance-v5/refinement-v1/normal-speed-check",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.75,
+      "requests": 61,
+      "reason": "game-over",
+      "cause": "rock",
+      "wallSeconds": 4.4733176669999954,
+      "reward": 12.375,
+      "eventsOmitted": true
+    },
+    {
+      "model": "gpt-6-luna",
+      "mock": false,
+      "episodeId": "7cba5cf8-1d47-47a6-8660-abd75063b99b",
+      "experimentId": "b2a8af40-e821-43b1-b7cd-68a800871b8a",
+      "phase": "normal-speed-check",
+      "strategyId": "upper-caution-v1",
+      "guidanceVariant": "standard",
+      "checkRole": "baseline",
+      "sourceCandidateId": "upper-caution-v1/standard@9",
+      "candidateId": "upper-caution-v1/standard@live-v5",
+      "courseSeed": 300003,
+      "configVersion": "flight-guidance-v5/refinement-v1/normal-speed-check",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6333333333333333,
+      "requests": 45,
+      "reason": "game-over",
+      "cause": "rock",
+      "wallSeconds": 3.3429510410000223,
+      "reward": 0.26333333333333336,
+      "eventsOmitted": true
+    },
+    {
+      "model": "gpt-6-luna",
+      "mock": false,
+      "episodeId": "fa620e2d-aa4a-41f4-9c2d-51630e1c4710",
+      "experimentId": "b2a8af40-e821-43b1-b7cd-68a800871b8a",
+      "phase": "normal-speed-check",
+      "strategyId": "upper-caution-v1",
+      "guidanceVariant": "clearance",
+      "checkRole": "selected",
+      "sourceCandidateId": "upper-caution-v1/clearance@9",
+      "candidateId": "upper-caution-v1/clearance@live-v5",
+      "courseSeed": 300003,
+      "configVersion": "flight-guidance-v5/refinement-v1/normal-speed-check",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 2,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 4.916666666666667,
+      "requests": 84,
+      "reason": "game-over",
+      "cause": "rock",
+      "wallSeconds": 5.307527249999985,
+      "reward": 22.491666666666667,
+      "eventsOmitted": true
+    }
+  ]
+}

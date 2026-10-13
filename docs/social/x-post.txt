@@ -1,0 +1,5 @@
+I built an AI flight lab with Codex + OpenAI Decisions: 4 condors testing strategies in parallel. Real physics, probabilities, recordings—and regressions.
+
+The lesson: a simulation winner can lose live.
+
+Code + video: https://github.com/Robertzu43/condor-andes-ai

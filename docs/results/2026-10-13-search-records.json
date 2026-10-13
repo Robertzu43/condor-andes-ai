@@ -1,0 +1,4025 @@
+{
+  "schemaVersion": 1,
+  "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+  "model": "gpt-6-luna",
+  "mock": false,
+  "startedAt": "2026-10-13T14:55:04.052Z",
+  "updatedAt": "2026-10-13T15:00:23.986Z",
+  "simulation": "Actual game code; world frozen during API calls; all-settled consensus; fixed real frames between actions",
+  "candidates": [
+    {
+      "id": "balanced-v1@9",
+      "strategyId": "balanced-v1",
+      "stepFrames": 9
+    },
+    {
+      "id": "balanced-v1@12",
+      "strategyId": "balanced-v1",
+      "stepFrames": 12
+    },
+    {
+      "id": "balanced-v1@18",
+      "strategyId": "balanced-v1",
+      "stepFrames": 18
+    },
+    {
+      "id": "upper-caution-v1@9",
+      "strategyId": "upper-caution-v1",
+      "stepFrames": 9
+    },
+    {
+      "id": "upper-caution-v1@12",
+      "strategyId": "upper-caution-v1",
+      "stepFrames": 12
+    },
+    {
+      "id": "upper-caution-v1@18",
+      "strategyId": "upper-caution-v1",
+      "stepFrames": 18
+    },
+    {
+      "id": "ground-caution-v1@9",
+      "strategyId": "ground-caution-v1",
+      "stepFrames": 9
+    },
+    {
+      "id": "ground-caution-v1@12",
+      "strategyId": "ground-caution-v1",
+      "stepFrames": 12
+    },
+    {
+      "id": "ground-caution-v1@18",
+      "strategyId": "ground-caution-v1",
+      "stepFrames": 18
+    }
+  ],
+  "rawTraceFile": "episodes.jsonl",
+  "spend": {
+    "maxUsd": 0.8679824,
+    "confirmedUsd": 0.6667016,
+    "uncertainUsd": 0,
+    "reservedUsd": 0,
+    "committedCeilingUsd": 0.6667016,
+    "calls": 5641,
+    "knownUsageCount": 5641,
+    "stopReason": null,
+    "rateLimits": {
+      "x-ratelimit-limit-requests": "5000",
+      "x-ratelimit-limit-tokens": "2000000",
+      "x-ratelimit-remaining-requests": "4951",
+      "x-ratelimit-remaining-tokens": "1940818",
+      "x-ratelimit-reset-requests": "588ms",
+      "x-ratelimit-reset-tokens": "1.775s"
+    }
+  },
+  "targetUsd": 0.6285271,
+  "selected": {
+    "id": "upper-caution-v1@9",
+    "strategyId": "upper-caution-v1",
+    "stepFrames": 9
+  },
+  "trainingRanking": [
+    {
+      "candidate": {
+        "id": "upper-caution-v1@9",
+        "strategyId": "upper-caution-v1",
+        "stepFrames": 9
+      },
+      "n": 6,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "meanReward": 80.26666666666667,
+      "meanObstacles": 6.833333333333333,
+      "meanSeconds": 9.333333333333334
+    },
+    {
+      "candidate": {
+        "id": "upper-caution-v1@12",
+        "strategyId": "upper-caution-v1",
+        "stepFrames": 12
+      },
+      "n": 6,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "meanReward": 45.66472222222222,
+      "meanObstacles": 3.8333333333333335,
+      "meanSeconds": 6.647222222222222
+    },
+    {
+      "candidate": {
+        "id": "upper-caution-v1@18",
+        "strategyId": "upper-caution-v1",
+        "stepFrames": 18
+      },
+      "n": 6,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "meanReward": 14.731388888888889,
+      "meanObstacles": 1.1666666666666667,
+      "meanSeconds": 3.980555555555556
+    },
+    {
+      "candidate": {
+        "id": "balanced-v1@9",
+        "strategyId": "balanced-v1",
+        "stepFrames": 9
+      },
+      "n": 6,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "meanReward": 5.9775,
+      "meanObstacles": 0.5,
+      "meanSeconds": 3.108333333333333
+    },
+    {
+      "candidate": {
+        "id": "balanced-v1@12",
+        "strategyId": "balanced-v1",
+        "stepFrames": 12
+      },
+      "n": 6,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "meanReward": 4.6375,
+      "meanObstacles": 0.3333333333333333,
+      "meanSeconds": 3.0416666666666665
+    },
+    {
+      "candidate": {
+        "id": "balanced-v1@18",
+        "strategyId": "balanced-v1",
+        "stepFrames": 18
+      },
+      "n": 6,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "meanReward": 4.307777777777777,
+      "meanObstacles": 0.3333333333333333,
+      "meanSeconds": 3.077777777777778
+    },
+    {
+      "candidate": {
+        "id": "ground-caution-v1@12",
+        "strategyId": "ground-caution-v1",
+        "stepFrames": 12
+      },
+      "n": 6,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "meanReward": 2.277777777777778,
+      "meanObstacles": 0.16666666666666666,
+      "meanSeconds": 2.777777777777778
+    },
+    {
+      "candidate": {
+        "id": "ground-caution-v1@18",
+        "strategyId": "ground-caution-v1",
+        "stepFrames": 18
+      },
+      "n": 6,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "meanReward": 0.2688888888888889,
+      "meanObstacles": 0,
+      "meanSeconds": 2.6888888888888887
+    },
+    {
+      "candidate": {
+        "id": "ground-caution-v1@9",
+        "strategyId": "ground-caution-v1",
+        "stepFrames": 9
+      },
+      "n": 6,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "meanReward": 0.25750000000000006,
+      "meanObstacles": 0,
+      "meanSeconds": 2.575
+    }
+  ],
+  "stopReason": null,
+  "records": [
+    {
+      "episodeId": "91ff6f2d-0050-438f-9cfa-a33168e246d9",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 101,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.783333333333333,
+      "requests": 30,
+      "meanLatencyMs": 556.6937070333332,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 6.12888575,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.2783333333333333,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "4759d0ee-404f-412f-b30f-00baaec38082",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 101,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6166666666666667,
+      "requests": 42,
+      "meanLatencyMs": 517.030489095238,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 8.062847459,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.26166666666666666,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "9ab5c4d7-5177-4f4d-a723-f0bd4b050188",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 101,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.5833333333333335,
+      "requests": 54,
+      "meanLatencyMs": 505.1221581851853,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 10.303895667,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.25833333333333336,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "3321960d-afa1-4726-b296-13aa9b7786a6",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 101,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.85,
+      "requests": 30,
+      "meanLatencyMs": 530.8254276333334,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.848105,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.28500000000000003,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "fa715f29-73ea-42bb-9ba5-9589038984bf",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 101,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.5833333333333335,
+      "requests": 54,
+      "meanLatencyMs": 519.4702144814818,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 10.659057124999999,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.25833333333333336,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "47e83d6a-502d-476f-a4f9-67f227592706",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 101,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6166666666666667,
+      "requests": 42,
+      "meanLatencyMs": 541.3649830714284,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 8.703193375000001,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.26166666666666666,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "8d4adb2f-6ed3-4cc3-a5e7-9e91b98e061c",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 101,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 3,
+      "coinsCollected": 3,
+      "activeFlightSeconds": 5.85,
+      "requests": 117,
+      "meanLatencyMs": 530.9761702478635,
+      "reason": "game-over",
+      "cohorts": 39,
+      "apiRequestCount": 117,
+      "wallSeconds": 23.513288834,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 36.585,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "1dc6d0c7-8e33-4e50-82cb-86d129c640b7",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 101,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6333333333333333,
+      "requests": 27,
+      "meanLatencyMs": 541.7186387777771,
+      "reason": "game-over",
+      "cohorts": 9,
+      "apiRequestCount": 27,
+      "wallSeconds": 5.584317792000002,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.26333333333333336,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "61da807f-df98-485f-b9a5-bae4c9fb882e",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 102,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8,
+      "requests": 30,
+      "meanLatencyMs": 504.80430550000057,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 6.035369583,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.27999999999999997,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "fe0bfcda-6355-4125-a974-cd3fa97f1065",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 102,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6166666666666667,
+      "requests": 42,
+      "meanLatencyMs": 502.8090357619044,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 7.939292333000001,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.26166666666666666,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "bc145816-a3ca-4944-9be5-8e3f9f690b11",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 102,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8666666666666667,
+      "requests": 30,
+      "meanLatencyMs": 517.4294915666659,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.693474375000002,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.2866666666666667,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "df011bde-423c-4a4e-8dd7-d75fc2515db0",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 101,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 8,
+      "coinsCollected": 8,
+      "activeFlightSeconds": 10.983333333333333,
+      "requests": 165,
+      "meanLatencyMs": 535.3657307878785,
+      "reason": "game-over",
+      "cohorts": 55,
+      "apiRequestCount": 165,
+      "wallSeconds": 33.957946166,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 97.09833333333333,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "15ffa1ed-1b41-4b39-9e5c-e645647b00d7",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 102,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6,
+      "requests": 39,
+      "meanLatencyMs": 521.6665020256407,
+      "reason": "game-over",
+      "cohorts": 13,
+      "apiRequestCount": 39,
+      "wallSeconds": 7.444894332999996,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.26,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "50f232f8-76ac-4ade-91b8-ee16538d1806",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 102,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.566666666666667,
+      "requests": 54,
+      "meanLatencyMs": 552.056501592593,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 11.459235957999997,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.2566666666666667,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "60108263-2309-4368-b940-0e36e41bad25",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 102,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 4,
+      "coinsCollected": 3,
+      "activeFlightSeconds": 6.683333333333334,
+      "requests": 102,
+      "meanLatencyMs": 520.4234938039215,
+      "reason": "game-over",
+      "cohorts": 34,
+      "apiRequestCount": 102,
+      "wallSeconds": 19.896503041,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 46.66833333333334,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "122c5a57-d419-4740-a056-529071dfd730",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 102,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6,
+      "requests": 27,
+      "meanLatencyMs": 520.1504166296293,
+      "reason": "game-over",
+      "cohorts": 9,
+      "apiRequestCount": 27,
+      "wallSeconds": 5.050588959000001,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.26,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "3e05802c-7612-4b3f-9917-1bcd4f2c1f1d",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 102,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.566666666666667,
+      "requests": 54,
+      "meanLatencyMs": 545.4359791296293,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 10.952289624999997,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.2566666666666667,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "0f7329c5-b3da-4f68-8a38-15ee8df55da7",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 103,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 2,
+      "coinsCollected": 2,
+      "activeFlightSeconds": 4.55,
+      "requests": 48,
+      "meanLatencyMs": 535.9235391875008,
+      "reason": "game-over",
+      "cohorts": 16,
+      "apiRequestCount": 48,
+      "wallSeconds": 9.603232583999997,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 24.455,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "bb3d7ba4-cc47-42fb-86d3-1c2758b19777",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 102,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 8,
+      "coinsCollected": 6,
+      "activeFlightSeconds": 10.5,
+      "requests": 210,
+      "meanLatencyMs": 527.160879633333,
+      "reason": "game-over",
+      "cohorts": 70,
+      "apiRequestCount": 210,
+      "wallSeconds": 41.689842875000004,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 93.05,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "574fc174-ab4b-4a05-8617-0480de60128f",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 103,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.466666666666667,
+      "requests": 54,
+      "meanLatencyMs": 544.715799333334,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 11.076341125000006,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 12.346666666666668,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "6f3443b8-8b8b-4362-b100-5a9e9c5cbd11",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 103,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 7,
+      "coinsCollected": 7,
+      "activeFlightSeconds": 9.55,
+      "requests": 96,
+      "meanLatencyMs": 538.7031762812508,
+      "reason": "game-over",
+      "cohorts": 32,
+      "apiRequestCount": 96,
+      "wallSeconds": 19.405414667000006,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 84.955,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "6ab1cb62-79d8-4da3-acba-6846f4de63f9",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 103,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.65,
+      "requests": 42,
+      "meanLatencyMs": 544.7854731904763,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 8.846464917000004,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.265,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "dfa910ed-d9c5-4ca3-94f2-6d817d01a24b",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 103,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.5833333333333335,
+      "requests": 54,
+      "meanLatencyMs": 534.833192888889,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 10.559804875000001,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.25833333333333336,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "06875c25-e4ae-48be-83f3-a55348d67e7f",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 103,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8,
+      "requests": 30,
+      "meanLatencyMs": 519.0021708333312,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.780534457999995,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.27999999999999997,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "5c2539e3-50a8-4230-b3c8-e696ff361895",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 103,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.5166666666666666,
+      "requests": 54,
+      "meanLatencyMs": 508.01729396296207,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 10.137767958000012,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 12.351666666666667,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "e71e5233-2999-4cc7-92ff-c3f8566665d4",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 103,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8833333333333333,
+      "requests": 60,
+      "meanLatencyMs": 550.3899972499993,
+      "reason": "game-over",
+      "cohorts": 20,
+      "apiRequestCount": 60,
+      "wallSeconds": 13.047735916999999,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.28833333333333333,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "2f5e3509-6ca0-4bf5-9adf-49ab9fdd547a",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 104,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 2.9166666666666665,
+      "requests": 30,
+      "meanLatencyMs": 520.4827917333344,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.874262375000006,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 2.2916666666666665,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "73a9d006-9cac-49e8-b465-e146181fb909",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 103,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 10,
+      "coinsCollected": 9,
+      "activeFlightSeconds": 11.816666666666666,
+      "requests": 237,
+      "meanLatencyMs": 528.7408735780601,
+      "reason": "game-over",
+      "cohorts": 79,
+      "apiRequestCount": 237,
+      "wallSeconds": 46.960199583000005,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 119.18166666666667,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "9745d97a-6cb9-4c89-ae57-fa4a28a57cd4",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 104,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.8666666666666667,
+      "requests": 60,
+      "meanLatencyMs": 539.565193800001,
+      "reason": "game-over",
+      "cohorts": 20,
+      "apiRequestCount": 60,
+      "wallSeconds": 11.863261833000012,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 12.386666666666667,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "036c632e-5515-4ca9-80e1-98f3661ed6dc",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 104,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8,
+      "requests": 30,
+      "meanLatencyMs": 525.6245750333333,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 6.23307591700001,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.27999999999999997,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "f261d4c5-a069-4ddd-a095-193205bda43a",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 104,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.5833333333333335,
+      "requests": 54,
+      "meanLatencyMs": 507.88856414814813,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 9.975359916999995,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.25833333333333336,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "7bc2e527-6755-424e-8403-6b4c7b59feeb",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 104,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.6333333333333333,
+      "requests": 57,
+      "meanLatencyMs": 546.019596508774,
+      "reason": "game-over",
+      "cohorts": 19,
+      "apiRequestCount": 57,
+      "wallSeconds": 11.859268792000002,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 12.363333333333333,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "32858a44-d2b0-478a-8a84-be5c806617ff",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 104,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 2.933333333333333,
+      "requests": 45,
+      "meanLatencyMs": 547.4598213111118,
+      "reason": "game-over",
+      "cohorts": 15,
+      "apiRequestCount": 45,
+      "wallSeconds": 9.054834499999997,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 2.2933333333333334,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "c3729c2e-b0d5-4518-b3f0-18dac35d4a90",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 104,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8,
+      "requests": 30,
+      "meanLatencyMs": 556.5127875000001,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 6.477764624999996,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.27999999999999997,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "8d6fabde-b1c2-4b1e-b252-25aac1f3eab2",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 104,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8333333333333335,
+      "requests": 57,
+      "meanLatencyMs": 548.6916323157868,
+      "reason": "game-over",
+      "cohorts": 19,
+      "apiRequestCount": 57,
+      "wallSeconds": 11.566608584,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.2833333333333334,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "b6125140-591f-4952-828a-192e4e81d90d",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 104,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 7,
+      "coinsCollected": 5,
+      "activeFlightSeconds": 9.433333333333334,
+      "requests": 189,
+      "meanLatencyMs": 524.0727089470909,
+      "reason": "game-over",
+      "cohorts": 63,
+      "apiRequestCount": 189,
+      "wallSeconds": 37.49266575,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 80.94333333333333,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "7fe7c63e-4dd8-4ea3-a8c3-8f1518782bdc",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 105,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.85,
+      "requests": 30,
+      "meanLatencyMs": 550.8908095666629,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.936708125000004,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.28500000000000003,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "d532501c-904e-4b7b-9606-269b61127671",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 105,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.55,
+      "requests": 27,
+      "meanLatencyMs": 528.0041527407404,
+      "reason": "game-over",
+      "cohorts": 9,
+      "apiRequestCount": 27,
+      "wallSeconds": 5.248031915999992,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.255,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "ac63ac85-c882-4ce2-9ffe-3c71442e79d6",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 105,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.55,
+      "requests": 39,
+      "meanLatencyMs": 530.649431538461,
+      "reason": "game-over",
+      "cohorts": 13,
+      "apiRequestCount": 39,
+      "wallSeconds": 7.550950584000006,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.255,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "b4dc9035-4671-4dc4-8fd5-2d27f0507472",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 105,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.566666666666667,
+      "requests": 54,
+      "meanLatencyMs": 564.6479730740747,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 11.399648249999998,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.2566666666666667,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "f385e378-4caa-43fe-a4bd-b42531a17587",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 105,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.783333333333333,
+      "requests": 30,
+      "meanLatencyMs": 507.5236124666626,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 6.070101458999997,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.2783333333333333,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "b39b4316-d7ba-4e28-b2d1-0b35a85c94da",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 105,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.716666666666667,
+      "requests": 42,
+      "meanLatencyMs": 485.78088299999735,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 8.064704249999995,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.27166666666666667,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "b6048ef7-6ddb-440d-93e3-80341e80fc73",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 106,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.85,
+      "requests": 30,
+      "meanLatencyMs": 541.9456735666657,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.998076833999978,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.28500000000000003,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "61541192-682a-4e94-aa34-9a4c68b69c44",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 105,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 8,
+      "coinsCollected": 5,
+      "activeFlightSeconds": 10.9,
+      "requests": 165,
+      "meanLatencyMs": 526.248546721213,
+      "reason": "game-over",
+      "cohorts": 55,
+      "apiRequestCount": 165,
+      "wallSeconds": 33.01875441600001,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 91.09,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "c4615f81-9b98-4b5b-84e1-7d28d21a7c4a",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 105,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 3,
+      "coinsCollected": 2,
+      "activeFlightSeconds": 5.066666666666666,
+      "requests": 102,
+      "meanLatencyMs": 540.880624519608,
+      "reason": "game-over",
+      "cohorts": 34,
+      "apiRequestCount": 102,
+      "wallSeconds": 20.582951082999994,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 34.50666666666667,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "617283df-d940-41e6-952d-dba48f1f9642",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 106,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.566666666666667,
+      "requests": 54,
+      "meanLatencyMs": 538.16176,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 10.802677125000017,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.2566666666666667,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "1340cf30-ff19-4857-88ef-76f7062e8bc7",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 106,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.75,
+      "requests": 30,
+      "meanLatencyMs": 551.5767959666662,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.890353624999989,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.275,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "9f5a092d-34e3-4953-aa5b-57a72d0ae16f",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 106,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6166666666666667,
+      "requests": 42,
+      "meanLatencyMs": 535.0796536904735,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 8.642944374999992,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.26166666666666666,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "7213fc58-30f5-4e71-9366-a294bba34ca2",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 106,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.75,
+      "requests": 30,
+      "meanLatencyMs": 494.7359931999992,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.5851424579999875,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.275,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "6a919ceb-14df-4ef3-9ebe-7438bbf9585f",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 106,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.716666666666667,
+      "requests": 57,
+      "meanLatencyMs": 528.8173567368409,
+      "reason": "game-over",
+      "cohorts": 19,
+      "apiRequestCount": 57,
+      "wallSeconds": 11.429257249999996,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.27166666666666667,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "7e9db9c7-08c9-4465-be3c-469c2662083d",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 106,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.85,
+      "requests": 60,
+      "meanLatencyMs": 529.4464104500017,
+      "reason": "game-over",
+      "cohorts": 20,
+      "apiRequestCount": 60,
+      "wallSeconds": 11.967722333000012,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 12.385,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "c60b64c9-e8c4-4540-95d2-216b35ff6be8",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 106,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 2,
+      "activeFlightSeconds": 3.9833333333333334,
+      "requests": 60,
+      "meanLatencyMs": 516.3218034666677,
+      "reason": "game-over",
+      "cohorts": 20,
+      "apiRequestCount": 60,
+      "wallSeconds": 11.755165334000019,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 14.398333333333333,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "c3de2d04-08a8-4ea7-be4e-22b4f0949943",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 107,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.5833333333333335,
+      "requests": 54,
+      "meanLatencyMs": 553.3663680555566,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 11.230209959,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.25833333333333336,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "e9e02bb6-8d5d-4024-a9ee-15407fb0e424",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 105,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 8,
+      "coinsCollected": 6,
+      "activeFlightSeconds": 10.8,
+      "requests": 216,
+      "meanLatencyMs": 528.8372452268528,
+      "reason": "game-over",
+      "cohorts": 72,
+      "apiRequestCount": 216,
+      "wallSeconds": 42.86434616700001,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 93.08,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "b7c8e55a-e049-4f11-a050-64be849e4016",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 107,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8,
+      "requests": 30,
+      "meanLatencyMs": 513.7078763666669,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.8242469590000105,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.27999999999999997,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "2d32ed09-2362-4ee4-942c-f288612cf9fc",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 107,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.6666666666666665,
+      "requests": 57,
+      "meanLatencyMs": 530.705057070177,
+      "reason": "game-over",
+      "cohorts": 19,
+      "apiRequestCount": 57,
+      "wallSeconds": 11.648173624999997,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 12.366666666666667,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "627bfab7-b20b-465a-9dca-e07a94a87b44",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 107,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.9,
+      "requests": 60,
+      "meanLatencyMs": 538.9482347833332,
+      "reason": "game-over",
+      "cohorts": 20,
+      "apiRequestCount": 60,
+      "wallSeconds": 12.318807166000013,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.29,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "2f536e92-5059-47de-8fbf-bfb6d36871fc",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 107,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8,
+      "requests": 30,
+      "meanLatencyMs": 465.60818333333395,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 5.185520542000013,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.27999999999999997,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "1652ba7a-c18d-4dc9-a8a6-93d09dd7e184",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 106,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 5,
+      "coinsCollected": 4,
+      "activeFlightSeconds": 7.6,
+      "requests": 153,
+      "meanLatencyMs": 536.1295168888888,
+      "reason": "game-over",
+      "cohorts": 51,
+      "apiRequestCount": 153,
+      "wallSeconds": 31.15016274999999,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 58.76,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "4c11e412-dd0a-4962-8e96-720ed0168765",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 107,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.533333333333333,
+      "requests": 54,
+      "meanLatencyMs": 529.2813055370347,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 11.179596625000006,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 12.353333333333333,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "b92ab7ce-3b13-47af-af65-3be86aed22e9",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 107,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6333333333333333,
+      "requests": 54,
+      "meanLatencyMs": 547.8491737037009,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 11.916122208000015,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.26333333333333336,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "8fdf52dc-7bf5-4f81-8109-16b92ae40acc",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 108,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6166666666666667,
+      "requests": 42,
+      "meanLatencyMs": 568.5371836428558,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 9.294984834000003,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.26166666666666666,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "b57bc93e-1725-4ddb-a873-0f49fd06de9c",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 107,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.5,
+      "requests": 54,
+      "meanLatencyMs": 509.5699014259207,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 11.02937041600002,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 12.35,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "ecc8cb41-de01-4a7e-a812-d2556f7a586b",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 108,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6333333333333333,
+      "requests": 27,
+      "meanLatencyMs": 519.6208612592546,
+      "reason": "game-over",
+      "cohorts": 9,
+      "apiRequestCount": 27,
+      "wallSeconds": 5.148947457999981,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.26333333333333336,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "29d9f2f1-0896-4b20-83d9-a73367960652",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 108,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6333333333333333,
+      "requests": 42,
+      "meanLatencyMs": 539.3662986428577,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 8.280446792000003,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.26333333333333336,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "162cbdd5-2aa3-4ea8-b4cb-dce07f60df10",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 108,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.783333333333333,
+      "requests": 30,
+      "meanLatencyMs": 565.6609499666704,
+      "reason": "game-over",
+      "cohorts": 10,
+      "apiRequestCount": 30,
+      "wallSeconds": 6.446638291999989,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": 0.2783333333333333,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "594f7868-601f-405c-be26-f84b16017333",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 108,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.716666666666667,
+      "requests": 57,
+      "meanLatencyMs": 534.14101673684,
+      "reason": "game-over",
+      "cohorts": 19,
+      "apiRequestCount": 57,
+      "wallSeconds": 11.900260791000008,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.27166666666666667,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "05f8361a-aec2-4f1f-b799-eba87235ec94",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 108,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0.8,
+      "requests": 15,
+      "meanLatencyMs": 416.549608266666,
+      "reason": "budget",
+      "cohorts": 5,
+      "apiRequestCount": 15,
+      "wallSeconds": 2.551933625000005,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "0dc8eaff-1609-4a87-8ada-2f4832e88f51",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 108,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0.9,
+      "requests": 21,
+      "meanLatencyMs": 474.3833073809482,
+      "reason": "budget",
+      "cohorts": 7,
+      "apiRequestCount": 21,
+      "wallSeconds": 4.2249517079999785,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "6b294162-16cc-4ac5-8577-5880c7b6c913",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 108,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 297.67772266665514,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.49526316699999734,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "1097a579-8e9a-402f-84b7-839c42c2487a",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 107,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 9,
+      "coinsCollected": 8,
+      "activeFlightSeconds": 11.4,
+      "requests": 117,
+      "meanLatencyMs": 508.1853062051277,
+      "reason": "budget",
+      "cohorts": 39,
+      "apiRequestCount": 117,
+      "wallSeconds": 23.272188040999986,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "692f8268-d50f-43d1-9a88-d395eb23b35a",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 109,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 150.8188749999972,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.4515725000000093,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "c80f8162-9068-459c-8f52-7afdff15d38c",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 108,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0.6,
+      "requests": 9,
+      "meanLatencyMs": 393.0867037777854,
+      "reason": "budget",
+      "cohorts": 3,
+      "apiRequestCount": 9,
+      "wallSeconds": 1.406409250000026,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "e16bd1fa-d741-4539-a920-1183aefad0bc",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 109,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 117.52525033332252,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.35243016600000554,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "ced1d3a2-073c-4c39-bbb9-9c1a452ef2dc",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 109,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 268.40151366667124,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.45540841699999873,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "4ab33a5a-2c9a-4994-972a-2d0796a40238",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 109,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 107.3810283333296,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.3211962500000082,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "c486877c-ac40-4e46-a9ec-dbf2c3af0639",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 109,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 214.85834766667298,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.3280455829999992,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "5b0064b5-54ad-4e06-afb7-0559f8d677e2",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 109,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 126.98191633333529,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.380885666999995,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "a2de9f30-0b1d-4912-af64-61aaf874e675",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 109,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 184.44086066667418,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.3348848750000179,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "9ee8e4a9-f753-4b0d-98ba-9e1dd2b94be0",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 109,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 81.37573600001633,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.2436297499999928,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "4eaf3330-e737-4911-8c28-1b5fce0a1274",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 110,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 74.59276433332707,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.22329725000000325,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "308ed5fb-112c-4b03-8907-680928272a6e",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 109,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 1.5,
+      "requests": 18,
+      "meanLatencyMs": 279.1209216111149,
+      "reason": "budget",
+      "cohorts": 6,
+      "apiRequestCount": 18,
+      "wallSeconds": 1.9232808749999968,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "58e9811f-0da6-4b45-9a44-f184ea14abc5",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 110,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 63.392763333336916,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.19006120799999918,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "a95b1c0c-c297-40a2-9eca-6a8178849160",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 110,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 177.0757633333269,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.5306803340000043,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "ae266e21-be63-4b36-94b4-1f223d951893",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 110,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 58.3277643333325,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.17496074999999836,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "083d7240-7834-42e4-886b-9f7b30381c03",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 110,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 76.27848633334118,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.2286252090000198,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "152ead12-7803-4d7c-ab93-7eda60d744e7",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 110,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 164.74831900000572,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.2932855419999978,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "7841d5ed-46e7-44d0-90c6-5921a472249d",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 110,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 143.67511133332542,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.26767920799998685,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "9d5ce0c4-3604-48a3-8a7f-d3257d90b051",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 110,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 392.0134443333275,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.9671855839999917,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "5a1b4b18-87c4-4244-8672-b11cbb23b751",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 110,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 144.4788613333561,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.2190334579999908,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "499edecd-1211-45b4-aeb5-eb6ab784c006",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 111,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 49.52731933333174,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.14799479199998314,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "0e728dbc-ed71-4f53-be7a-df4a65f9294a",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 111,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 139.50193099998674,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.23885354099998948,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "1cac0b22-ed72-4b3d-b258-76baacad46c3",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 111,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 80.27587500000179,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.24056233400001656,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "9078b9c5-286d-4c93-a172-3c36e485e0c4",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 111,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 56.7895693333218,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.17082674999997835,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "fa048369-b7e1-4d70-93c1-7a64accfc77d",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 111,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 82.14005566666795,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.24636658299999545,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "1482c22e-04e0-487b-aa00-4868a910b93f",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 111,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 72.2809863333435,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.21785308400000214,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "6e318bc3-c69b-49c7-b616-c0a0870447f5",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 111,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 80.10445799998706,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.23947500000000582,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "8031bac2-a4c5-4682-9e41-6af6b9b597a0",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 111,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 53.3880553333535,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.15951358400000026,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "16e7c435-656c-4409-a94f-6b32b8a28d83",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 111,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 86.81893100000646,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.25919579100000556,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "35b16bcc-7c9e-4fa7-9fec-921a245d938b",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 112,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 65.1876110000012,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.19521904200001153,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "balanced-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "b1bd4fde-1f7b-4a86-9592-8f8d9e17e989",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 112,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 54.45859699999952,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.16241091599999344,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "45f60ded-755a-4a3f-a5b2-b1c4d16e900e",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 112,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 87.56054133332994,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.26257841700001155,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "0550aa25-4c68-42eb-9a71-c6d5e6884d7b",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 112,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 58.39993066667618,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.17452174999998532,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "upper-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "964cac37-7fec-491a-ae97-ed26311758d1",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 112,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 80.78201333332497,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.24146629199999733,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "868d9a34-278e-482f-ab31-600714f8e16c",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 112,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 70.2945690000003,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.21036833299999125,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "df8c26eb-d3e9-46c8-a696-0d7c87c0d14d",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 112,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/18",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 0,
+      "requests": 3,
+      "meanLatencyMs": 60.168958333330615,
+      "reason": "budget",
+      "cohorts": 1,
+      "apiRequestCount": 3,
+      "wallSeconds": 0.18072795800000313,
+      "cause": null,
+      "simulation": {
+        "stepFrames": 18,
+        "maxFrames": 900
+      },
+      "reward": null,
+      "candidateId": "ground-caution-v1@18",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "8cf1f5fa-62df-4b1f-baf2-578a72a1c000",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "baseline",
+      "strategyId": "balanced-v1",
+      "courseSeed": 10001,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6333333333333333,
+      "requests": 42,
+      "meanLatencyMs": 288.9800881190465,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 5.175459084000002,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.26333333333333336,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "d5864afc-5ef9-4e59-b6fd-63985e4b625a",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "evaluation",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 10002,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.95,
+      "requests": 81,
+      "meanLatencyMs": 357.9998624814817,
+      "reason": "game-over",
+      "cohorts": 27,
+      "apiRequestCount": 81,
+      "wallSeconds": 12.993468290999997,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 12.395,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "e4080bc7-e0a0-4916-bb1d-cca0b08913d8",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "baseline",
+      "strategyId": "balanced-v1",
+      "courseSeed": 10002,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.75,
+      "requests": 42,
+      "meanLatencyMs": 446.32341757142524,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 9.256585583000007,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.275,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "10b54d4c-ef99-4c43-9e11-1e30187903e4",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "baseline",
+      "strategyId": "balanced-v1",
+      "courseSeed": 10003,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6166666666666667,
+      "requests": 42,
+      "meanLatencyMs": 397.22327480952106,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 8.72095525,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.26166666666666666,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "da74765c-1f9e-4219-9610-ecbfb72a6ec2",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "evaluation",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 10001,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 4,
+      "coinsCollected": 3,
+      "activeFlightSeconds": 7.016666666666667,
+      "requests": 141,
+      "meanLatencyMs": 369.8525635035472,
+      "reason": "game-over",
+      "cohorts": 47,
+      "apiRequestCount": 141,
+      "wallSeconds": 26.034583583,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 46.70166666666667,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "306a7786-01d4-4901-a28f-b4b69eaf01c3",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "evaluation",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 10003,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.75,
+      "requests": 57,
+      "meanLatencyMs": 468.6546199298178,
+      "reason": "game-over",
+      "cohorts": 19,
+      "apiRequestCount": 57,
+      "wallSeconds": 13.505735416000011,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.275,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "1965d552-15e9-4a37-891c-52d1f445dea0",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "baseline",
+      "strategyId": "balanced-v1",
+      "courseSeed": 10005,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 2,
+      "coinsCollected": 2,
+      "activeFlightSeconds": 5.1,
+      "requests": 78,
+      "meanLatencyMs": 357.4750262179497,
+      "reason": "game-over",
+      "cohorts": 26,
+      "apiRequestCount": 78,
+      "wallSeconds": 12.839788416999975,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 24.51,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "eb21e2f9-22a9-4954-938b-f5c1b4a0917d",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "evaluation",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 10004,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 7,
+      "coinsCollected": 6,
+      "activeFlightSeconds": 9.833333333333334,
+      "requests": 198,
+      "meanLatencyMs": 338.16296230807984,
+      "reason": "game-over",
+      "cohorts": 66,
+      "apiRequestCount": 198,
+      "wallSeconds": 30.602938333000026,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 82.98333333333333,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "7c9bcc53-1d8a-4d53-aea7-a102e5872198",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "evaluation",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 10005,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.9,
+      "requests": 60,
+      "meanLatencyMs": 286.59463881666403,
+      "reason": "game-over",
+      "cohorts": 20,
+      "apiRequestCount": 60,
+      "wallSeconds": 7.077653875000018,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.29,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "aa372817-5ea1-4de6-9981-c6237476ed47",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "baseline",
+      "strategyId": "balanced-v1",
+      "courseSeed": 10004,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.7,
+      "requests": 42,
+      "meanLatencyMs": 283.67917949999435,
+      "reason": "game-over",
+      "cohorts": 14,
+      "apiRequestCount": 42,
+      "wallSeconds": 4.928673624999996,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.27,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "ff4b233b-3538-46fb-84c7-9b8952b50200",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "baseline",
+      "strategyId": "balanced-v1",
+      "courseSeed": 10007,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.533333333333333,
+      "requests": 39,
+      "meanLatencyMs": 265.8703321538394,
+      "reason": "game-over",
+      "cohorts": 13,
+      "apiRequestCount": 39,
+      "wallSeconds": 4.106997541999968,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 0.25333333333333335,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "8477a555-8e79-4658-876c-9369c6754b85",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "evaluation",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 10007,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.75,
+      "requests": 57,
+      "meanLatencyMs": 276.41930699999557,
+      "reason": "game-over",
+      "cohorts": 19,
+      "apiRequestCount": 57,
+      "wallSeconds": 6.19237262499996,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 0.275,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "abc7eb21-2cdd-4df5-875c-9e144e436f4b",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "evaluation",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 10006,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/9",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 2,
+      "coinsCollected": 2,
+      "activeFlightSeconds": 4.55,
+      "requests": 93,
+      "meanLatencyMs": 310.1180735053751,
+      "reason": "game-over",
+      "cohorts": 31,
+      "apiRequestCount": 93,
+      "wallSeconds": 12.779891207999958,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 9,
+        "maxFrames": 900
+      },
+      "reward": 24.455,
+      "candidateId": "upper-caution-v1@9",
+      "eventsOmitted": true
+    },
+    {
+      "episodeId": "f352fd11-1db5-4be1-a77a-bee02ab6eb25",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "baseline",
+      "strategyId": "balanced-v1",
+      "courseSeed": 10006,
+      "model": "gpt-6-luna",
+      "mock": false,
+      "configVersion": "flight-guidance-v5/decision-step-v1/12",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.566666666666667,
+      "requests": 54,
+      "meanLatencyMs": 272.05556492592183,
+      "reason": "game-over",
+      "cohorts": 18,
+      "apiRequestCount": 54,
+      "wallSeconds": 6.369736499999999,
+      "cause": "rock",
+      "simulation": {
+        "stepFrames": 12,
+        "maxFrames": 900
+      },
+      "reward": 12.356666666666667,
+      "candidateId": "balanced-v1@12",
+      "eventsOmitted": true
+    },
+    {
+      "model": "gpt-6-luna",
+      "mock": false,
+      "episodeId": "2bcc84f5-0f41-4604-8b6f-ab7d5248e1d1",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "normal-speed-check",
+      "strategyId": "balanced-v1",
+      "candidateId": "balanced-v1@live-v5",
+      "courseSeed": 200001,
+      "configVersion": "flight-guidance-v5/normal-speed-check",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.85,
+      "requests": 50,
+      "reason": "game-over",
+      "cause": "rock",
+      "wallSeconds": 3.3747565000000175,
+      "reward": 0.28500000000000003,
+      "eventsOmitted": true
+    },
+    {
+      "model": "gpt-6-luna",
+      "mock": false,
+      "episodeId": "b4b7cbbe-cb74-43c7-a016-17c2d1ad5829",
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "phase": "normal-speed-check",
+      "strategyId": "upper-caution-v1",
+      "candidateId": "upper-caution-v1@live-v5",
+      "courseSeed": 200001,
+      "configVersion": "flight-guidance-v5/normal-speed-check",
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "obstaclesPassed": 6,
+      "coinsCollected": 5,
+      "activeFlightSeconds": 9.1,
+      "requests": 159,
+      "reason": "game-over",
+      "cause": "rock",
+      "wallSeconds": 9.776850582999993,
+      "reward": 70.91,
+      "eventsOmitted": true
+    }
+  ]
+}

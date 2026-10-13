@@ -1,0 +1,2945 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "compact-report-extract",
+  "source": "Visible local spectator episode JSON; retained fields checked against DOM-derived checksum after declared latency rounding.",
+  "omitted": "Raw observations, event timestamps, lifecycle events and discarded reason. Full log remains in app export. Retained answer/mean latencies rounded to0.1ms.",
+  "latencyPrecisionMs": 0.1,
+  "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+  "context": {
+    "model": "gpt-6-luna",
+    "configVersion": "flight-guidance-v3",
+    "mock": false,
+    "dimensions": {
+      "width": 384,
+      "height": 216
+    }
+  },
+  "reason": "complete",
+  "limits": {
+    "durationMs": 150000,
+    "maxRequests": 750
+  },
+  "summary": {
+    "requests": 148,
+    "returned": 141,
+    "applied": 140,
+    "discardedReasons": [
+      "game-ended"
+    ],
+    "meanReturnedLatencyMs": 184.71276595639,
+    "medianAppliedIntervalMs": 207.54999999701977,
+    "firstStartToFinalStopMs": 32267.80000001192,
+    "activeSeconds": 28.5
+  },
+  "records": [
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "c6c20576-2469-43f6-87c2-78fe20bfaacb",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 101,
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6166666666666667,
+      "requests": 13,
+      "meanLatencyMs": 250,
+      "reason": "game-over",
+      "reward": 0.26166666666666666,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 687.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.72
+            },
+            {
+              "choice": "wait",
+              "probability": 0.28
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 330.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.64
+            },
+            {
+              "choice": "wait",
+              "probability": 0.36
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 19,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 160.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.64
+            },
+            {
+              "choice": "wait",
+              "probability": 0.36
+            }
+          ],
+          "cooldownMs": 41,
+          "appliedFrame": 29,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 166.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.59
+            },
+            {
+              "choice": "wait",
+              "probability": 0.41
+            }
+          ],
+          "cooldownMs": 35,
+          "appliedFrame": 42,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 163.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.61
+            },
+            {
+              "choice": "wait",
+              "probability": 0.39
+            }
+          ],
+          "cooldownMs": 39,
+          "appliedFrame": 54,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 281.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.56
+            },
+            {
+              "choice": "wait",
+              "probability": 0.44
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 73,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 346.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.59
+            },
+            {
+              "choice": "wait",
+              "probability": 0.41
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 94,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 155.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.77
+            },
+            {
+              "choice": "wait",
+              "probability": 0.23
+            }
+          ],
+          "cooldownMs": 47,
+          "appliedFrame": 103,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 175.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.71
+            },
+            {
+              "choice": "wait",
+              "probability": 0.29
+            }
+          ],
+          "cooldownMs": 26,
+          "appliedFrame": 117,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 170.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.8
+            },
+            {
+              "choice": "wait",
+              "probability": 0.2
+            }
+          ],
+          "cooldownMs": 31,
+          "appliedFrame": 128,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 163.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.54
+            },
+            {
+              "choice": "wait",
+              "probability": 0.46
+            }
+          ],
+          "cooldownMs": 38,
+          "appliedFrame": 140,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 198.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.74
+            },
+            {
+              "choice": "wait",
+              "probability": 0.26
+            }
+          ],
+          "cooldownMs": 3,
+          "appliedFrame": 155,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "5eec96e4-b58c-41a9-8f62-5c54c960b281",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 102,
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6,
+      "requests": 13,
+      "meanLatencyMs": 198.7,
+      "reason": "game-over",
+      "reward": 0.26,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 226,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.81
+            },
+            {
+              "choice": "wait",
+              "probability": 0.19
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 159.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.57
+            },
+            {
+              "choice": "wait",
+              "probability": 0.43
+            }
+          ],
+          "cooldownMs": 42,
+          "appliedFrame": 9,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 289.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.38
+            },
+            {
+              "choice": "wait",
+              "probability": 0.62
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 29,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 187,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.81
+            },
+            {
+              "choice": "wait",
+              "probability": 0.19
+            }
+          ],
+          "cooldownMs": 15,
+          "appliedFrame": 40,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 161.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.53
+            },
+            {
+              "choice": "wait",
+              "probability": 0.47
+            }
+          ],
+          "cooldownMs": 40,
+          "appliedFrame": 51,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 305.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.36
+            },
+            {
+              "choice": "wait",
+              "probability": 0.64
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 72,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 162.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.88
+            },
+            {
+              "choice": "wait",
+              "probability": 0.12
+            }
+          ],
+          "cooldownMs": 40,
+          "appliedFrame": 81,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 203.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.5
+            },
+            {
+              "choice": "wait",
+              "probability": 0.5
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 96,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 158.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.57
+            },
+            {
+              "choice": "wait",
+              "probability": 0.43
+            }
+          ],
+          "cooldownMs": 44,
+          "appliedFrame": 106,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 182.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.19
+            },
+            {
+              "choice": "wait",
+              "probability": 0.81
+            }
+          ],
+          "cooldownMs": 19,
+          "appliedFrame": 120,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 229.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.56
+            },
+            {
+              "choice": "wait",
+              "probability": 0.44
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 135,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 157.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.39
+            },
+            {
+              "choice": "wait",
+              "probability": 0.61
+            }
+          ],
+          "cooldownMs": 43,
+          "appliedFrame": 144,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "discarded",
+          "latencyMs": 162.4,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.53
+            },
+            {
+              "choice": "wait",
+              "probability": 0.47
+            }
+          ],
+          "cooldownMs": 39,
+          "appliedFrame": null,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "2fc35826-ac6c-4a3d-b3ba-46d23eb477cd",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 103,
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6666666666666665,
+      "requests": 14,
+      "meanLatencyMs": 163.4,
+      "reason": "game-over",
+      "reward": 0.26666666666666666,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 155.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.96
+            },
+            {
+              "choice": "wait",
+              "probability": 0.04
+            }
+          ],
+          "cooldownMs": 46,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 149.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.79
+            },
+            {
+              "choice": "wait",
+              "probability": 0.21
+            }
+          ],
+          "cooldownMs": 52,
+          "appliedFrame": 11,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 215.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.65
+            },
+            {
+              "choice": "wait",
+              "probability": 0.35
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 27,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 155.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.75
+            },
+            {
+              "choice": "wait",
+              "probability": 0.25
+            }
+          ],
+          "cooldownMs": 46,
+          "appliedFrame": 36,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 158.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.83
+            },
+            {
+              "choice": "wait",
+              "probability": 0.17
+            }
+          ],
+          "cooldownMs": 45,
+          "appliedFrame": 49,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 162.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.62
+            },
+            {
+              "choice": "wait",
+              "probability": 0.38
+            }
+          ],
+          "cooldownMs": 40,
+          "appliedFrame": 61,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 167.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.81
+            },
+            {
+              "choice": "wait",
+              "probability": 0.19
+            }
+          ],
+          "cooldownMs": 35,
+          "appliedFrame": 74,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 153.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.74
+            },
+            {
+              "choice": "wait",
+              "probability": 0.26
+            }
+          ],
+          "cooldownMs": 48,
+          "appliedFrame": 85,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 173.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.81
+            },
+            {
+              "choice": "wait",
+              "probability": 0.19
+            }
+          ],
+          "cooldownMs": 28,
+          "appliedFrame": 99,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 153.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.74
+            },
+            {
+              "choice": "wait",
+              "probability": 0.26
+            }
+          ],
+          "cooldownMs": 48,
+          "appliedFrame": 110,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 161.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.94
+            },
+            {
+              "choice": "wait",
+              "probability": 0.06
+            }
+          ],
+          "cooldownMs": 40,
+          "appliedFrame": 122,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 154.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.77
+            },
+            {
+              "choice": "wait",
+              "probability": 0.23
+            }
+          ],
+          "cooldownMs": 48,
+          "appliedFrame": 134,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 168.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.86
+            },
+            {
+              "choice": "wait",
+              "probability": 0.14
+            }
+          ],
+          "cooldownMs": 34,
+          "appliedFrame": 147,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 159.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.83
+            },
+            {
+              "choice": "wait",
+              "probability": 0.17
+            }
+          ],
+          "cooldownMs": 42,
+          "appliedFrame": 159,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "f3d4a51e-fe36-4781-9f82-75ff7636e188",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "training",
+      "strategyId": "ground-caution-v1",
+      "courseSeed": 101,
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6,
+      "requests": 14,
+      "meanLatencyMs": 171.3,
+      "reason": "game-over",
+      "reward": 0.26,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 170.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.96
+            },
+            {
+              "choice": "wait",
+              "probability": 0.04
+            }
+          ],
+          "cooldownMs": 31,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 155.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.96
+            },
+            {
+              "choice": "wait",
+              "probability": 0.04
+            }
+          ],
+          "cooldownMs": 46,
+          "appliedFrame": 11,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 160.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.81
+            },
+            {
+              "choice": "wait",
+              "probability": 0.19
+            }
+          ],
+          "cooldownMs": 41,
+          "appliedFrame": 23,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 153.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.74
+            },
+            {
+              "choice": "wait",
+              "probability": 0.26
+            }
+          ],
+          "cooldownMs": 47,
+          "appliedFrame": 35,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 192.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.77
+            },
+            {
+              "choice": "wait",
+              "probability": 0.23
+            }
+          ],
+          "cooldownMs": 9,
+          "appliedFrame": 50,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 222.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.92
+            },
+            {
+              "choice": "wait",
+              "probability": 0.08
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 64,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 172.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.77
+            },
+            {
+              "choice": "wait",
+              "probability": 0.23
+            }
+          ],
+          "cooldownMs": 29,
+          "appliedFrame": 74,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 164.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.79
+            },
+            {
+              "choice": "wait",
+              "probability": 0.21
+            }
+          ],
+          "cooldownMs": 37,
+          "appliedFrame": 86,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 159.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.82
+            },
+            {
+              "choice": "wait",
+              "probability": 0.18
+            }
+          ],
+          "cooldownMs": 42,
+          "appliedFrame": 98,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 195,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.85
+            },
+            {
+              "choice": "wait",
+              "probability": 0.15
+            }
+          ],
+          "cooldownMs": 7,
+          "appliedFrame": 112,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 153.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.9
+            },
+            {
+              "choice": "wait",
+              "probability": 0.1
+            }
+          ],
+          "cooldownMs": 48,
+          "appliedFrame": 122,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 155.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.87
+            },
+            {
+              "choice": "wait",
+              "probability": 0.13
+            }
+          ],
+          "cooldownMs": 46,
+          "appliedFrame": 134,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 172,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.75
+            },
+            {
+              "choice": "wait",
+              "probability": 0.25
+            }
+          ],
+          "cooldownMs": 30,
+          "appliedFrame": 148,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "f191ab1b-d17e-44bb-819e-1ce73196a660",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "training",
+      "strategyId": "balanced-v1",
+      "courseSeed": 102,
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6166666666666667,
+      "requests": 14,
+      "meanLatencyMs": 176.2,
+      "reason": "game-over",
+      "reward": 0.26166666666666666,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 178.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.72
+            },
+            {
+              "choice": "wait",
+              "probability": 0.28
+            }
+          ],
+          "cooldownMs": 24,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 203.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.67
+            },
+            {
+              "choice": "wait",
+              "probability": 0.33
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 13,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 162.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.53
+            },
+            {
+              "choice": "wait",
+              "probability": 0.47
+            }
+          ],
+          "cooldownMs": 39,
+          "appliedFrame": 23,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 169.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.63
+            },
+            {
+              "choice": "wait",
+              "probability": 0.37
+            }
+          ],
+          "cooldownMs": 32,
+          "appliedFrame": 35,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 156.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.72
+            },
+            {
+              "choice": "wait",
+              "probability": 0.28
+            }
+          ],
+          "cooldownMs": 45,
+          "appliedFrame": 47,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 161.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.64
+            },
+            {
+              "choice": "wait",
+              "probability": 0.36
+            }
+          ],
+          "cooldownMs": 40,
+          "appliedFrame": 59,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 169.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.81
+            },
+            {
+              "choice": "wait",
+              "probability": 0.19
+            }
+          ],
+          "cooldownMs": 32,
+          "appliedFrame": 72,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 182.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.76
+            },
+            {
+              "choice": "wait",
+              "probability": 0.24
+            }
+          ],
+          "cooldownMs": 19,
+          "appliedFrame": 85,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 162.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.65
+            },
+            {
+              "choice": "wait",
+              "probability": 0.35
+            }
+          ],
+          "cooldownMs": 39,
+          "appliedFrame": 96,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 176.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.72
+            },
+            {
+              "choice": "wait",
+              "probability": 0.28
+            }
+          ],
+          "cooldownMs": 25,
+          "appliedFrame": 109,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 190.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.72
+            },
+            {
+              "choice": "wait",
+              "probability": 0.28
+            }
+          ],
+          "cooldownMs": 11,
+          "appliedFrame": 122,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 211.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.74
+            },
+            {
+              "choice": "wait",
+              "probability": 0.26
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 136,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 166.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.57
+            },
+            {
+              "choice": "wait",
+              "probability": 0.43
+            }
+          ],
+          "cooldownMs": 35,
+          "appliedFrame": 146,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "01eaba8c-fc5a-443d-a121-249c039f59c9",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "training",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 103,
+      "obstaclesPassed": 1,
+      "coinsCollected": 2,
+      "activeFlightSeconds": 3.716666666666667,
+      "requests": 19,
+      "meanLatencyMs": 172.3,
+      "reason": "game-over",
+      "reward": 14.371666666666666,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 152,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.81
+            },
+            {
+              "choice": "wait",
+              "probability": 0.19
+            }
+          ],
+          "cooldownMs": 51,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 167.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.51
+            },
+            {
+              "choice": "wait",
+              "probability": 0.49
+            }
+          ],
+          "cooldownMs": 34,
+          "appliedFrame": 12,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 166.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.18
+            },
+            {
+              "choice": "wait",
+              "probability": 0.82
+            }
+          ],
+          "cooldownMs": 36,
+          "appliedFrame": 25,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 222.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.59
+            },
+            {
+              "choice": "wait",
+              "probability": 0.41
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 40,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 173.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.48
+            },
+            {
+              "choice": "wait",
+              "probability": 0.52
+            }
+          ],
+          "cooldownMs": 28,
+          "appliedFrame": 50,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 165.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.57
+            },
+            {
+              "choice": "wait",
+              "probability": 0.43
+            }
+          ],
+          "cooldownMs": 36,
+          "appliedFrame": 62,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 156.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.48
+            },
+            {
+              "choice": "wait",
+              "probability": 0.52
+            }
+          ],
+          "cooldownMs": 45,
+          "appliedFrame": 74,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 163.4,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.96
+            },
+            {
+              "choice": "wait",
+              "probability": 0.04
+            }
+          ],
+          "cooldownMs": 38,
+          "appliedFrame": 86,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 220.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.18
+            },
+            {
+              "choice": "wait",
+              "probability": 0.82
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 102,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 193.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.85
+            },
+            {
+              "choice": "wait",
+              "probability": 0.15
+            }
+          ],
+          "cooldownMs": 8,
+          "appliedFrame": 114,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 158.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.42
+            },
+            {
+              "choice": "wait",
+              "probability": 0.58
+            }
+          ],
+          "cooldownMs": 43,
+          "appliedFrame": 124,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 162.4,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.64
+            },
+            {
+              "choice": "wait",
+              "probability": 0.36
+            }
+          ],
+          "cooldownMs": 40,
+          "appliedFrame": 136,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 160.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.48
+            },
+            {
+              "choice": "wait",
+              "probability": 0.52
+            }
+          ],
+          "cooldownMs": 42,
+          "appliedFrame": 149,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 175.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.96
+            },
+            {
+              "choice": "wait",
+              "probability": 0.04
+            }
+          ],
+          "cooldownMs": 26,
+          "appliedFrame": 162,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 177.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.16
+            },
+            {
+              "choice": "wait",
+              "probability": 0.84
+            }
+          ],
+          "cooldownMs": 23,
+          "appliedFrame": 174,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 159.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.5
+            },
+            {
+              "choice": "wait",
+              "probability": 0.5
+            }
+          ],
+          "cooldownMs": 43,
+          "appliedFrame": 185,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 170.4,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.48
+            },
+            {
+              "choice": "wait",
+              "probability": 0.52
+            }
+          ],
+          "cooldownMs": 31,
+          "appliedFrame": 198,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 157.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.99
+            },
+            {
+              "choice": "wait",
+              "probability": 0.01
+            }
+          ],
+          "cooldownMs": 45,
+          "appliedFrame": 210,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "b8e0f5ef-f7f9-4db5-bc79-1f03b9eddcd3",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "baseline",
+      "strategyId": "balanced-v1",
+      "courseSeed": 1001,
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.65,
+      "requests": 14,
+      "meanLatencyMs": 180.3,
+      "reason": "game-over",
+      "reward": 0.265,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 182.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.72
+            },
+            {
+              "choice": "wait",
+              "probability": 0.28
+            }
+          ],
+          "cooldownMs": 20,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 171.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.64
+            },
+            {
+              "choice": "wait",
+              "probability": 0.36
+            }
+          ],
+          "cooldownMs": 30,
+          "appliedFrame": 11,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 154,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.46
+            },
+            {
+              "choice": "wait",
+              "probability": 0.54
+            }
+          ],
+          "cooldownMs": 47,
+          "appliedFrame": 22,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 152.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.65
+            },
+            {
+              "choice": "wait",
+              "probability": 0.35
+            }
+          ],
+          "cooldownMs": 49,
+          "appliedFrame": 34,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 229.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.68
+            },
+            {
+              "choice": "wait",
+              "probability": 0.32
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 51,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 162.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.71
+            },
+            {
+              "choice": "wait",
+              "probability": 0.29
+            }
+          ],
+          "cooldownMs": 39,
+          "appliedFrame": 61,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 163.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.54
+            },
+            {
+              "choice": "wait",
+              "probability": 0.46
+            }
+          ],
+          "cooldownMs": 37,
+          "appliedFrame": 73,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 210,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.53
+            },
+            {
+              "choice": "wait",
+              "probability": 0.47
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 88,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 171.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.63
+            },
+            {
+              "choice": "wait",
+              "probability": 0.37
+            }
+          ],
+          "cooldownMs": 30,
+          "appliedFrame": 98,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 175.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.59
+            },
+            {
+              "choice": "wait",
+              "probability": 0.41
+            }
+          ],
+          "cooldownMs": 27,
+          "appliedFrame": 111,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 205.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.66
+            },
+            {
+              "choice": "wait",
+              "probability": 0.34
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 125,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 158.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.76
+            },
+            {
+              "choice": "wait",
+              "probability": 0.24
+            }
+          ],
+          "cooldownMs": 42,
+          "appliedFrame": 134,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 207.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.51
+            },
+            {
+              "choice": "wait",
+              "probability": 0.49
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 149,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "587bdfb7-8f41-433f-aee3-bccea6d39f75",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "evaluation",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 1001,
+      "obstaclesPassed": 1,
+      "coinsCollected": 1,
+      "activeFlightSeconds": 3.533333333333333,
+      "requests": 18,
+      "meanLatencyMs": 182.8,
+      "reason": "game-over",
+      "reward": 12.353333333333333,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 181.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.81
+            },
+            {
+              "choice": "wait",
+              "probability": 0.19
+            }
+          ],
+          "cooldownMs": 20,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 175.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.57
+            },
+            {
+              "choice": "wait",
+              "probability": 0.43
+            }
+          ],
+          "cooldownMs": 26,
+          "appliedFrame": 11,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 180.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.38
+            },
+            {
+              "choice": "wait",
+              "probability": 0.62
+            }
+          ],
+          "cooldownMs": 21,
+          "appliedFrame": 23,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 292.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.61
+            },
+            {
+              "choice": "wait",
+              "probability": 0.39
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 42,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 162.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.52
+            },
+            {
+              "choice": "wait",
+              "probability": 0.48
+            }
+          ],
+          "cooldownMs": 38,
+          "appliedFrame": 52,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 180.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.51
+            },
+            {
+              "choice": "wait",
+              "probability": 0.49
+            }
+          ],
+          "cooldownMs": 20,
+          "appliedFrame": 65,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 161.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.57
+            },
+            {
+              "choice": "wait",
+              "probability": 0.43
+            }
+          ],
+          "cooldownMs": 40,
+          "appliedFrame": 76,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 193.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.51
+            },
+            {
+              "choice": "wait",
+              "probability": 0.49
+            }
+          ],
+          "cooldownMs": 8,
+          "appliedFrame": 91,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 200.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.5
+            },
+            {
+              "choice": "wait",
+              "probability": 0.5
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 103,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 158,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.82
+            },
+            {
+              "choice": "wait",
+              "probability": 0.18
+            }
+          ],
+          "cooldownMs": 43,
+          "appliedFrame": 113,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 159.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.33
+            },
+            {
+              "choice": "wait",
+              "probability": 0.67
+            }
+          ],
+          "cooldownMs": 42,
+          "appliedFrame": 125,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 150.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.5
+            },
+            {
+              "choice": "wait",
+              "probability": 0.5
+            }
+          ],
+          "cooldownMs": 51,
+          "appliedFrame": 137,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 191.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.36
+            },
+            {
+              "choice": "wait",
+              "probability": 0.64
+            }
+          ],
+          "cooldownMs": 10,
+          "appliedFrame": 152,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 205.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.94
+            },
+            {
+              "choice": "wait",
+              "probability": 0.06
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 165,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 160.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.18
+            },
+            {
+              "choice": "wait",
+              "probability": 0.82
+            }
+          ],
+          "cooldownMs": 41,
+          "appliedFrame": 174,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 178.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.66
+            },
+            {
+              "choice": "wait",
+              "probability": 0.34
+            }
+          ],
+          "cooldownMs": 24,
+          "appliedFrame": 188,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 200.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.56
+            },
+            {
+              "choice": "wait",
+              "probability": 0.44
+            }
+          ],
+          "cooldownMs": 2,
+          "appliedFrame": 201,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 156.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.53
+            },
+            {
+              "choice": "wait",
+              "probability": 0.47
+            }
+          ],
+          "cooldownMs": 45,
+          "appliedFrame": 211,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "c36cff9d-c28f-40c6-9a57-2beb293d5fb1",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "evaluation",
+      "strategyId": "upper-caution-v1",
+      "courseSeed": 1002,
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.8333333333333335,
+      "requests": 15,
+      "meanLatencyMs": 173.3,
+      "reason": "game-over",
+      "reward": 0.2833333333333334,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 165.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.81
+            },
+            {
+              "choice": "wait",
+              "probability": 0.19
+            }
+          ],
+          "cooldownMs": 36,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 171.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.51
+            },
+            {
+              "choice": "wait",
+              "probability": 0.49
+            }
+          ],
+          "cooldownMs": 30,
+          "appliedFrame": 12,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 161.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.28
+            },
+            {
+              "choice": "wait",
+              "probability": 0.72
+            }
+          ],
+          "cooldownMs": 40,
+          "appliedFrame": 23,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 187.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.57
+            },
+            {
+              "choice": "wait",
+              "probability": 0.43
+            }
+          ],
+          "cooldownMs": 14,
+          "appliedFrame": 37,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 199.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.39
+            },
+            {
+              "choice": "wait",
+              "probability": 0.61
+            }
+          ],
+          "cooldownMs": 2,
+          "appliedFrame": 50,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 158.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.56
+            },
+            {
+              "choice": "wait",
+              "probability": 0.44
+            }
+          ],
+          "cooldownMs": 43,
+          "appliedFrame": 60,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 164.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.5
+            },
+            {
+              "choice": "wait",
+              "probability": 0.5
+            }
+          ],
+          "cooldownMs": 37,
+          "appliedFrame": 72,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 193.2,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.91
+            },
+            {
+              "choice": "wait",
+              "probability": 0.09
+            }
+          ],
+          "cooldownMs": 9,
+          "appliedFrame": 87,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 160.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.53
+            },
+            {
+              "choice": "wait",
+              "probability": 0.47
+            }
+          ],
+          "cooldownMs": 41,
+          "appliedFrame": 97,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 166.1,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.44
+            },
+            {
+              "choice": "wait",
+              "probability": 0.56
+            }
+          ],
+          "cooldownMs": 36,
+          "appliedFrame": 110,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 155.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.54
+            },
+            {
+              "choice": "wait",
+              "probability": 0.46
+            }
+          ],
+          "cooldownMs": 45,
+          "appliedFrame": 121,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 160.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.29
+            },
+            {
+              "choice": "wait",
+              "probability": 0.71
+            }
+          ],
+          "cooldownMs": 40,
+          "appliedFrame": 134,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "wait",
+          "outcome": "applied",
+          "latencyMs": 206.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.46
+            },
+            {
+              "choice": "wait",
+              "probability": 0.54
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 149,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 173.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.88
+            },
+            {
+              "choice": "wait",
+              "probability": 0.12
+            }
+          ],
+          "cooldownMs": 28,
+          "appliedFrame": 159,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "configVersion": "flight-guidance-v3",
+      "mock": false,
+      "dimensions": {
+        "width": 384,
+        "height": 216
+      },
+      "episodeId": "b4f95259-441c-4d1c-913a-6f0fa44b96c0",
+      "experimentId": "1a0891d6-a382-4bec-a6ad-347770d40720",
+      "phase": "baseline",
+      "strategyId": "balanced-v1",
+      "courseSeed": 1002,
+      "obstaclesPassed": 0,
+      "coinsCollected": 0,
+      "activeFlightSeconds": 2.6666666666666665,
+      "requests": 14,
+      "meanLatencyMs": 191.7,
+      "reason": "game-over",
+      "reward": 0.26666666666666666,
+      "events": [
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 178.9,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.72
+            },
+            {
+              "choice": "wait",
+              "probability": 0.28
+            }
+          ],
+          "cooldownMs": 23,
+          "appliedFrame": 0,
+          "warmup": true
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 151,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.61
+            },
+            {
+              "choice": "wait",
+              "probability": 0.39
+            }
+          ],
+          "cooldownMs": 51,
+          "appliedFrame": 10,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 160.6,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.76
+            },
+            {
+              "choice": "wait",
+              "probability": 0.24
+            }
+          ],
+          "cooldownMs": 41,
+          "appliedFrame": 22,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 171.4,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.71
+            },
+            {
+              "choice": "wait",
+              "probability": 0.29
+            }
+          ],
+          "cooldownMs": 32,
+          "appliedFrame": 36,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 167.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.63
+            },
+            {
+              "choice": "wait",
+              "probability": 0.37
+            }
+          ],
+          "cooldownMs": 34,
+          "appliedFrame": 48,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 201.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.61
+            },
+            {
+              "choice": "wait",
+              "probability": 0.39
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 62,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 180.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.86
+            },
+            {
+              "choice": "wait",
+              "probability": 0.14
+            }
+          ],
+          "cooldownMs": 21,
+          "appliedFrame": 73,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 328.8,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.71
+            },
+            {
+              "choice": "wait",
+              "probability": 0.29
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 94,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 163.7,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.68
+            },
+            {
+              "choice": "wait",
+              "probability": 0.32
+            }
+          ],
+          "cooldownMs": 38,
+          "appliedFrame": 104,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 206.4,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.65
+            },
+            {
+              "choice": "wait",
+              "probability": 0.35
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 119,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 207.3,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.63
+            },
+            {
+              "choice": "wait",
+              "probability": 0.37
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 131,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 165.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.62
+            },
+            {
+              "choice": "wait",
+              "probability": 0.38
+            }
+          ],
+          "cooldownMs": 37,
+          "appliedFrame": 141,
+          "warmup": false
+        },
+        {
+          "type": "decision",
+          "action": "flap",
+          "outcome": "applied",
+          "latencyMs": 208.5,
+          "probabilities": [
+            {
+              "choice": "flap",
+              "probability": 0.75
+            },
+            {
+              "choice": "wait",
+              "probability": 0.25
+            }
+          ],
+          "cooldownMs": 0,
+          "appliedFrame": 156,
+          "warmup": false
+        }
+      ]
+    }
+  ]
+}

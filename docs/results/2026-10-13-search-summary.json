@@ -1,0 +1,171 @@
+{
+  "approvedMaxUsd": 1.25,
+  "targetUsd": 1,
+  "confirmedUsd": 1.0381745,
+  "uncertainUsd": 0.0105447,
+  "reservedUsd": 0,
+  "calls": 8803,
+  "validFlights": 136,
+  "interruptedFlights": 43,
+  "targetReached": true,
+  "batches": [
+    {
+      "experimentId": "8c2db7fc-0a67-424e-bdd5-baaaaf93c1bb",
+      "mock": false,
+      "flights": 57,
+      "validFlights": 53,
+      "interruptedFlights": 4,
+      "selected": {
+        "id": "upper-caution-v1@9",
+        "strategyId": "upper-caution-v1",
+        "stepFrames": 9
+      },
+      "completeTrainingCourses": 4,
+      "heldOutPairs": [],
+      "meanHeldOutDelta": null,
+      "spend": {
+        "maxUsd": 1.25,
+        "confirmedUsd": 0.3714729,
+        "uncertainUsd": 0.0105447,
+        "reservedUsd": 0,
+        "committedCeilingUsd": 0.3820176,
+        "calls": 3162,
+        "knownUsageCount": 3150,
+        "stopReason": "spend-unknown",
+        "rateLimits": {}
+      },
+      "targetReached": false,
+      "stopReason": "spend-unknown",
+      "normalSpeedChecks": []
+    },
+    {
+      "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+      "mock": false,
+      "flights": 122,
+      "validFlights": 83,
+      "interruptedFlights": 39,
+      "selected": {
+        "id": "upper-caution-v1@9",
+        "strategyId": "upper-caution-v1",
+        "stepFrames": 9
+      },
+      "completeTrainingCourses": 6,
+      "heldOutPairs": [
+        {
+          "seed": 10001,
+          "baselineReward": 0.26333333333333336,
+          "selectedReward": 46.70166666666667,
+          "delta": 46.43833333333333
+        },
+        {
+          "seed": 10002,
+          "baselineReward": 0.275,
+          "selectedReward": 12.395,
+          "delta": 12.12
+        },
+        {
+          "seed": 10003,
+          "baselineReward": 0.26166666666666666,
+          "selectedReward": 0.275,
+          "delta": 0.013333333333333364
+        },
+        {
+          "seed": 10005,
+          "baselineReward": 24.51,
+          "selectedReward": 0.29,
+          "delta": -24.220000000000002
+        },
+        {
+          "seed": 10004,
+          "baselineReward": 0.27,
+          "selectedReward": 82.98333333333333,
+          "delta": 82.71333333333334
+        },
+        {
+          "seed": 10007,
+          "baselineReward": 0.25333333333333335,
+          "selectedReward": 0.275,
+          "delta": 0.021666666666666667
+        },
+        {
+          "seed": 10006,
+          "baselineReward": 12.356666666666667,
+          "selectedReward": 24.455,
+          "delta": 12.098333333333331
+        }
+      ],
+      "meanHeldOutDelta": 18.455000000000002,
+      "spend": {
+        "maxUsd": 0.8679824,
+        "confirmedUsd": 0.6667016,
+        "uncertainUsd": 0,
+        "reservedUsd": 0,
+        "committedCeilingUsd": 0.6667016,
+        "calls": 5641,
+        "knownUsageCount": 5641,
+        "stopReason": null,
+        "rateLimits": {
+          "x-ratelimit-limit-requests": "5000",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-requests": "4951",
+          "x-ratelimit-remaining-tokens": "1940818",
+          "x-ratelimit-reset-requests": "588ms",
+          "x-ratelimit-reset-tokens": "1.775s"
+        }
+      },
+      "targetReached": true,
+      "stopReason": "complete",
+      "normalSpeedChecks": [
+        {
+          "model": "gpt-6-luna",
+          "mock": false,
+          "episodeId": "2bcc84f5-0f41-4604-8b6f-ab7d5248e1d1",
+          "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+          "phase": "normal-speed-check",
+          "strategyId": "balanced-v1",
+          "candidateId": "balanced-v1@live-v5",
+          "courseSeed": 200001,
+          "configVersion": "flight-guidance-v5/normal-speed-check",
+          "dimensions": {
+            "width": 384,
+            "height": 216
+          },
+          "obstaclesPassed": 0,
+          "coinsCollected": 0,
+          "activeFlightSeconds": 2.85,
+          "requests": 50,
+          "reason": "game-over",
+          "cause": "rock",
+          "wallSeconds": 3.3747565000000175,
+          "reward": 0.28500000000000003,
+          "eventsOmitted": true
+        },
+        {
+          "model": "gpt-6-luna",
+          "mock": false,
+          "episodeId": "b4b7cbbe-cb74-43c7-a016-17c2d1ad5829",
+          "experimentId": "ffafb8e2-0fd3-4086-b7e8-7af9dc8c477a",
+          "phase": "normal-speed-check",
+          "strategyId": "upper-caution-v1",
+          "candidateId": "upper-caution-v1@live-v5",
+          "courseSeed": 200001,
+          "configVersion": "flight-guidance-v5/normal-speed-check",
+          "dimensions": {
+            "width": 384,
+            "height": 216
+          },
+          "obstaclesPassed": 6,
+          "coinsCollected": 5,
+          "activeFlightSeconds": 9.1,
+          "requests": 159,
+          "reason": "game-over",
+          "cause": "rock",
+          "wallSeconds": 9.776850582999993,
+          "reward": 70.91,
+          "eventsOmitted": true
+        }
+      ]
+    }
+  ],
+  "committedCeilingUsd": 1.0487192
+}
