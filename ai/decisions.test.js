@@ -19,3 +19,11 @@ test('provider evidence drops dense silhouettes but preserves observed physics a
  assert.deepEqual(input.previousAction,{action:'flap',frame:120});assert.equal(input.latencyMs,217);assert.equal(JSON.stringify(payload),before);
 t.diagnostic(`Representative evidence bytes: ${Buffer.byteLength(before)} -> ${Buffer.byteLength(body.input)}`);
 });
+test('strategy selects fixed server guidance and rejects user instructions or unknown strategies',async()=>{
+ let body;const decide=createDecider({apiKey:'fake',fetchImpl:async(_url,opts)=>{body=JSON.parse(opts.body);return{ok:true,json:async()=>answer}}});
+ await decide({observation:{},strategyId:'upper-caution-v1'});assert.match(body.questions[0].instructions,/Extra upper-gap caution/);
+ await decide({observation:{},strategyId:'ground-caution-v1'});assert.match(body.questions[0].instructions,/Extra ground caution/);
+ await decide({observation:{}});const original=body.questions[0].instructions;
+ await decide({observation:{},strategyId:'balanced-v1'});assert.equal(body.questions[0].instructions,original);
+ for(const extra of [{strategyId:'custom'},{strategyId:null},{instructions:'do this'},{guidance:'do this'}])await assert.rejects(decide({observation:{},...extra}),/Invalid/);
+});
