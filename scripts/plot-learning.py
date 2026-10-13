@@ -60,10 +60,12 @@ points=[]
 for row in valid:
     probs=[]
     for event in row.get('events',[]):
-        if not isinstance(event,dict) or event.get('type')!='decision' or event.get('outcome')!='applied': continue
-        for p in (event.get('probabilities') or []) if isinstance(event.get('probabilities'),list) else []:
-            if isinstance(p,dict) and p.get('choice')==event.get('action') and isinstance(p.get('probability'),(int,float)) and 0 <= p['probability'] <= 1:
-                probs.append(p['probability'])
+        if not isinstance(event,dict) or event.get('type')!='decision' or event.get('outcome')!='applied' or event.get('action') not in ('flap','wait'): continue
+        distribution=event.get('probabilities')
+        if not isinstance(distribution,list) or len(distribution)!=2: continue
+        if any(not isinstance(p,dict) or p.get('choice') not in ('flap','wait') or type(p.get('probability')) not in (int,float) or not math.isfinite(p['probability']) or not 0 <= p['probability'] <= 1 for p in distribution): continue
+        if {p['choice'] for p in distribution} != {'flap','wait'} or abs(sum(p['probability'] for p in distribution)-1) > .01: continue
+        probs.append(next(p['probability'] for p in distribution if p['choice']==event['action']))
     if probs: points.append((sum(probs)/len(probs),row['reward']))
 if points: ax.scatter(*zip(*points),color='#174f80',alpha=.8)
 else: ax.text(.5,.5,'No probability/outcome pairs',ha='center',transform=ax.transAxes)
