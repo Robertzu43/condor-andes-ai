@@ -34,3 +34,15 @@ Enable **Record this run** before Start. Recording captures the real game canvas
 The local game permits its existing Google Fonts stylesheet and font origin to preserve its pixel lettering; the spectator uses available Avenir / Century Gothic / sans-serif fonts. No official OpenAI font is bundled. Chrome recording and video export were verified. The latest live run reported a 184 ms final response; latency varies.
 
 The first decision is a preparation phase: the game world remains frozen while OpenAI chooses the first flap or wait. The actual model answer resumes play and applies once; subsequent requests keep the simulation moving. Preparation counts toward the 150-second bound. Hidden pages or resizing cancel preparation.
+
+The local AI spectator also offers **Start experiment**: six seeded training
+flights (101–103 twice), followed by fixed balanced versus frozen learned guidance
+on held-out seeds 1001 and 1002 in counterbalanced order. Each flight lasts at
+most 15 seconds; preparation and all episodes share 150 seconds and 750 requests.
+API failures, tab hiding, resize or Cancel interrupt the batch without learning a
+failure reward. Learning is strategy selection around the fixed hosted model;
+weights are unchanged and improvement is not guaranteed. Local records partition
+by model, guidance version, logical geometry and mock mode. Export experiment JSON
+includes complete observations, both choice probabilities, applied/discarded
+outcomes, episode rewards and learning statistics. Storage failures retain current
+records in memory. Selecting recording captures one continuous batch video.
