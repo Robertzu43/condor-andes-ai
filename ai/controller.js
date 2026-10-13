@@ -1,3 +1,4 @@
+export const ERROR_MESSAGES=Object.freeze({authentication:'OpenAI rejected the API key. Replace the local key and restart the server.',billing:'OpenAI quota or billing blocked this request. Check API credits and billing, then restart.',access:'This key does not have access to the Decisions API or configured model. Check project permissions.', 'rate-limit':'OpenAI rate limited this request. Wait before restarting the run.',network:'The provider could not be reached or timed out. Check the connection and try again.','invalid-answer':'The provider returned a malformed or refused answer. The run has paused.','not-configured':'Configure a local OpenAI API key and restart the server.'});
 export const LIMITS = Object.freeze({intervalMs:200,staleMs:250,maxStale:3,durationMs:150000,maxRequests:750});
 export function createController({game,decide,onEvent=()=>{},now=()=>performance.now()}) {
   let generation=0,timer,watchdog,abort,busy=false,nextAllowedAt=-Infinity;
@@ -35,9 +36,9 @@ export function createController({game,decide,onEvent=()=>{},now=()=>performance
       if (reason==='game-ended') return stop('game-over');
       if (state.staleCount>=LIMITS.maxStale) return stop('stale-responses');
       if (outcome==='applied') state.previousAction={action:result.action,frame:game.snapshot().frame};
-    } catch {
+    } catch(e) {
       if (generation!==token || !state.running) return;
-      emit('error',{observation,message:'Decision request failed or malformed answer'});stop('api-error');return;
+      emit('error',{observation,code:Object.hasOwn(ERROR_MESSAGES,e.code)?e.code:'invalid-answer',message:ERROR_MESSAGES[e.code]||'Decision request failed or malformed answer'});stop('api-error');return;
     }
     finally { busy=false; nextAllowedAt=now()+LIMITS.intervalMs; }
     if (state.running && generation===token) timer=setTimeout(()=>tick(token,runId),LIMITS.intervalMs);

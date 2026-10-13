@@ -1,3 +1,5 @@
+export const SAFE_ERROR_CODES=['authentication','billing','access','rate-limit','network','invalid-answer','not-configured'];
+const failure=code=>Object.assign(Error(code==='not-configured'?'OpenAI API key not configured':'Decision request failed or returned an invalid/refused answer'),{code});
 export const MODEL = 'gpt-6-luna';
 const choices = ['flap', 'wait'];
 export function validatePayload(payload) {
@@ -25,11 +27,11 @@ export function createDecider({apiKey, mock = false, fetchImpl = fetch} = {}) {
   return async (payload, {signal} = {}) => {
     validatePayload(payload);
     if (mock) return normalizeAnswer({answers:[{type:'choice',name:'flight',choice:'wait',confidence:1,probabilities:[{value:'flap',probability:0},{value:'wait',probability:1}]}]},true);
-    if (!apiKey) throw Error('OpenAI API key not configured');
+    if (!apiKey) throw failure('not-configured');
     try {
       const r = await fetchImpl('https://api.openai.com/v1/decisions',{method:'POST',signal:AbortSignal.any([AbortSignal.timeout(5000), ...(signal ? [signal] : [])]),headers:{'content-type':'application/json',Authorization:`Bearer ${apiKey}`},body:JSON.stringify({model:MODEL,input:JSON.stringify(payload),questions:[{name:'flight',type:'choice',instructions:'Choose one flight input to apply once on receipt to keep the condor alive and collect visible coins. Physics values are per 60 Hz frame. Account for latency, velocity, visible mountain shapes and gap bounds; no future obstacles are known.',choices:[{value:'flap',description:'Apply one upward impulse.'},{value:'wait',description:'Apply no impulse.'}]}]})});
-      if (!r.ok) throw Error();
-      return normalizeAnswer(await r.json());
-    } catch { throw Error('Decision request failed or returned an invalid/refused answer'); }
+      if (!r.ok) {let code=r.status===401?'authentication':r.status===402?'billing':r.status===403?'access':r.status===429?'rate-limit':'network';if(r.status===429){try{const body=await r.json();if(['insufficient_quota','billing_hard_limit_reached'].includes(body?.error?.code))code='billing';}catch{}}throw failure(code);}
+      try{return normalizeAnswer(await r.json());}catch{throw failure('invalid-answer');}
+    } catch (e) { throw failure(SAFE_ERROR_CODES.includes(e.code)?e.code:'network'); }
   };
 }

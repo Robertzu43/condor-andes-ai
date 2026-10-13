@@ -2,7 +2,7 @@ import http from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {resolve,dirname} from 'node:path';
-import {MODEL,createDecider,validatePayload} from './decisions.mjs';
+import {MODEL,createDecider,validatePayload,SAFE_ERROR_CODES} from './decisions.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const assets=new Set(['index.html','game.js','sprites.js','favicon.png','og.png','apple-touch-icon.png','ai/index.html','ai/style.css','ai/app.js','ai/controller.js','ai/recorder.js']);
 const types={html:'text/html',js:'text/javascript',css:'text/css',png:'image/png'};
@@ -24,7 +24,7 @@ export function createServer({apiKey=process.env.OPENAI_API_KEY,mock=false,fetch
       const abort=new AbortController();const timeout=setTimeout(()=>{abort.abort();if(!req.complete)req.destroy()},6000);req.on('aborted',()=>abort.abort());res.on('close',()=>{if(!res.writableEnded)abort.abort()});
       active=true;lastRequest=Date.now();
       try{let body='';for await(const chunk of req){body+=chunk;if(Buffer.byteLength(body)>16384)throw Error('Body too large')}const payload=validatePayload(JSON.parse(body));send(200,await decide(payload,{signal:abort.signal}));}
-      catch {if(!res.destroyed)send(400,{error:apiKey||mock?'Decision failed or invalid request':'OpenAI API key not configured'})}
+      catch(e) {if(!res.destroyed)send(400,{error:apiKey||mock?'Decision failed or invalid request':'OpenAI API key not configured',code:SAFE_ERROR_CODES.includes(e.code)?e.code:'invalid-request'})}
       finally{active=false;clearTimeout(timeout)}return;
     }
     if(req.method!=='GET')return send(404,{error:'Not found'});
