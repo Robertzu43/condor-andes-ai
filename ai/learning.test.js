@@ -50,3 +50,4 @@ test('mock training stays in its own partition and malformed metadata is ignored
  assert.equal(learning.selectStrategy(learning.emptyStats(context),{explore:false}),'balanced-v1');
  assert.deepEqual(learning.deserializeLearning(null),{schemaVersion:1,records:[],notice:null});
 });
+test('current guidance excludes historical slower-cadence training while retaining exportable history',()=>{const previous=record(),current={...context,configVersion:learning.CONFIG_VERSION};const stored=learning.deserializeLearning(learning.serializeLearning([previous]));assert.equal(stored.records.length,1);const stats=learning.emptyStats(current);assert.deepEqual(learning.updateStats(stats,stored.records[0]),stats);const next=learning.updateStats(stats,record({episodeId:'current',configVersion:learning.CONFIG_VERSION}));assert.equal(next.arms['balanced-v1'].visits,1)});

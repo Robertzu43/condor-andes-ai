@@ -1,4 +1,4 @@
-export const CONFIG_VERSION = 'flight-guidance-v1';
+export const CONFIG_VERSION = 'flight-guidance-v2';
 export const STRATEGIES = Object.freeze(['balanced-v1','upper-caution-v1','ground-caution-v1']);
 const nonnegative = value => Number.isFinite(value) && value >= 0;
 const count = value => Number.isSafeInteger(value) && value >= 0;

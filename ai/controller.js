@@ -21,6 +21,7 @@ export function createController({game,decide,onEvent=()=>{},now=()=>performance
     const sequence=++state.sequence, requestedAt=now(), warmup=state.warmup;
     Object.assign(observation,{runId,sequence,timestamp:Date.now()});
     busy=true;
+    let cooldownMs=LIMITS.intervalMs;
     abort=new AbortController();emit('request',{observation,requestedAt,warmup});
     try {
       const result=await decide({observation,previousAction:state.previousAction,latencyMs:state.latencyMs,...(state.strategyId?{strategyId:state.strategyId}:{})},{signal:abort.signal});
@@ -31,6 +32,7 @@ export function createController({game,decide,onEvent=()=>{},now=()=>performance
       else if (game.snapshot().state!=='play' || isExternalPause(game.snapshot())) {outcome='discarded';reason='game-ended'}
       else if (!warmup && latencyMs>LIMITS.staleMs) {outcome='discarded';reason='stale'}
       if (!['flap','wait'].includes(result?.action) || result.probabilities?.length !== 2 || !['flap','wait'].every(c=>result.probabilities.filter(p=>p.choice===c && Number.isFinite(p.probability) && p.probability>=0 && p.probability<=1).length===1) || Math.abs(result.probabilities.reduce((sum,p)=>sum+p.probability,0)-1)>.01 || !Number.isFinite(result.confidence) || result.confidence<0 || result.confidence>1) throw Error('Malformed decision');
+      if (generation===token && state.running && Number.isFinite(result.cooldownMs) && result.cooldownMs>=0 && result.cooldownMs<=LIMITS.intervalMs) cooldownMs=result.cooldownMs;
       if (outcome==='applied' && warmup) {
         if (!game.resume()) { outcome='discarded'; reason='game-ended'; }
         else state.warmup=false;
@@ -48,8 +50,8 @@ export function createController({game,decide,onEvent=()=>{},now=()=>performance
       if (generation!==token || !state.running) return;
       emit('error',{observation,code:Object.hasOwn(ERROR_MESSAGES,e.code)?e.code:'invalid-answer',message:ERROR_MESSAGES[e.code]||'Decision request failed or malformed answer'});stop('api-error');return;
     }
-    finally { busy=false;for(const resolve of idleWaiters.splice(0))resolve(); nextAllowedAt=now()+LIMITS.intervalMs; }
-    if (state.running && generation===token) timer=setTimeout(()=>tick(token,runId),LIMITS.intervalMs);
+    finally { busy=false;for(const resolve of idleWaiters.splice(0))resolve(); nextAllowedAt=now()+cooldownMs; }
+    if (state.running && generation===token) timer=setTimeout(()=>tick(token,runId),cooldownMs);
   }
   function start(options={}) {
     const {seed,strategyId,durationMs=LIMITS.durationMs,maxRequests=LIMITS.maxRequests}=options;

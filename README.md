@@ -33,6 +33,8 @@ Enable **Record this run** before Start. Recording captures the real game canvas
 
 The local game permits its existing Google Fonts stylesheet and font origin to preserve its pixel lettering; the spectator uses available Avenir / Century Gothic / sans-serif fonts. No official OpenAI font is bundled. Chrome recording and video export were verified. The latest live run reported a 184 ms final response; latency varies.
 
+Decision requests remain sequential and at least 200 ms apart at server acceptance. Replies include the remaining server cooldown, waited after receipt; provider latency overlaps that cooldown. Missing or invalid cooldown metadata falls back to a full 200 ms wait. Flight projections estimate the next action opportunity with max(200 ms, recent latency), with transport jitter able to extend it. Guidance v2 keeps prior learning statistics separate.
+
 The first decision is a preparation phase: the game world remains frozen while OpenAI chooses the first flap or wait. The actual model answer resumes play and applies once; subsequent requests keep the simulation moving. Preparation counts toward the 150-second bound. Hidden pages or resizing cancel preparation.
 
 The local AI spectator also offers **Start experiment**: six seeded training

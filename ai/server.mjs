@@ -23,7 +23,7 @@ export function createServer({apiKey=process.env.OPENAI_API_KEY,mock=false,fetch
       if(active||Date.now()-lastRequest<200)return send(429,{error:'Decision rate limited'});
       const abort=new AbortController();const timeout=setTimeout(()=>{abort.abort();if(!req.complete)req.destroy()},6000);req.on('aborted',()=>abort.abort());res.on('close',()=>{if(!res.writableEnded)abort.abort()});
       active=true;lastRequest=Date.now();
-      try{let body='';for await(const chunk of req){body+=chunk;if(Buffer.byteLength(body)>16384)throw Error('Body too large')}const payload=validatePayload(JSON.parse(body));send(200,await decide(payload,{signal:abort.signal}));}
+      try{let body='';for await(const chunk of req){body+=chunk;if(Buffer.byteLength(body)>16384)throw Error('Body too large')}const payload=validatePayload(JSON.parse(body));const result=await decide(payload,{signal:abort.signal});send(200,{...result,cooldownMs:Math.min(200,Math.max(0,200-(Date.now()-lastRequest)))});}
       catch(e) {if(!res.destroyed)send(400,{error:apiKey||mock?'Decision failed or invalid request':'OpenAI API key not configured',code:SAFE_ERROR_CODES.includes(e.code)?e.code:'invalid-request'})}
       finally{active=false;clearTimeout(timeout)}return;
     }
