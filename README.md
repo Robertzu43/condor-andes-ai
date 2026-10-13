@@ -12,7 +12,7 @@ Open http://127.0.0.1:8789 to use the spectator. Mock mode always answers **wait
 
 For real decisions, copy `.env.example` to `.env`, set `OPENAI_API_KEY` locally, and run `npm run ai`. Restart the server after configuring the key. Never commit the key or paste it into chat. `/api/status` reports whether a key is configured without returning it. Real mode uses `gpt-6-luna` through OpenAI POST `/v1/decisions`. Missing credentials pause play; no automatic scripted fallback exists.
 
-Control runs are limited to 150 seconds / 750 requests and at most five decisions per second, with one request at a time. Answers older than 500 ms are discarded; three consecutive stale answers pause the game. Death, stop, hidden pages, and resizing freeze AI control. AI play never submits to the human leaderboard. Real latency and performance have not been verified.
+Control runs are limited to 150 seconds / 750 requests and at most five decisions per second, with one request at a time. Answers older than 500 ms are discarded; three consecutive stale answers pause the game. Death, stop, hidden pages, and resizing freeze AI control. AI play never submits to the human leaderboard. Real API play has been verified in short trials. The latest checkpoint applied nine decisions, passed one obstacle and collected one coin before game over at about four seconds; this is not a validated long-duration demo.
 
 ```sh
 npm test
@@ -31,6 +31,6 @@ Start begins a normal-speed model-controlled run; Stop pauses it; Restart ends t
 
 Enable **Record this run** before Start. Recording captures the real game canvas and the live decision/progress panel together at 30 frames per second, with visible mock, pending, pause and error labels. A supported MediaRecorder codec is selected at runtime (usually WebM in Chrome); unsupported recording blocks the recorded run with an explanation. Stop, death or controller failure finalizes the video, then **Download video** saves it. **Export decisions** saves the complete run events, observations, returned probabilities, frames, timestamps, errors and mode as JSON. Restart replaces the previous run and exports, so download them first. Recording needs a visible browser tab; hiding the page ends control.
 
-The local game permits its existing Google Fonts stylesheet and font origin to preserve its pixel lettering; the spectator uses available Avenir / Century Gothic / sans-serif fonts. No official OpenAI font is bundled. Browser recording availability and real provider latency must be verified on the target browser.
+The local game permits its existing Google Fonts stylesheet and font origin to preserve its pixel lettering; the spectator uses available Avenir / Century Gothic / sans-serif fonts. No official OpenAI font is bundled. Chrome recording and video export were verified. The latest live run reported a 184 ms final response; latency varies.
 
 The first decision is a preparation phase: the game world remains frozen while OpenAI chooses the first flap or wait. The actual model answer resumes play and applies once; subsequent requests keep the simulation moving. Preparation counts toward the 150-second bound. Hidden pages or resizing cancel preparation.
