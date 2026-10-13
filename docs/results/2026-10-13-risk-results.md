@@ -49,3 +49,5 @@ python scripts/plot-learning.py docs/results/2026-10-13-risk-experiment.json doc
 ```
 
 All 81 application tests and the build pass. Independent review approved the changes and the ridge-envelope correction. The mock batch and real batch finalized recording; the real recording remains available in its open app tab. No separately downloaded real video was inspected because of the in-app browser's previously recorded download limitation. Hosted model weights were unchanged.
+
+After the real trial, a spectator-label correction was verified with a deliberately delayed 650 ms MOCK reply: game over clears the pending label, identifies the last answer and ended request, removes the green applied marker, and finalizes recording without browser errors. This display-only check made no paid calls and did not modify the measured flight trace. The real backend was restored afterward.
